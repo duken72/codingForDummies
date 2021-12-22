@@ -26,6 +26,7 @@ mcd()
 # !! - Entire last command, including arguments, ex: sudo !! if last command fail cause permission
 # $_ - Last argument from the last command. If you are in an interactive shell, you can also quickly get this value by typing Esc followed by .
 
+# Logical
 false || echo "Oops, fail" # Oops, fail
 true || echo "Will not be printed"
 true && echo "Things went well" # Things went well

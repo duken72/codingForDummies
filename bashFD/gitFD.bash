@@ -1,10 +1,3 @@
-# Copyright (c) 2021, Huu Duc Nguyen
-# All rights reserved.
-
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree.
-
-
 # There is a difference between a remote branch and a branch existing in a remote repository (github, bitbucket, gitlab ..)
 # Remote branch is a branch in your local machine, mapping to a branch in remote repo.
 git fetch # get updated list of branches from the remote repo - your local remote branch got updated - but will not remove local branch that no longer has a counterpart in remote repo
