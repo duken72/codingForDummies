@@ -6,58 +6,63 @@ have fun checking it.*/
 //looks in current directory first
 #include "header.hpp" 
 
+using variableType = int;
+
 int main()
 {
     // Basic IO
-    cout << "Hello World" << endl;
-    cerr << "error message" << endl;
+    std::cout << "Hello World" << std::endl;
+    std::cerr << "error message" << std::endl;
     // sizeof
-    cout << "size of int is " << sizeof(int) << "\n"; //4
-    cout << "size of float is " << sizeof(float) << "\n"; //4
-    cout << "size of double is " << sizeof(double) << "\n"; //8    
+    std::cout << "size of int is " << sizeof(int) << "\n"; //4
+    std::cout << "size of float is " << sizeof(float) << "\n"; //4
+    std::cout << "size of double is " << sizeof(double) << "\n"; //8    
     // Constant
-    const int shit = 72; // can't change const variable
-    shit = 27; 
+    const int shit = 72;
+    // can't change const variable
+    shit = 27;
     // Enumerated Constant
     enum ANIMALS {Dog, Duck, Dick}; //ANIMALS has 3 possible values
     ANIMALS duke; //duke as a variable of type ANIMALS
     duke = Duck;
-    cout<<duke<<endl; //1
+    std::cout << duke << std::endl; //1
     
     // Formating output
     // #include <iomanip>
-    std::cout << "ahoy" << std::setw(14) << "fuck" << "/t" << "you" << endl;
+    std::cout << "ahoy" << std::setw(14) << "fuck" << "/t" << "you" << std::endl;
     
     // File IO
     // #include <fstream>
     // output stream
-    string line;
-    ofstream myfileI ("input.txt", ios::app);
+    std::string line;
+    std::ofstream myfileI ("input.txt", std::ios::app);
     if (myfileI.is_open())
     {
         myfileI << "\nI am adding a line.\n";
         myfileI << "I am adding another line.\n";
         myfileI.close();
     }
-    else cout << "Unable to open file for writing";
+    else std::cout << "Unable to open file for writing";
     // input stream
     // though it's already opened from above
-    ifstream myfileO ("input.txt"); 
+    std::ifstream myfileO ("input.txt"); 
     if (myfileO.is_open())
     {
         while(getline (myfileO,line))
         {
-            cout << line << '\n';
+            std::cout << line << '\n';
         }
         myfileO.close();
     }
-    else cout << "Unable to open file for reading";
+    else std::cout << "Unable to open file for reading";
     // User inputs
+    int var;
     std::cin >> var;
-    std::getline(std::cin, variableName);
+    // std::getline(std::cin, var);
     // endl = "\n" + flush output;
     
     // Prefix and Postfix
+    int x, y;
     y = x++; // y = x, x=x+1
     y = ++x; // x=x+1, y=x
     
@@ -65,9 +70,9 @@ int main()
     // True = 1, False = 0
     int D = 1, U = 1, K = 0, E = 0;
     std::string TorF[] = {"False", "True"};
-    std::cout << D&&U << endl;
-    std::cout << U||K << endl;
-    std::cout << !E||K << endl;
+    std::cout << D&&U << std::endl;
+    std::cout << U||K << std::endl;
+    std::cout << !E||K << std::endl;
     
     // Control flow
     // if-else if-else
@@ -98,27 +103,37 @@ int main()
     for(int i=0; i<72; i++)
     {}
     
-    while()
+    while(1==1)
     {}
     
     do
-    {}while()
+    {}while(1==1);
         
     // Infinite loop
     for( ; ;)
-    {}    
+    {}
     while(1)
     {}
     // break; to exit the loop immediately
     // continue; to exit that iteration, ignore lower commands in the loop, and start with the next iteration
      
-    // pointer
-    // pointerToD is the pointer of d, DEREFERENCING
-    int d = 72;
-    int * pointerToD = &d;
-    cout<<"address of d is at &d = "<<&d<<endl;
-    cout<<"value at address &d is d ="<< * pointerToD<<endl;
+    // Pointer
+    // Check https://www.cplusplus.com/doc/tutorial/pointers/
+    int val = 72;
+    // Declare a pointer, that point to a int value
+    int * pointerToVal; 
+    // pointerToVal is the pointer of val, DEREFERENCING
+    pointerToVal = &val;
+    // above line inits the pointer with the address
+    // would be wrong if init value pointed to *pointerToVal = &val;
+    std::cout << "address of d is at &d = " << &val << std::endl;
+    std::cout << "value at address &d is d =" << * pointerToVal << std::endl;
     // for char (void *) &givenChar
+    /*Note:
+    To declare two pointers
+    use: int * p1, * p2;
+    not: int * p1, p2;
+    */
     
     // Array
     // type arrayName [] = {variables to be stored in the array};
@@ -126,18 +141,23 @@ int main()
     // type arrayName[sizeDim1][sizeDim2]...[sizeDimN]
     int searchKey[2][3] = {1, 2, 3, 4, 5, 6};   
     // to access specifix index
-    variableType arrayName[ind1][ind2]
+    variableType arrayName[val][val];
     
     // vectors and iterators
     std::vector<int> vectorInts;
     std::vector<int>::iterator it;
-    cout::vectorInts.size();
-    vectorInts.resize(n);
-    vectorInts.assign(2,7); //overwrite from the beginning of vector
-    vectorInts.push_back(2); //add one value at the end
-    vectorInts.insert(vectorInts.begin()+it,val); //set value at specific location
-    vectorInts.emplace(vectorInts.begin()+it,val); //set value at specific location
-    vectorInts.clear(); //clear vector to 0 elements
+    vectorInts.size();
+    vectorInts.resize(val);
+    //overwrite from the beginning of vector
+    vectorInts.assign(2,7);
+    //add one value at the end
+    vectorInts.push_back(2);
+    //set value at specific location
+    vectorInts.insert(vectorInts.begin()+it,val);
+    //set value at specific location
+    vectorInts.emplace(vectorInts.begin()+it,val);
+    //clear vector to 0 elements
+    vectorInts.clear();
     vectorInts.erase(vectorInts.begin()+loc);
     vectorInts.erase(vectorInts.begin()+loc1, vectorInts.begin()+loc2);
     vectorInts.pop_back(); //remove last element
@@ -150,10 +170,10 @@ int main()
 
 // Functions
 // Declaration, before main, should be described in header.hpp
-retVariableType functionName(paramsVariableType params);
+retVarType functionName(paramsVarType params);
 // Definition, conventionally after main
 // could also just put it in header.hpp 
-retVariableType functionName(paramsVariableType params)
+retVarType functionName(paramsVarType params)
 {
     commands;
     return params;
@@ -170,18 +190,11 @@ void increment(int &input)
 {
     input++;
 }
-// Arrays as Function parameters:
-// Pass as a pointer
-void functionName(variableType *arrayName)
-// Pass as a sized array
-void functionName(variableType arrayName[length of array])
-// Pass as an unsized array
-void functionName(variableType arrayName[])
-// Set variables we don't want to change as const
-void function(const int input);    
 // overloading function with different input argument types
 // or number of input arguments
 
 //tell the compiler that we are using a template, when delaring
 template <typename T, typename U>
-template <typename T> // then defining func: T functionName(T input1, U input2){}
+template <typename T>
+// then defining func:
+// T functionName(T input1, U input2){}

@@ -1,9 +1,10 @@
 # https://missing.csail.mit.edu/2020/shell-tools/
 
 # shebang
-#!/bin/sh – Execute the file using the Bourne shell, or a compatible shell
-#!/bin/bash – Execute the file using the Bash shell
-#!/usr/bin/env python3 – Execute with a Python interpreter, using the env program search path to find
+# Execute the file using which shell / interpreter
+#!/bin/sh
+#!/bin/bash
+#!/usr/bin/env python3
 
 shellcheck file.sh
 

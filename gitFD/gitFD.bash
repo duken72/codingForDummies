@@ -1,7 +1,5 @@
-# There is a difference between a remote branch and a branch existing in a remote repository (github, bitbucket, gitlab ..)
-# Remote branch is a branch in your local machine, mapping to a branch in remote repo.
-git fetch # get updated list of branches from the remote repo - your local remote branch got updated - but will not remove local branch that no longer has a counterpart in remote repo
-git fetch --prune # will prune of branch that no longer has a counterpart in remote repo
+git fetch # update local remote branches to branches on remote repo
+git fetch --prune # prune branches that no longer has remote repo counterpart
 
 # To upload current project to github from computer
 # create repo on git
@@ -13,9 +11,6 @@ git remote add origin <LINK_to_git_repo> # declare the corresponding remote repo
 git push -u origin main # push from current local branch "main", to remotes/origin, branch main
 
 # -------------------------------------------------
-# To sync (push/pull), use either PAT (Personal Access Token) or SSH
-# with PAT, one could specify permissions, while with SSH, there can only be read-only or read-write
-# To stop asking for PAT when pushing to origin
 git remote set-url origin git@github.com:username/repo.git
 git config --global credential.helper store # this save the key in .git-credentials
 git config --global credential.helper 'cache --timeout 7200' # Also enabling credential caching to 2hrs

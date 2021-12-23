@@ -10,10 +10,24 @@
 #include <sstream>
 #include <cmath>
 
+// Random definition to avoid errors
 // using namespace std;
+using varType = int;
+using retVarType = int;
+using paramsVarType = int;
+const int length_of_array = 7;
 
 // Functions
-// declaration before main
+// Declaration, should be described in header.hpp
+
 // describe the function (purposes, inputs, outputs)
-// TODO
-retVariableType functionName(paramsVariableType params1);
+retVarType functionName(paramsVarType params1);
+// Set variables we don't want to change as const
+retVarType functionName(const paramsVarType input);
+// Arrays as Function parameters
+// Pass as a pointer
+retVarType functionName(paramsVarType *arrayName);
+// Pass as a sized array
+retVarType functionName(paramsVarType arrayName[length_of_array]);
+// Pass as an unsized array
+retVarType functionName(paramsVarType arrayName[]);
