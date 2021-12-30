@@ -3,26 +3,30 @@
 Important things about coding that I have learnt by myself and from the professionals.
 
 - This README contains general terms or problems.
-- Other folders contain guides and samples for specific coding languages and possible terminal commands.
+- Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.
 
 ## Abbreviations & Definitions
 
-- CLI - command-line interface
-- API - Application Programming Interface: [1](https://youtu.be/s7wmiS2mSXY).
-- Compiling: translates source code (human-readeable, eg., in Python, C++) to low-level machine language (eg., Assembly)
+- CLI - Command-line Interface.
+- API - Application Programming Interface: [What is an API?](https://youtu.be/s7wmiS2mSXY).
+- Compiling: translates source code (human-readeable, eg., in Python, C++) to low-level machine language (eg., Assembly). [How do computers read code?
+](https://youtu.be/QXjU9qTsYCc)
 - Building: could include generating source code, documentation, compiling of source code, packaging complied code, installing, etc.
 
 ## Package and Package Management System
 
 - .iso -
-- .exe in Windows - .elf in Linux (kind of, not precise)
-- .deb -
+- .exe in Windows - .elf in Linux (kind of, not precisely)
 - apt - Advanced Package Tool
+- .deb -
 - dpkg - Debian package management system
 
 ## License
 
-What is it and what are different types: [1](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633), [2](https://exygy.com/blog/which-license-should-i-use-mit-vs-apache-vs-gpl/).
+What is it and what are different types:
+
+- [Open Source Licenses](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633)
+- [MIT vs. Apache vs. GPL](https://exygy.com/blog/which-license-should-i-use-mit-vs-apache-vs-gpl/).
 
 ## Docker
 
@@ -43,7 +47,7 @@ Set of practices to build, test and release your code in small frequent steps [1
 Autotomate test, build and deploy.
 
 - Nightly build vs Continuous Integration
-- Jenkins [2](https://youtu.be/LFDrDnKPOTg)
+- [Jenkins For Beginners](https://youtu.be/LFDrDnKPOTg)
 - Other open-source tools: Bamboo, Buildbot, Apache Gump, Travis CI.
 - Github action
 
@@ -67,4 +71,4 @@ This's a bit actually off to project management than just coding.
 
 ## LICENSE
 
-See the [LICENSE](LICENSE.md) file for license rights and limitations (BSD).
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).

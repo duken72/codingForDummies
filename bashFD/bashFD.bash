@@ -83,17 +83,23 @@ awk -f awkFD.awk file.txt
 
 # -------------------------------------------------
 # Archive
-zip -er output.zip file1 file2 # zip with encryption (password)
-unzip -o input.zip -d target_dir # unzip to a dir, -x *.h to exclude files .h, -o for overwriting the target_dir, -n for not overwrite, just unzip files that are not yet in target_dir
+# zip tags: r-recursive, e-encrypt, v-verbose, 9-compress better
+zip -er9 output.zip file1 file2 # zip with encryption
+# unzip tags: x *.h - exclude files .h, o-overwriting target_dir
+# unzip tags: n-not overwrite, just unzip files not in target_dir
+unzip -o input.zip -d target_dir # unzip to a dir
 upzip -l input.zip | less # looking inside zip file
 zipcloack file.zip # add password, in case u forgot it before
-zipsplit -n [size_in_bytes] file.zip # split to satisfy size restriction
-tar cvf [target_file.tar] [files/dirs] # v - verbose (echo out what it does), f - file type tar, c - create
-tar tvf [file.tar] # t - list out files in file.tar
+zipsplit -n [size_in_bytes] file.zip # split to size restriction
+# tar tags: v-verbose, f-files, c-create, z-gunzip, x-extract, t-list
+tar cvf [target_file.tar] [files/dirs] # create .tar
+tar zcvf [target_file.tar.gz] [files/dirs] # create .tar.gz
+tar tvf [file.tar] # list out files in file.tar
+tar xvf [file.tar] -C [dirs] # extract tar file
+tar xvfz [file.tar.gz] [dirs] # extract tar.gz file
 gzip [file.tar] # compress the tar file -> .tar.gz file
 gunzip [file.tar.gz] # uncompress the .tar.gz file -> .tar file
-tar xvf [file.tar] -C [dirs] # extract the tar file
-tar xvfz [file.tar.gz] [dirs] # extract the tar.gz file
+unrar x [file.rar]
 
 # -------------------------------------------------
 # Symmetric cryptography
