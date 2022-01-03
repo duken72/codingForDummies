@@ -27,6 +27,16 @@ int main()
     duke = Duck;
     std::cout << duke << std::endl; //1
     
+    // Variable assignment and initialization
+    // no initializer
+    int a;
+    // copy initialization, inherited from the C language
+    int b = 5;
+    // Direct initialization
+    int c( 6 );
+    // Uniform initialization or list initialization
+    int d { 7 };
+
     // Formating output
     // #include <iomanip>
     std::cout << "ahoy" << std::setw(14) << "fuck" << "/t" << "you" << std::endl;
@@ -194,7 +204,10 @@ void increment(int &input)
 // or number of input arguments
 
 //tell the compiler that we are using a template, when delaring
-template <typename T, typename U>
 template <typename T>
 // then defining func:
-// T functionName(T input1, U input2){}
+T functionName1(T input1, T input2)
+{
+    return input1 + input2;
+}
+// template <typename T, typename U>
