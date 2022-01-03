@@ -140,22 +140,36 @@ Good tutorial videos: [CMake Tutorial](https://www.youtube.com/watch?v=nlKcXPUJG
 
 ### Important commands
 
-1. `add_executable`
-
-   - Example:
+1. `add_executable`: [CMake Doc](https://cmake.org/cmake/help/latest/command/add_executable.html)
 
     ```cmake
+    add_executable(<name> [WIN32] [MACOSX_BUNDLE]
+                  [EXCLUDE_FROM_ALL]
+                  [source1] [source2 ...])
     add_executable(duck duck.cpp)
     ```
 
-2. `find_package`, `include` and `add_subdirectory`
+2. Include vs link libraries: [stackoverflow discussion](https://stackoverflow.com/questions/56565665/difference-between-target-link-libraries-and-target-include-directories)
+
+    - `*include_directories` is used to supply a list of include directories to the compiler. When a file is included using the pre-processor, these directories will be searched for the file.
+
+    <!-- TODO - I don't really understand this shit -->
+    - `*link_libraries` is used to supply a list of libraries (object archives) to the linker. If the linked item is a cmake target, with specified include directories, they don't need to be specified separately with *include_directories.
+
+    - The `target_*` versions apply only to the target that is given as an operand. The non-target versions apply to all targets in the directory. The `target_*` versions should be used whenever possible (i.e. pretty much always). [(stackoverflow)](https://stackoverflow.com/questions/31969547/what-is-the-difference-between-include-directories-and-target-include-directorie#:~:text=include_directories(x%2Fy)%20affects,include%20path%20for%20target%20t%20.)  
+    -> `include_directories` vs `target_include_directories`  
+    -> `link_libraries` vs `target_link_libraries`
+
+
+3. `find_package`, `include` and `add_subdirectory`
 
    - `include` executes another CMake script in the same scope as the calling script.
    - `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [CMake docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
-   - `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`, let just stick with `find_package`.
+   - `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`  
+   Let just stick with `find_package`.
    - `add_subdirectory`, on the other hand, creates a new scope, then executes the script named `CMakeLists.txt` from the specified directory in that new scope.
 
-3. `include_directories` and `target_include_directories`: [Q&A on stack**overflow**](https://stackoverflow.com/questions/31969547/what-is-the-difference-between-include-directories-and-target-include-directorie#:~:text=include_directories(x%2Fy)%20affects,include%20path%20for%20target%20t%20.)
+4. `include_directories` and `target_include_directories`:
 
     Assume having `z.hpp` in x/y:
     - `include_directories(x/y)` affects directory scope. All targets in this `CMakeLists.txt`, as well as those in all subdirectories added after the point of its call, will have the path x/y added to their include path. Thus you can `#include <z.hpp>` instead of `#include <x/y/z.hpp>`.
@@ -185,7 +199,7 @@ Good tutorial videos: [CMake Tutorial](https://www.youtube.com/watch?v=nlKcXPUJG
 
     ```
 
-4. as
+5. as
 
 ### Including other scripts
 
@@ -225,3 +239,7 @@ Common target properties and the commands to change them:
 8. Libraries/Executables to build (add_library()/add_executable()/target_link_libraries())
 9. Tests to build (catkin_add_gtest())
 10. Install rules (install())
+
+### CMake for ROS2
+
+`ament_cmake` is the build system for `CMake` based packages in ROS2.
