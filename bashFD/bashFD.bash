@@ -3,6 +3,8 @@
 
 
 # Navigation
+# exa > ls > tree
+exa -la --git --tree
 ls -l -a [folder] #-l (long) for details, -a (all) include hidden files
 ls -lhrt
 tree --du -h
@@ -23,26 +25,36 @@ cd -  #previous dir
 file [file_name] # description of file
 du -ahd 1 [dir/file] # size of a dir/file
 du -hsc * [dir/file]
-locate [file_name] # locate file in the entire system, need to be installed
+
+# Search for file
+# fzf > fdfind > find
+fzf -e .sh$ !str # e-exact, $ include str, ! exclude str
+fdfind #tags: u-unrestricted, t-type (f,d,x,l), e-extension, E-exclude, x-exec
+# ex: fdfind -tf -tx -e py -x vim
 find <in-folder> -type f -name <file_name> -exec rm {} \;
 # ex: find . -name abc -type d; type d for dir, f for file
-fdfind # install this
+locate [file_name] # locate file in the entire system
+
+# rg > grep
+rg [pattern] # t-type
 grep <what> <file_name> # search for a string in a file
 # to search string in a dir
 {grep -R, rgrep, rg, ag} <what> <dir>
 
+# -------------------------------------------------
 # Guidance
-which [cmd] # or whatis [cmd]
 man [cmd] # manual guide for [cmd]
+which [cmd] # or whatis [cmd]
 apropos [something] # every command relate with [_]
 type [cmd] # also show guide on that command, whether it's an alias
 history # Ctrl + R
 
-# Working with files
+# -------------------------------------------------
+# Working with files and directories
 mkdir [dir]
 rmdir [dir] # remove all empty/unnecessary directories
 touch [file_name] # create or update
-cp -r [files] [dir] # -r: recursive (all the subfolder as well)
+cp -r [files] [dir] # r-recursive
 mv [files] [dir]
 mmv 'name_pattern' 'new_name_pattern' # rename multiple files with desired pattern
 for file in *.txt; do mv "$file" "${file%.txt}.sh"; done
@@ -56,11 +68,27 @@ ls ?uck*      # ? - any SINGLE character
 ls [c-e]uck*  # [a-f] - characters in [abcdef]
 ls duc[^a-c]* # [^a-c] - any character not in [abc]
 
+# -------------------------------------------------
+# View and edit files
+# bat > less > more > cat
 less [file_name] || more [file_name] || cat [file_name]
+# vim > gedit ~ nano
 gedit [file] || nano [file] || vim [file]
 
-. .bash_aliases # alias
+# sd > sed
+sd [prev_expression] [new_expression] [file]
+sd [prev_expression] [new_expression] [file] -p #p-preview
+sed 's/[prev_expression]/[new_expression]/g' [file.txt] # just print out the results
+sed -i 's/[prev_expression]/[new_expression]/g' [file.txt] # replace a string with another
+sed '/searchStr/c\newLine' [file.txt] # replace a line contain a string
 
+awk '/pattern/ {print $2}' file.txt
+awk -f awkFD.awk file.txt
+
+# counting lines of code
+# tokei > cloc
+
+# -------------------------------------------------
 # Chaining and redirection commands
 ./[file.name] 1> output_file.txt 2> error_log.txt # use >> to append instead of overwrite
 cmd1; cmd2; cmd3 # call cmds one after another, cmd2 runs even if cmd1 fails
@@ -69,17 +97,17 @@ cmd1 || cmd2 # If cmd1 fails, run cmd2
 cmd1 | cmd2 | cmd3 # pipe stdout of cmd1 to stdin of cmd 2, ..
 # ex: ls | grep something
 
+# -------------------------------------------------
 sudo su # root user, be careful :)
 exit
 
 xdg-open # open stuff with default app
+xargs # ??
 
-sed 's/[prev_expression]/[new_expression]/g' [file.txt] # just print out the results
-sed -i 's/[prev_expression]/[new_expression]/g' [file.txt] # replace a string with another
-sed '/searchStr/c\newLine' [file.txt] # replace a line contain a string
+# Time benchmarking
+# hyperfine > time
 
-awk '/pattern/ {print $2}' file.txt
-awk -f awkFD.awk file.txt
+# httpie > curl
 
 # -------------------------------------------------
 # Archive
@@ -123,6 +151,7 @@ sensible-pager
 fg || bg # resume task in foreground, background
 jobs
 kill -l
+kill -9
 
 # -------------------------------------------------
 # Shortcut - Action

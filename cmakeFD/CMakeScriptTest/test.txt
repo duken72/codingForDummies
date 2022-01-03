@@ -1,0 +1,53 @@
+message("Hello world!")		# A message to print
+message("Hello ${NAME}!")   # Substitute a variable into the message
+
+set(THING duck)
+# set(THING "funk")
+message("We want the ${THING}!")
+
+math(EXPR MY_SUM "1 + 1")   # Evaluate 1 + 1; store result in MY_SUM
+message("The sum is ${MY_SUM}.")
+
+if(WIN32)
+    message("You're running CMake on Windows.")
+else()
+    message("You're not running CMake on Windows.")
+endif()
+
+set(A "1")
+set(B "1")
+while(A LESS "7")
+    message("A = ${A}")         # Print A
+    math(EXPR T "${A} + ${B}")  # Add the numeric values of A and B; store result in T
+    set(A "${B}")               # Assign the value of B to A
+    set(B "${T}")               # Assign the value of T to B
+endwhile()
+
+set(ARGS "EXPR;T;1 + 1")
+math(${ARGS})   # Equivalent to math(EXPR T "1 + 1")
+message("${ARGS}")
+
+set(MY_LIST These are separate arguments)
+message("${MY_LIST}")           # Prints: These;are;separate;arguments
+
+set(MY_LIST These are separate arguments)
+list(REMOVE_ITEM MY_LIST "separate")    # Removes "separate" from the list
+message("${MY_LIST}")
+
+foreach(ARG These are separate arguments)
+    message("${ARG}")       # Prints each word on a separate line
+endforeach()
+
+# FUNCTION
+function(doubleIt VALUE)
+    math(EXPR RESULT "${VALUE} * 2")
+    message("${RESULT}")
+endfunction()
+doubleIt("4")                               # Prints: 8
+
+# MACRO
+macro(doubleIt VARNAME VALUE)
+    math(EXPR ${VARNAME} "${VALUE} * 2")    # Set the named variable in caller's scope
+endmacro()
+doubleIt(RESULT "4")                        # Tell the macro to set the variable named RESULT
+message("${RESULT}")                        # Prints: 8
