@@ -153,27 +153,30 @@ int main()
     // to access specifix index
     variableType arrayName[val][val];
     
-    // vectors and iterators
+    // Vectors and Iterators
+    // https://www.geeksforgeeks.org/vector-in-cpp-stl/
     std::vector<int> vectorInts;
     std::vector<int>::iterator it;
-    vectorInts.size();
-    vectorInts.resize(val);
-    //overwrite from the beginning of vector
-    vectorInts.assign(2,7);
-    //add one value at the end
-    vectorInts.push_back(2);
-    //set value at specific location
-    vectorInts.insert(vectorInts.begin()+it,val);
-    //set value at specific location
-    vectorInts.emplace(vectorInts.begin()+it,val);
-    //clear vector to 0 elements
-    vectorInts.clear();
-    vectorInts.erase(vectorInts.begin()+loc);
-    vectorInts.erase(vectorInts.begin()+loc1, vectorInts.begin()+loc2);
-    vectorInts.pop_back(); //remove last element
-    
+    // Vector iterator: (c)(r)begin, (c)(r)end
+    // Vector capacity: size, max_size, capacity,
+    // resize, empty, shrink_to_fit, reserve
+    // Vector modifier: assign, push_back, pop_back
+    // insert, erase, swap, clear, emplace, emplace_back
     for (it = vectorInts.begin(); it != vectorInts.end(); ++it)
         std::cout<<*it<<" ";
+    std::cout << std::endl;
+    for (auto i : vectorInts)
+        std::cout<< i <<" ";
+    std::cout << std::endl;
+    // Initialize a vector
+    // https://www.geeksforgeeks.org/initialize-a-vector-in-cpp-different-ways/
+    std::vector<int> vect; 
+    vect.push_back(10); //emplace_back
+    int n = 3;
+    std::vector<int> vect(n, 10);
+    std::vector<int> vect{ 10, 20, 30 };
+    std::vector<int> vect2(vect.begin(), vect.end());
+
     
     return 0;
 }

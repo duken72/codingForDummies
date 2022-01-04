@@ -160,7 +160,6 @@ Good tutorial videos: [CMake Tutorial](https://www.youtube.com/watch?v=nlKcXPUJG
     -> `include_directories` vs `target_include_directories`  
     -> `link_libraries` vs `target_link_libraries`
 
-
 3. `find_package`, `include` and `add_subdirectory`
 
    - `include` executes another CMake script in the same scope as the calling script.

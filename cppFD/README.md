@@ -195,14 +195,100 @@ Src: [stackoverflow](https://stackoverflow.com/questions/146452/what-are-pod-typ
 
 -------
 
+### Inline Specifier (since C++17)
+
+Src: [geeksforgeeks](https://www.geeksforgeeks.org/inline-functions-cpp/), [stackoverflow](https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method).
+
+This concerns with the overhead cost for switching time of small functions. When the inline function is called, the whole code of the inline function gets inserted or substituted. This substitution is performed by the C++ compiler at compile time.
+
+Inlining is only a request to the compiler, not a command. There are cases that the compiler can ignore this request. Inline functions have advantages but also disadvantages (check the sources).
+
+```cpp
+inline int cube(int s)
+{
+  return s*s*s;
+}
+
+int main()
+{
+  std::cout << "The cube of 3 is: " << cube(3) << "\n";
+  return 0;
+}
+```
+
+For Class definition, you only need to add inline when defining it, not when declare it inside the class
+
+```cpp
+class S
+{
+public:
+  // redundant to add inline here
+  int square(int s); // declare the function
+};
+  
+inline int S::square(int s) {} // use inline prefix
+```
+
+-------
+
+### Explicit Specifier
+
+TODO - Should we almost always add `explicit` specifier.
+
+Src: [cppreference](https://en.cppreference.com/w/cpp/language/explicit), [stackoverflow](https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean), [ibm](https://www.ibm.com/docs/en/i/7.4?topic=only-explicit-conversion-constructors-c).
+
+Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
+
+The reason you might want to do this is to avoid accidental construction that can hide bugs.
+
+```cpp
+class A
+{
+public:
+  A();
+  A(int);
+  A(const char*, int = 0);
+};
+
+int main()
+{
+  // Legal thanks to implicit conversion
+  A c = 1;
+  A d = "Venditti";
+  return 0;
+}
+```
+
+Using explicit specifier:
+
+```cpp
+class A
+{
+public:
+  explicit A();
+  explicit A(int);
+  explicit A(const char*, int = 0);
+};
+
+int main()
+{
+  A a2 = A(1);
+  A a3(1);
+  A a4 = A("Venditti");
+  A a5 = (A)1;
+  A a6 = static_cast<A>(1);
+  return 0;
+}
+```
+
+-------
+
 ### TODO
 
-- vector emplace_back
+- override
+- set
+- new
+- std sharedptr, uniqueptr, weakptr <-> vector
 - buffer
 - mutex
-- set
-- override
-- inline
-- explicit
-- std sharedptr, uniqueptr, weakptr <-> vector
 - is_transparent [src](https://www.fluentcpp.com/2017/06/09/search-set-another-type-key/)
