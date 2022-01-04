@@ -1,23 +1,23 @@
 # C++ for dummies
 
+TODO - Add TOC
+
 ## Compiling
+
+For simple test:
 
 ```bash
 g++ main.cpp -o main.out
 ./main.out input.txt
 ```
 
-### Compiler path vs Include path in VSCode
+In reality, use build system, such as [CMake](../cmakeFD/README.md):
 
-?? GOSH FUCK THIS STUPID INCLUDE PATHS
+TODO - Compiler path vs Include path in VSCode
 
-TODO - Ongoing with [CMake](../cmakeFD/README.md)
+RAII - Resource Acquisition is Initialization
 
 -------
-
-### RAII
-
-Resource Acquisition is Initialization
 
 ## Style Guide
 
@@ -83,7 +83,7 @@ inline namespace inner {
 
 -------
 
-## Extra note
+## Best practice
 
 ### Variable assignment and initialization
 
@@ -96,7 +96,7 @@ int a;
 int b = 5;
 // Direct initialization
 int c( 6 );
-// Uniform initialization or list initialization
+// Uniform initialization / list initialization
 int d { 7 };
 ```
 
@@ -104,10 +104,12 @@ int d { 7 };
 - Direct initialization: For simple data types (like `int`), copy and direct initialization are essentially the same. For more complicated types, direct initialization tends to be more efficient than copy initialization.
 - Uniform initialization / list initialization: Unfortunately, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data). To provide a more consistent initialization mechanism.
 
-**Best practice**:
+**In practice**:
 
 - Favor initialization using braces whenever possible.
 - But don't over-dramatic simple things: `int d{7};`
+
+-------
 
 ### Constructor member initializer lists
 
@@ -159,6 +161,8 @@ public:
 };
 ```
 
+-------
+
 ### Pointer
 
 | Expression | What is evaluated                     | Equivalent |
@@ -166,6 +170,8 @@ public:
 |     a.b    | mem b of object a                     |            |
 |    a->b    | mem b of object pointed to by a       |   (*a).b   |
 |    *a.b    | Value pointed to by mem b of object a |   *(a.b)   |
+
+-------
 
 ### Structure v/s Class
 
@@ -181,9 +187,13 @@ Class:
 - The instance of the class is known as "Object of the class".
 - A `class` can **do things**.
 
+-------
+
 ### POD - Plain Old Data
 
 Src: [stackoverflow](https://stackoverflow.com/questions/146452/what-are-pod-types-in-c).
+
+-------
 
 ### TODO
 
