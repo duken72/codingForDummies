@@ -1,17 +1,29 @@
 # VIM
 
-CLI commands:
+## Table of Contents
+
+- [CLI commands](#cli-commands)
+- [Hotkeys](#hotkeys)
+- [Reference](#reference)
+
+-------
+
+## CLI commands
 
 ```bash
 alias vimg='less $(fd vimFD.bash ~)'
 alias lessg='less $(fd lessFD.bash ~)'
 ```
 
------
+-------
 
-Check [vimFD.bash](vimFD.bash) and [lessFD.bash](lessFD.bash) for useful hotkeys.
+## Hotkeys
 
-Reference:
+Check [vimFD.bash](vimFD.bash) and [lessFD.bash](lessFD.bash) for useful hotkeys
+
+-------
+
+## Reference
 
 - <https://missing.csail.mit.edu/2020/editors/>
 - <https://www.codingdomain.com/linux/vim/advanced/>

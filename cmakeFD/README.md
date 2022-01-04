@@ -6,7 +6,24 @@ The project needs to be compiled, built with makefiles. There is a need to maint
 
 Hopefully, this guide will give you a brief overview of what is needed.
 
-<!-- TODO - add table of content -->
+-------
+
+## Table of Contents
+
+- [Makefile](#makefile)
+  - [Example 1](#example-1)
+- [CMake](#cmake)
+  - [CMake Overview](#cmake-overview)
+    - [Example 2](#example-2)
+  - [Basic Definition](#basic-definition)
+  - [CMake Syntax Overview](#cmake-syntax-overview)
+    - [Example 3](#example-3)
+- [CMake with C++ and ROS](#cmake-with-c-and-ros)
+  - [Important commands](#important-commands)
+  - [Including other scripts](#including-other-scripts)
+  - [Target properties](#target-properties)
+  - [CMake Structure for ROS1](#cmake-structure-for-ros1)
+  - [CMake for ROS2](#cmake-for-ros2)
 
 -------
 
@@ -134,7 +151,7 @@ cmake -DNAME=DUCK -P test.txt #Set variable NAME = DUCK
 
 -------
 
-## CMAKE with C++ and ROS
+## CMake with C++ and ROS
 
 Good tutorial videos: [CMake Tutorial](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&t=0s).
 

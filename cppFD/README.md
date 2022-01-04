@@ -1,6 +1,24 @@
 # C++ for dummies
 
-TODO - Add TOC
+## Table of Contents
+
+- [Courses](#courses)
+- [Compiling](#compiling)
+- [Style Guide](#style-guide)
+  - [Naming Conventions](#naming-conventions)
+  - [Header Files](#header-files)
+  - [Names and Order of Includes](#names-and-order-of-includes)
+  - [Namespaces](#namespaces)
+- [Best practice](#best-practice)
+  - [Variable assignment and initialization](#variable-assignment-and-initialization)
+  - [Constructor member initializer lists](#constructor-member-initializer-lists)
+  - [Pointer](#pointer)
+  - [Structure v/s Class](#structure-vs-class)
+  - [POD - Plain Old Data](#pod---plain-old-data)
+  - [Inline Specifier (since C++17)](#inline-specifier-since-c17)
+  - [Explicit Specifier](#explicit-specifier)
+  - [SharedPtr, UniquePtr, WeakPtr](#sharedptr-uniqueptr-weakptr)
+  - [TODO](#todo)
 
 ## Courses
 
@@ -177,6 +195,25 @@ public:
 |    a->b    | mem b of object pointed to by a       |   (*a).b   |
 |    *a.b    | Value pointed to by mem b of object a |   *(a.b)   |
 
+The points of pointer:
+
+- The overhead memory cost  
+  When assigning variables with values will copy that values to different memory space. Eg, `int a = 1, b = 1`, there are two memory space with value 1, type `int`. It could have just taken only one memory space for that value. For simply type like int, float, it wouldn't change much. But for instance/object of complex structure, class, it would reduce the memory cost significantly.
+
+- Change multiple variables  
+  In Python, it's easy to return variables of different types
+
+  ```python
+  def func_ab(c, d):
+    return a, b
+  ```
+
+  For CPP, a function returns only 1 variable of 1 type. To change multiple variables, we use their pointers as input
+
+  ```cpp
+  void func_ab(&a, &b) {}
+  ```
+
 -------
 
 ### Structure v/s Class
@@ -239,53 +276,19 @@ inline int S::square(int s) {} // use inline prefix
 
 ### Explicit Specifier
 
-TODO - Should we almost always add `explicit` specifier.
+Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
+
+The reason you might want to do this is to avoid accidental construction that can hide bugs. See example [implicit conversion](implicitConversion.cpp) and [explicit specifier](explicitSpecifier.cpp).
 
 Src: [cppreference](https://en.cppreference.com/w/cpp/language/explicit), [stackoverflow](https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean), [ibm](https://www.ibm.com/docs/en/i/7.4?topic=only-explicit-conversion-constructors-c).
 
-Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
+TODO - Should we almost always add `explicit` specifier.
 
-The reason you might want to do this is to avoid accidental construction that can hide bugs.
+-------
 
-```cpp
-class A
-{
-public:
-  A();
-  A(int);
-  A(const char*, int = 0);
-};
+### SharedPtr, UniquePtr, WeakPtr
 
-int main()
-{
-  // Legal thanks to implicit conversion
-  A c = 1;
-  A d = "Venditti";
-  return 0;
-}
-```
 
-Using explicit specifier:
-
-```cpp
-class A
-{
-public:
-  explicit A();
-  explicit A(int);
-  explicit A(const char*, int = 0);
-};
-
-int main()
-{
-  A a2 = A(1);
-  A a3(1);
-  A a4 = A("Venditti");
-  A a5 = (A)1;
-  A a6 = static_cast<A>(1);
-  return 0;
-}
-```
 
 -------
 

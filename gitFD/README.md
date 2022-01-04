@@ -1,6 +1,13 @@
 # GIT
 
-CLI commands:
+## Table of Contents
+
+- [CLI commands](#cli-commands)
+- [Syncing](#syncing)
+
+-------
+
+## CLI commands
 
 ```bash
 alias gitg='less $(fd gitFD.bash ~)'
@@ -17,10 +24,10 @@ Some guides:
 
 -------
 
+## Syncing
+
 There is a difference between a remote branch and a branch existing in a remote repository (github, bitbucket, gitlab ..).  
 Remote branch is a branch in your local machine, mapping to a branch in remote repo.
-
-## Syncing
 
 To sync (push/pull), use either PAT (Personal Access Token) or SSH. With PAT, one could specify different level of permissions, while with SSH, there can only be read-only or read-write.
 

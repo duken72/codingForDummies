@@ -5,6 +5,21 @@ Important things about coding that I have learnt by myself and from the professi
 - This README contains general terms or problems.
 - Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.
 
+## Table of Contents
+
+- [Abbreviations & Definitions](#abbreviations--definitions)
+- [Package and Package Management System](#package-and-package-management-system)
+- [License](#license)
+- [Docker](#docker)
+- [Unit Testing](#unit-testing)
+- [DevOps](#devops)
+  - [CI](#ci---continuous-integration)
+  - [CD](#cd---continuous-deliverydeployment)
+  - [Build Server](#build-server)
+  - [Test Server](#test-server)
+- [Agile Project Management](#agile-project-management)
+- [LICENSE](#license)
+
 ## Abbreviations & Definitions
 
 - CLI - Command-line Interface.
@@ -61,13 +76,13 @@ Autotomate test, build and deploy.
 
 - Selenium
 
-## Jira & Atlassian
+## Agile Project Management
 
 This's a bit actually off to project management than just coding.
 
-- Atlassian: [1](https://youtu.be/hWXNmcSN4bE)
-- Confluence: [2](https://youtu.be/uhWCMlcY_Zw)
-- Jira: [3](https://youtu.be/xrCJv0fTyR8)
+- Jira: [YouTube](https://youtu.be/xrCJv0fTyR8)
+- Atlassian: [YouTube](https://youtu.be/hWXNmcSN4bE)
+- Confluence: [YouTube](https://youtu.be/uhWCMlcY_Zw)
 
 ## LICENSE
 
