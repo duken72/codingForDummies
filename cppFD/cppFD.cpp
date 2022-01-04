@@ -26,16 +26,6 @@ int main()
     ANIMALS duke; //duke as a variable of type ANIMALS
     duke = Duck;
     std::cout << duke << std::endl; //1
-    
-    // Variable assignment and initialization
-    // no initializer
-    int a;
-    // copy initialization, inherited from the C language
-    int b = 5;
-    // Direct initialization
-    int c( 6 );
-    // Uniform initialization or list initialization
-    int d { 7 };
 
     // Formating output
     // #include <iomanip>

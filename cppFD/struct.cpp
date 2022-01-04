@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 struct Employee
@@ -8,12 +7,11 @@ struct Employee
   int age;
   float salary;
 } e1, e2, e3, e4;
-
 /*
-Right at the end of the struct definition
-and before the ending semicolon (;),
-the optional field object_names can be used
-to directly declare objects of the structure type.
+  Right at the end of the struct definition
+  and before the ending semicolon (;),
+  the optional field object_names can be used
+  to directly declare objects of the structure type.
 */ 
 
 struct Rectangle

@@ -15,7 +15,7 @@
 using varType = int;
 using retVarType = int;
 using paramsVarType = int;
-const int length_of_array = 7;
+const int LENGTH_OF_ARRAY = 7;
 
 // Functions
 // Declaration, should be described in header.hpp
@@ -28,6 +28,6 @@ retVarType functionName(const paramsVarType input);
 // Pass as a pointer
 retVarType functionName(paramsVarType *arrayName);
 // Pass as a sized array
-retVarType functionName(paramsVarType arrayName[length_of_array]);
+retVarType functionName(paramsVarType arrayName[LENGTH_OF_ARRAY]);
 // Pass as an unsized array
 retVarType functionName(paramsVarType arrayName[]);
