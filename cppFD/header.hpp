@@ -10,6 +10,8 @@
 #include <sstream>
 #include <cmath>
 #include <memory>
+#include <set>
+#include <unordered_set>
 
 // Random definition to avoid errors
 // using namespace std;

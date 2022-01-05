@@ -1,3 +1,5 @@
+#include <iostream>
+
 struct structA
 {
 	char a;
@@ -13,32 +15,13 @@ private:
 	int e;
 };
 
-structA::structA() // could also declare the constructor outside
-{}
+// could also declare the constructor outside
+// structA::structA() {}
 
-struct structA varA;
-
-varA.a = 7;
+struct structA varA{'d', 5, 7.2};
 
 // If use typedef struct, then don't need to add struct when declare a new var
-typedef struct structB
-{}
+typedef struct structB {};
 structB varB;
-
-/*
-A C++ class can contain functions(methods)
-
-Member of struct is public (varA.a = 7) by default, unless specified with "private" label
-Member vars and methods of a class are hidden, unless specified with "public" label
-
-Class has special methods: constructor and destructor
-
-Operators to work on new data type can be defined using special methods (over-loading operators??)
-
-One class can be used as the basis for definition of another (inheritance)
-
-Declaration of a var of the new class type requires just the name of the class: classA varA;
-not: struct structA varA;
-*/
 
 // Use struct for plain-old-data structures without any class-like features

@@ -9,7 +9,7 @@
   - [Header Files](#header-files)
   - [Names and Order of Includes](#names-and-order-of-includes)
   - [Namespaces](#namespaces)
-- [Best practice](#best-practice)
+- [Best practices, tips and notes](#best-practices-tips-and-notes)
   - [Variable assignment and initialization](#variable-assignment-and-initialization)
   - [Constructor member initializer lists](#constructor-member-initializer-lists)
   - [Pointer](#pointer)
@@ -20,6 +20,8 @@
   - [Smart Pointers](#smart-pointers)
   - [Virtual Specifier & Override Identifier](#virtual-specifier--override-identifier)
   - [Keyword auto](#keyword-auto)
+  - [new and delete operator](#new-and-delete-operator)
+  - [Using & Typedef Keywords](#using--typedef-keywords)
   - [TODO](#todo)
 
 ## Courses
@@ -109,7 +111,7 @@ inline namespace inner {
 
 -------
 
-## Best practice
+## Best practices, tips and notes
 
 ### Variable assignment and initialization
 
@@ -128,11 +130,11 @@ int d { 7 };
 
 - Copy initialization: was inherited from the C language.
 - Direct initialization: For simple data types (like `int`), copy and direct initialization are essentially the same. For more complicated types, direct initialization tends to be more efficient than copy initialization.
-- Uniform initialization / list initialization: Unfortunately, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data). To provide a more consistent initialization mechanism.
+- Uniform initialization / list initialization: To provide a more consistent initialization mechanism. Because, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data).
 
 **In practice**:
 
-- Favor initialization using braces whenever possible.
+- Favor initialization using curly braces whenever possible.
 - But don't over-dramatic simple things: `int d{7};`
 
 -------
@@ -231,6 +233,9 @@ Class:
 - Default access specifier will be `private`.
 - The instance of the class is known as "Object of the class".
 - A `class` can **do things**.
+- Operators to work on new data type can be defined using special methods (over-loading operators??)
+- One class can be used as the basis for definition of another (inheritance)
+- Declaration of a var of the new class type requires just the name of the class: `classA varA;`, not: `struct structA varA;`
 
 -------
 
@@ -327,7 +332,7 @@ g++ smartPointer.cpp -o test && ./test && rm -f test
 
 ### Virtual Specifier & Override Identifier
 
-These two concerns with **Runtime polymorphism**.
+These two concerns with **Runtime Polymorphism**.
 
 Without "virtual" you get "early binding". With "virtual" you get "late binding". Decent examples explain it all: [stackoverflow](https://stackoverflow.com/questions/2391679/why-do-we-need-virtual-functions-in-c).
 
@@ -391,15 +396,70 @@ auto obj2 = std::make_shared<XyzType>(args...);
 
 ### new and delete operator
 
-asd
+Sources: [stackoverflow1](https://stackoverflow.com/questions/679571/when-to-use-new-and-when-not-to-in-c), [stackoverflow2](https://stackoverflow.com/questions/655065/when-should-i-use-the-new-keyword-in-c), [stackoverflow3](https://stackoverflow.com/questions/392455/about-constructors-destructors-and-new-delete-operators-in-c-for-custom-object).
+
+- The `new` operator does two things: allocating memory and calling the constructor.
+- The `delete` operator calls the destructor and then frees the memory.
+- Arrays created with `new []` must be destroyed with `delete[]`.
+- Using `new`, the object created remains in existance until you `delete` it. Without using `new`, the object will be destroyed when it goes out of scope.
+- Every time you type `new`, type `delete`.
+
+```cpp
+ptr_var = new data_type;
+int * var = new int(7);
+
+void foo()
+{
+  int i = 0;
+} // i is now destroyed.
+
+for (...)
+{
+  int i = 0;
+} // p is destroyed after each loop
+
+void foo(int size)
+{
+  Point* pointArray = new Point[size];
+  delete[] pointArray;
+  MyClass* myClass = new MyClass();
+  delete myClass;
+}
+```
+
+-------
+
+### Using & Typedef Keywords
+
+Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpresso/what-is-the-using-keyword-in-cpp), [ibm](https://www.ibm.com/docs/en/zos/2.3.0?topic=only-using-declaration-class-members-c), [learncpp](https://www.learncpp.com/cpp-tutorial/using-declarations-and-using-directives/), [stackoverflow](https://stackoverflow.com/questions/20790932/what-is-the-logic-behind-the-using-keyword-in-c)
+
+- `using declarations`: Bring a specific member from the namespace into the current scope.
+  
+  ```cpp
+  int main()
+  {
+    using std::cout; // declare cout resolve to std::cout
+    cout << "Hello world!"; // so no std:: prefix is needed here!
+    return 0;
+  } // the using declaration expires here
+  ```
+
+- `using directive`: Bring all members from the namespace into the current scope.
+
+  ```cpp
+  using namespace std;
+  ```
+
+  In modern C++, using directives generally offer little benefit (saving some typing) compared to the risk. Because using directives import all of the names from a namespace (potentially including lots of names you’ll never use), the possibility for naming collisions to occur increases significantly (especially if you import the std namespace).
+
+- Bring a base class method or variable into the current class’s scope.
+
+- In C++11, the `using` keyword is used for `type alias`, which is identical to `typedef`. In many cases, `using` has improving readability, compared to the equivalent `typedef`, especially with pointer and template ([TypeDefs.hpp](TypeDefs.hpp)).
 
 -------
 
 ### TODO
 
-- set
-- typedef
-- using
 - buffer
 - mutex
 - is_transparent [src](https://www.fluentcpp.com/2017/06/09/search-set-another-type-key/)

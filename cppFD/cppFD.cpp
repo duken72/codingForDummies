@@ -160,14 +160,25 @@ int main()
     std::cout << std::endl;
     // Initialize a vector
     // https://www.geeksforgeeks.org/initialize-a-vector-in-cpp-different-ways/
-    std::vector<int> vect; 
+    std::vector<int> vect;
     vect.push_back(10); //emplace_back
     int n = 3;
     std::vector<int> vect(n, 10);
     std::vector<int> vect{ 10, 20, 30 };
     std::vector<int> vect2(vect.begin(), vect.end());
 
-    
+    // Set
+    // #include <set>
+    // #include <unordered_set>
+    // https://en.cppreference.com/w/cpp/container/set
+    std::set<int> set_int;
+    std::unordered_set<int> set_unord_int;
+    // For descending order
+    std::set<int, std::greater<int>> set_int;
+    // set_int.begin, end, size, max_size, empty
+    // set_int.insert, clear, emplace, erase
+    // set_int.count, find, contains, lower_bound, etc
+
     return 0;
 }
 
