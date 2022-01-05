@@ -17,7 +17,9 @@
   - [POD - Plain Old Data](#pod---plain-old-data)
   - [Inline Specifier (since C++17)](#inline-specifier-since-c17)
   - [Explicit Specifier](#explicit-specifier)
-  - [SharedPtr, UniquePtr, WeakPtr](#sharedptr-uniqueptr-weakptr)
+  - [Smart Pointers](#smart-pointers)
+  - [Virtual Specifier & Override Identifier](#virtual-specifier--override-identifier)
+  - [Keyword auto](#keyword-auto)
   - [TODO](#todo)
 
 ## Courses
@@ -53,13 +55,13 @@ RAII - Resource Acquisition is Initialization
 | Code Element          | Style                            |
 |-----------------------|----------------------------------|
 | File names            | Match case of class name in file |
-| Parameters/Locals     | duke_the_duck                    |
-| Constants             | DUKE_THE_DUCK                    |
-| Namespace             | duke_the_duck                    |
-| Function name         | dukeTheDuck                      |
-| Class name            | DukeTheDuck                      |
-| mem variables      | duke_the_duck_                   |
-| Enums and its mems | DukeTheDuck                      |
+| Parameters/Locals     | local_param_duck                 |
+| Constants             | CONSTANT_DUCK                    |
+| Namespace             | namespace_duck                   |
+| Function name         | funcNameDuck                     |
+| Class name            | ClassNameDuck                    |
+| mem variables         | mem_var_duck_                    |
+| Enums and its mems    | EnumsAndMem                      |
 
 ### Header Files
 
@@ -286,18 +288,118 @@ TODO - Should we almost always add `explicit` specifier.
 
 -------
 
-### SharedPtr, UniquePtr, WeakPtr
+### Smart Pointers
 
+Sources: [geeksforgeeks1](https://www.geeksforgeeks.org/smart-pointers-cpp/), [geeksforgeeks2](https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/).
 
+As we’ve known, unconscious not deallocating a pointer causes a memory leak that may lead to crash of the program. For languages with **Garbage Collection Mechanisms** to smartly deallocate unused memory, like Java and C#, programmers don't have to worry about any memory leak. C++11 comes up with its own mechanism: Smart Pointer. When the object is destroyed, it frees the memory as well.
+
+With `#include <memory>`:
+
+- `std::unique_ptr` stores one pointer only. We can assign a different object by removing the current object from the pointer.
+- `std::shared_ptr` allows more than one pointer pointing to this one object at a time and it’ll maintain a Reference Counter using `use_count()` method.
+- `std::weak_ptr` also allows more than one pointer pointing at one object at a time, but without a Reference Counter.
+- `std::auto_ptr` is replaced by `std::unique_ptr`, with similar functionality, improved security, added features and support for arrays.
+
+Good practice:
+
+- Use `make_shared` as a simple and more efficient way to create an object and a `shared_ptr` to manage shared access to the object at the same time. ([src](https://docs.microsoft.com/en-us/cpp/standard-library/memory-functions?view=msvc-170#make_shared))
+
+```cpp
+#include <memory>
+
+class Example
+{
+  Example(argument)
+  {};
+};
+std::shared_ptr<Example> msp = std::make_shared<Example>(argument);
+std::unique_ptr<Example> mup = std::make_unique<Example>(argument);
+```
+
+Example: [smartPointer.cpp](smartPointer.cpp).
+
+```bash
+g++ smartPointer.cpp -o test && ./test && rm -f test
+```
+
+-------
+
+### Virtual Specifier & Override Identifier
+
+These two concerns with **Runtime polymorphism**.
+
+Without "virtual" you get "early binding". With "virtual" you get "late binding". Decent examples explain it all: [stackoverflow](https://stackoverflow.com/questions/2391679/why-do-we-need-virtual-functions-in-c).
+
+```cpp
+class Base
+{
+public:
+          void Method1() { std::cout << "Base::Method1" << std::endl; }
+  virtual void Method2() { std::cout << "Base::Method2" << std::endl; }
+};
+
+class Derived : public Base
+{
+public:
+  void Method1() { std::cout << "Derived::Method1" << std::endl; }
+  void Method2() { std::cout << "Derived::Method2" << std::endl; }
+};
+
+Base* basePtr = new Derived ();
+  //  Note - constructed as Derived, but pointer stored as Base*
+basePtr->Method1 ();  //  Prints "Base::Method1"
+basePtr->Method2 ();  //  Prints "Derived::Method2"
+```
+
+When using `virtual` functions, it is possible to make mistakes while declaring the member functions of the derived classes. Using the `override` identifier prompts the compiler to display error messages when these mistakes are made.
+
+```cpp
+class Base
+{
+public:
+  virtual void Method2() { std::cout << "Base::Method2" << std::endl; }
+};
+
+class Derived : public Base
+{
+public:
+  // override identifier will give Error for miss-typing Metod2
+  void Metod2() { std::cout << "Derived::Method2" << std::endl; } override
+};
+```
+
+-------
+
+### Keyword auto
+
+Use `auto` for cases to increase readability without creating confusion.
+
+```cpp
+//good : auto increases readability here
+for(auto it = std::begin(v); it != std::end(v); ++it)//v could be array as well
+{
+  //..
+}
+
+// No type confusion
+auto obj1 = new SomeType<OtherType>::SomeOtherType();
+auto obj2 = std::make_shared<XyzType>(args...);
+```
+
+-------
+
+### new and delete operator
+
+asd
 
 -------
 
 ### TODO
 
-- override
 - set
-- new
-- std sharedptr, uniqueptr, weakptr <-> vector
+- typedef
+- using
 - buffer
 - mutex
 - is_transparent [src](https://www.fluentcpp.com/2017/06/09/search-set-another-type-key/)

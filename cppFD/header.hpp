@@ -9,6 +9,7 @@
 #include <string>
 #include <sstream>
 #include <cmath>
+#include <memory>
 
 // Random definition to avoid errors
 // using namespace std;
