@@ -207,11 +207,13 @@ void increment(int &input)
 // overloading function with different input argument types
 // or number of input arguments
 
-//tell the compiler that we are using a template, when delaring
-template <typename T>
-// then defining func:
+//tell the compiler that we are using a template, then defining func
+template<typename T>
 T functionName1(T input1, T input2)
 {
     return input1 + input2;
 }
-// template <typename T, typename U>
+// template<typename T, typename U>
+// template<class T, class U = char>
+// to use: functionName1<int>(i1, i2)
+// 
