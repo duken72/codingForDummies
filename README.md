@@ -1,6 +1,6 @@
 # codingForDummies
 
-[![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies).
+[![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
 
 Important things about coding that I have learnt by myself and from the professionals.
 
