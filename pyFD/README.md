@@ -1,5 +1,7 @@
 # Basics
 
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/duken72/codingForDummies.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/duken72/codingForDummies/context:python)
+
 ## Table of Contents
 
 - [CLI commands](#cli-commands)
