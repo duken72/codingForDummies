@@ -1,6 +1,8 @@
 #include "header.hpp"
 
 //file guards to prevent redefinition error
+// header guard: prevent include a file multiple times
+// in a single translation unit
 #ifndef CLASS_NAME
 #define CLASS_NAME
 

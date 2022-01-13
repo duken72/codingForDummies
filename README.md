@@ -2,7 +2,7 @@
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
 
-Important things about coding that I have learnt by myself and from the professionals.
+Important things about coding that I have learnt by myself and from the professionals. Overall, this is more like a collection of notes from different sources. Others have already done an amazing job of explaining stuffs. Let's not re-invent the wheel. It's just that .. everything by themselves is scatterred everywhere .. Perhaps this would make your search a bit more directed.
 
 - This README contains general terms or problems.
 - Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.

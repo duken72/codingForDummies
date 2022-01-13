@@ -4,6 +4,7 @@
 
 - [Courses](#courses)
 - [Compiling](#compiling)
+- [Linking](#linking)
 - [Style Guide](#style-guide)
   - [Naming Conventions](#naming-conventions)
   - [Header Files](#header-files)
@@ -26,9 +27,11 @@
 
 ## Courses
 
+- [The Cherno](https://youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
 - [Systems Programming in C++, TUM](https://db.in.tum.de/teaching/ss21/c++praktikum/?lang=en)
 - [Modern C++ (2020, Uni Bonn)](https://www.ipb.uni-bonn.de/cpp-course-2020/)
 - [Modern C++ (Summer 2018, Uni Bonn)](https://youtube.com/playlist?list=PLgnQpQtFTOGR50iIOtO36nK6aNPtVq98C)
+- [C++ For Programmers, Udacity](https://classroom.udacity.com/courses/ud210)
 
 ## Compiling
 
@@ -36,14 +39,27 @@ For simple test:
 
 ```bash
 g++ main.cpp -o main.out
+g++ main.cpp -S #this will generate assemply file main.s
 ./main.out input.txt
 ```
+
+Example of compiler, object file, binary file, assembly code: [The Cherno](https://youtu.be/3tIqpEmWMLI)
 
 In reality, use build system, such as [CMake](../cmakeFD/README.md):
 
 TODO - Compiler path vs Include path in VSCode
 
 RAII - Resource Acquisition is Initialization
+
+## Linking
+
+Source: [The Cherno](https://youtu.be/H4s55GgAg0I)
+
+This explains why you can simply include header files, which only have function declarations. When linking, the linker will find the function definitions.
+
+Also, if you define a function in header file, then include that header file in other files, it leads to linking error: multiple definition of a function.
+
+This will go back to CMake link_libraries later.
 
 -------
 

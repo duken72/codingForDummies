@@ -21,7 +21,7 @@ using paramsVarType = int;
 const int LENGTH_OF_ARRAY = 7;
 
 // Functions
-// Declaration, should be described in header.hpp
+// Declaration and description
 
 // describe the function (purposes, inputs, outputs)
 retVarType functionName(paramsVarType params1);
