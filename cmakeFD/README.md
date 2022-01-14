@@ -2,9 +2,9 @@
 
 CMake is a tool for build system. If you don't know or forget what it means to compile and build code, check this video: ["How do computers read code?"](https://youtu.be/QXjU9qTsYCc).
 
-The project needs to be compiled, built with makefiles. There is a need to maintain and update this files. It would be a tedious task as the project scale grows, unless there is a tool to automate the process of generating these makefiles. This is where build systems come into play: GNU Make, Autotools, SCons, Premake, Ninja, Meson, FASTBuild, Sharpmake, Maven, Ant, Gradle. ([src](https://julienjorge.medium.com/an-overview-of-build-systems-mostly-for-c-projects-ac9931494444))
+The project needs to be compiled, built with makefiles. There is a need to maintain and update this files. It would be a tedious task as the project scale grows (.eg, using ROS), unless there is a tool to automate the process of generating these makefiles. This is where build systems come into play: GNU Make, Autotools, SCons, Premake, Ninja, Meson, FASTBuild, Sharpmake, Maven, Ant, Gradle. ([src](https://julienjorge.medium.com/an-overview-of-build-systems-mostly-for-c-projects-ac9931494444))
 
-Hopefully, this guide will give you a brief overview of what is needed.
+Hopefully, these notes will give you a brief overview of what is needed.
 
 -------
 
@@ -53,7 +53,7 @@ make # simply equivalent to: "g++ duck.cpp -o duck"
 **Note**:
 
 - `Makefile` accepts `tab`, not `space`.
-- This is a Linux thing, not Windows thing.
+- This is a Linux's thing, not a Windows thing.
 
 Writing Makefiles quickly gets painful when the project scale grows. There are problems with dependecies, linker arguments, etc.
 
@@ -183,7 +183,44 @@ Good tutorial videos: [CMake Tutorial](https://www.youtube.com/watch?v=nlKcXPUJG
    - `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [CMake docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
    - `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`  
    Let just stick with `find_package`.
-   - `add_subdirectory`, on the other hand, creates a new scope, then executes the script named `CMakeLists.txt` from the specified directory in that new scope.
+
+### `add_subdirectory`
+
+Creates a new scope, then executes the `CMakeLists.txt` from the specified directory in that new scope. Use this if, inside your package dir, you group files into folders.
+
+Example:
+
+```bash
+pkg
+├── CMakeLists.txt
+└── Test
+    └── CMakeLists.txt
+```
+
+The content inside the high-level `CMakeLists.txt` in the `pkg` folder:
+
+```cmake
+message("Before add_subdirectory")
+add_subdirectory(Test)
+message("After add_subdirectory")
+```
+
+The content inside the low-level `CMakeLists.txt` in the `Test` folder:
+
+```cmake
+message("Inside add_subdirectory")
+```
+
+Running `cmake` in `pkg` directory level will result in:
+
+```bash
+$ cmake -S . -B build
+Before add_subdirectory
+Inside add_subdirectory
+After add_subdirectory
+```
+
+That's a worthless piece of code :)). But I hope you get the idea. Again, it simply runs the `CMakeLists.txt` script in the added subdirectory. Real usage would be define variables, library, include path, etc., such that the higher-level `CMakeLists.txt` can call.
 
 4. `include_directories` and `target_include_directories`:
 

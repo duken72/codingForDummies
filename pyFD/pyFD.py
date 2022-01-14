@@ -35,8 +35,8 @@ list_var2.append("k")
 del list_var2[3]
 list_var2.reverse()
 list_var2[0] = 0
-for mem in list_var:
-  func()
+for mem in list_var1:
+  print()
 print(*list) # will print members of list without []
 
 ##### Tuple (ordered & unchangeable)
@@ -51,10 +51,10 @@ dict_var["b"] # 2
 dict_var("k", 7) # get value of key "k", if doesn't exist, take default value 7
 dict_var.keys() # iterate over all keys
 for key in dict_var.keys():
-  func()
+  print()
 dict_var.values() # iterate over all values
 for val in dict_var.values():
-  func()
+  print()
 del dict_var["a"] # delete pair of key and val
 dict_var["d"] = 7 # add key-val pair
 dict_var({"b":5, "d":7}) # add & overwrite
@@ -65,25 +65,27 @@ set_var = {"a", "b", "c"}
 
 
 ## Conditional - Control flow
-int x = 72
+x = 72
 print((x <= 72 and x > 72) or x == 72) # True
 
 if x > 72:
 	print()
-elif x = 27:
+elif x == 27:
 	print()
 else:
 	print()
 
+i=27
 while i < x:
 	print()
 	i+=1
 
 for i in range(0,7):
-	print()
-
-continue	# prematurely skip current iteration
-break		# prematurely terminate a loop
+  print()
+  if i==1:
+    continue	# prematurely skip current iteration
+  elif i==2:
+    break		# prematurely terminate a loop
 
 try:
   print(duck) # duck is not yet define -> error
@@ -139,7 +141,7 @@ p1.talk()
 
 
 ## Common library
-help(cmd) # In possible, just use this first
+help(print) # If possible, just use this first
 
 import numpy as np
 a = np.array([1,2,3])
@@ -151,6 +153,7 @@ b = np.array([[1,2],[3,4]], dtype=float)
 # round, ceil, floor
 
 import pandas as pd
+file_name="test.txt"
 df = pd.read_csv(file_name)
 df.to_csv(file_name)
 df_2 = pd.read_excel(file_name)
@@ -232,12 +235,12 @@ args = parser.parse_args()
 print(args)
 
 import cv2
-cv2 axis: x - left to right, y - up to down
-cv2.imread, imwrite, imshow, VideoWriter, waitKey, destroyAllWindows
+# cv2 axis: x - left to right, y - up to down
+cv2.imread #imwrite, imshow, VideoWriter, waitKey, destroyAllWindows
 cv2.VideoWriter(name, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
 ## The fun parts of opencv
 cv2.cvtColor, flip, resize, threshold, adaptiveThreshold
-cv2.bitwise_and, or, not, xor
+cv2.bitwise_and #or, not, xor
 ## Contour stuffs
 contours, hierarchy = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 # CHAIN_APPROX_NONE for all contour points
@@ -257,6 +260,7 @@ cv2.countNonZero
 
 from tqdm import tqdm
 for i in tqdm(range(1,5)): # wrap around iterator
+  print(i)
 
 import pickle, cpickle
 pickle.dump(var, open('name.pickle', 'wb'))
@@ -289,7 +293,8 @@ MAX_SIZE += 1  # Error reported by type checker
 class Connection:
     TIMEOUT: Final[int] = 10
 class FastConnector(Connection):
-    TIMEOUT = 1  # Error reported by type checker
+    i=2
+    # TIMEOUT = 1  # Error reported by type checker
 
 from shapely import *
 from shapely.geometry import box, LineString, LinearRing, Point
