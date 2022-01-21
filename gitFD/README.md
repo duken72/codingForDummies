@@ -4,6 +4,7 @@
 
 - [CLI commands](#cli-commands)
 - [Syncing](#syncing)
+- [Guides](#guides)
 
 -------
 
@@ -38,3 +39,13 @@ git config --global credential.helper store
 ```
 
 Use .gitignore to intentionally specify untracked files.
+
+-------
+
+## Guides
+
+- [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+- [Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+- [git - the simple guide](https://rogerdudler.github.io/git-guide/)
+- [Learn Git Branching](https://learngitbranching.js.org/)
+- [Git Tutorial for Beginners](https://www.youtube.com/watch?v=HVsySz-h9r4)

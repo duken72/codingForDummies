@@ -476,6 +476,8 @@ Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpress
 
 ### TODO
 
+- unique_ptr (yes, again please)
+- lvalue & rvalue
 - buffer
 - mutex
 - is_transparent [src](https://www.fluentcpp.com/2017/06/09/search-set-another-type-key/)

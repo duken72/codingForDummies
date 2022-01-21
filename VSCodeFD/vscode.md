@@ -13,3 +13,25 @@
 - Open terminal
 - Find files Ctrl+P
 - Extensions: Ctrl+Shift+X
+
+-------
+
+## Snippets
+
+Go to File -> Preferences -> User snippets
+
+```json
+"Add include guard": {
+  "prefix": "guard",
+  "description": "Adds an ifndef include guard to a C/C++ header",
+  "body": [
+    "#ifndef ${TM_DIRECTORY/(.*[\\/](\\w+$))/${2:/upcase}/}__${TM_FILENAME/^([^\\.]*)\\..*$/${1:/upcase}/}_${TM_FILENAME/^.*\\.([^\\.]*)$/${1:/upcase}/}__",
+    "#define ${TM_DIRECTORY/(.*[\\/](\\w+$))/${2:/upcase}/}__${TM_FILENAME/^([^\\.]*)\\..*$/${1:/upcase}/}_${TM_FILENAME/^.*\\.([^\\.]*)$/${1:/upcase}/}__",
+    "",
+    "$0",
+    "",
+    "#endif ${LINE_COMMENT} ${TM_DIRECTORY/(.*[\\/](\\w+$))/${2:/upcase}/}__${TM_FILENAME/^([^\\.]*)\\..*$/${1:/upcase}/}_${TM_FILENAME/^.*\\.([^\\.]*)$/${1:/upcase}/}__",
+    ""
+  ]
+}
+```

@@ -99,7 +99,7 @@ build
 └── Makefile
 ```
 
-At the dir level with `Makefile`, running `make` will generates the executable file. In this case, however, without specifying executable in `CMakeLists.txt`, no executables will be generated.
+At the dir level with `Makefile`, running `make` will generates the executable file. In this example, however, without specifying executable in `CMakeLists.txt`, no executables will be generated.
 
 -------
 
@@ -108,6 +108,20 @@ At the dir level with `Makefile`, running `make` will generates the executable f
 "**Target**" are executable files, binary files. As the name itself suggests, they are the ultimate targets, the goal of CMake, to compile and build source code to these executables.
 
 These targets have properties, which are to be managed in order for the source code to be compiled and built properly. Some common properties are: `LINK_LIBRARIES`, `INCLUDE_DIRECTORIES`, `COMPILE_DEFINITIONS`, `COMPILE_OPTIONS`.
+
+And the commands to change them:
+
+- `target_include_directories`
+- `target_link_libraries`
+- `target_compile_definitions`
+- `target_compile_options`
+- `set_property`
+- `get_property`
+
+```cmake
+# Get the target's SOURCES property and assign it to MYAPP_SOURCES
+get_property(MYAPP_SOURCES TARGET MyApp PROPERTY SOURCES)
+```
 
 -------
 
@@ -151,42 +165,85 @@ cmake -DNAME=DUCK -P test.txt #Set variable NAME = DUCK
 
 -------
 
-## CMake with C++ and ROS
+## Important commands
 
-Good tutorial videos: [CMake Tutorial](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&t=0s).
+CMake Tutorials: [Youtube](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&t=0s), [cmake.org](https://cmake.org/cmake/help/latest/guide/tutorial/index.html).
 
-### Important commands
+-------
 
-1. `add_executable`: [CMake Doc](https://cmake.org/cmake/help/latest/command/add_executable.html)
+### Add target
 
-    ```cmake
-    add_executable(<name> [WIN32] [MACOSX_BUNDLE]
-                  [EXCLUDE_FROM_ALL]
-                  [source1] [source2 ...])
-    add_executable(duck duck.cpp)
-    ```
+CMake command: `add_executable` [(CMake Doc)](https://cmake.org/cmake/help/latest/command/add_executable.html)
 
-2. Include vs link libraries: [stackoverflow discussion](https://stackoverflow.com/questions/56565665/difference-between-target-link-libraries-and-target-include-directories)
+```cmake
+add_executable(<name> [WIN32] [MACOSX_BUNDLE]
+              [EXCLUDE_FROM_ALL]
+              [source1] [source2 ...])
+add_executable(duck duck.cpp)
+```
 
-    - `*include_directories` is used to supply a list of include directories to the compiler. When a file is included using the pre-processor, these directories will be searched for the file.
+-------
 
-    <!-- TODO - I don't really understand this shit -->
-    - `*link_libraries` is used to supply a list of libraries (object archives) to the linker. If the linked item is a cmake target, with specified include directories, they don't need to be specified separately with *include_directories.
+### Include v/s link libraries
 
-    - The `target_*` versions apply only to the target that is given as an operand. The non-target versions apply to all targets in the directory. The `target_*` versions should be used whenever possible (i.e. pretty much always). [(stackoverflow)](https://stackoverflow.com/questions/31969547/what-is-the-difference-between-include-directories-and-target-include-directorie#:~:text=include_directories(x%2Fy)%20affects,include%20path%20for%20target%20t%20.)  
-    -> `include_directories` vs `target_include_directories`  
-    -> `link_libraries` vs `target_link_libraries`
+[stackoverflow discussion](https://stackoverflow.com/questions/56565665/difference-between-target-link-libraries-and-target-include-directories)
 
-3. `find_package`, `include` and `add_subdirectory`
+1. `*include_directories`  
+Supply a list of include directories to the compiler. When a file is included using the pre-processor, these directories will be searched for the file.
 
-   - `include` executes another CMake script in the same scope as the calling script.
-   - `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [CMake docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
-   - `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`  
-   Let just stick with `find_package`.
+2. `*link_libraries`  
+Supply a list of libraries (object archives) to the linker. If the linked item is a cmake target, with specified include directories, they don't need to be specified separately with *include_directories.
 
-### `add_subdirectory`
+3. `target_*` versions ([stackoverflow](https://stackoverflow.com/questions/31969547/what-is-the-difference-between-include-directories-and-target-include-directorie#:~:text=include_directories(x%2Fy)%20affects,include%20path%20for%20target%20t%20.))
 
-Creates a new scope, then executes the `CMakeLists.txt` from the specified directory in that new scope. Use this if, inside your package dir, you group files into folders.
+- Apply only to the target that is given as an operand.
+- The non-target versions apply to all targets in the directory.
+
+-> `include_directories` v/s `target_include_directories`  
+-> `link_libraries` v/s `target_link_libraries`
+
+-------
+
+### Find / Include Package
+
+- `include` executes another CMake script in the same scope as the calling script.
+- `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [CMake docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
+- `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`.
+- Let just stick with `find_package`.
+- `find_package` = `find_library` + `find_path` ??
+
+```cmake
+find_library(NameYouMadeUp ActualName NAMES LiBnAmE lIbNaMe)
+if (${NameYouMadeUp} STREQUAL NameYouMadeUp-NOTFOUND)
+  message(FATAL_ERROR "NameYouMadeUp not FOUND!")
+else()
+  message(STATUS "NameYouMadeUp found!")
+endif()
+```
+
+`find_library` assumes ActualName to be `libActualName.o`. If found, `NameYouMadeUp` becomes the path to the library, if not, then it's set as `NameYouMadeUp-NOTFOUND`
+
+```cmake
+message("suffixes: ${CMAKE_FIND_LIBRARY_SUFFIXES}")
+message("prefixes: ${CMAKE_FIND_LIBRARY_PREFIXES}")
+#RESULTS:
+#suffixes: .so;.a
+#prefixes: lib
+```
+
+TODO - WHAT ARE??
+
+- [PACKAGE_ROOT_PATH]
+- [CMAKE_PATH]
+- [CMAKE_ENVIRONMENT_PATH]
+- [SYSTEM_ENVIRONMENT_PATH]
+- [CMAKE_SYSTEM_PATH]
+
+-------
+
+### Add Subdirectory
+
+`add_subdirectory` creates a new scope, then executes the `CMakeLists.txt` from the specified directory in that new scope. Use this if, inside your package dir, you group files into folders.
 
 Example:
 
@@ -222,77 +279,135 @@ After add_subdirectory
 
 That's a worthless piece of code :)). But I hope you get the idea. Again, it simply runs the `CMakeLists.txt` script in the added subdirectory. Real usage would be define variables, library, include path, etc., such that the higher-level `CMakeLists.txt` can call.
 
-4. `include_directories` and `target_include_directories`:
+-------
 
-    Assume having `z.hpp` in x/y:
-    - `include_directories(x/y)` affects directory scope. All targets in this `CMakeLists.txt`, as well as those in all subdirectories added after the point of its call, will have the path x/y added to their include path. Thus you can `#include <z.hpp>` instead of `#include <x/y/z.hpp>`.
-    - `target_include_directories(t x/y)` has target scope. It adds x/y to the include path for **only** target t. Eg., for only `t.cpp`, you can write `#include <z.hpp>`.
-    - Syntax:
+### Include Directories
 
-    ```cmake
-    include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])
-    target_include_directories(<target> [SYSTEM] [BEFORE]
-      <INTERFACE|PUBLIC|PRIVATE> [items1...]
-      [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
-    ```
+The include paths are the lines in the begining of your CPP files `#include <z.hpp>`
 
-    - The meanings of scopes: [`PUBLIC`, `PRIVATE`, and `INTERFACE`](https://stackoverflow.com/questions/26243169/cmake-target-include-directories-meaning-of-scope_)
-    - Example:
+There are two `CMake` commands: `include_directories` and `target_include_directories`
 
-    ```cmake
-    find_package(Eigen3 REQUIRED)
-    find_package(grid_map_core REQUIRED)
+- `include_directories` affects directory scope. All targets in this `CMakeLists.txt`, as well as those in all subdirectories added after the point of its call, will have the path added to their include path.
+- `target_include_directories` has target scope. It adds to the include path for **only** specified target.
+- The `target_*` versions should be used whenever possible (i.e. pretty much always).
+- Syntax:
 
-    include_directories(
-      include
-      ${EIGEN3_INCLUDE_DIR}
-    )
+  ```cmake
+  include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])
+  target_include_directories(<target> [SYSTEM] [BEFORE]
+    <INTERFACE|PUBLIC|PRIVATE> [items1...]
+    [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+  ```
 
-    target_include_directories(${PROJECT_NAME} PUBLIC grid_map_core)
+- The meanings of different scopes: [`PUBLIC`, `PRIVATE`, and `INTERFACE`](https://stackoverflow.com/questions/26243169/cmake-target-include-directories-meaning-of-scope_)
 
-    ```
+Pseudo example: assume having `z.hpp` in x/y:
 
-5. as
+- `include_directories(x/y)`: All targets will have the path x/y added. Thus `#include <z.hpp>` can be called, instead of `#include <x/y/z.hpp>`.
+- `target_include_directories(t x/y)`: It adds x/y to the include path for **only** target t. For only `t.cpp`, `#include <z.hpp>` can be called.
+
+Real example:
+
+```cmake
+find_package(Eigen3 REQUIRED)
+
+include_directories(
+  include
+  ${EIGEN3_INCLUDE_DIR}
+)
+```
+
+After using `find_package` to find a package, it almost always sets the variables, which specify package include directory and link library. In above example, `EIGEN3_INCLUDE_DIR` is set in `FindEigen3.cmake`, which is called by `find_package(Eigen3 REQUIRED)`. Thus, the include directory of Eigen could be add with either `include_directories` or `target_include_directories`.
+
+-------
+
+### Link Libraries
+
+- Library also contains executables:
+
+  ```cmake
+  add_library(LibName file.cpp)
+  ```
+
+- Link library
+
+  ```cmake
+  add_subdirectory(LibName)
+  add_executable(TargetName file.cpp)
+  target_link_libraries(TargetName PUBLIC LibName)
+  target_include_directories(TargetName PUBLIC
+    "${PROJECT_BINARY_DIR}"
+    "${PROJECT_SOURCE_DIR}/LibName"
+  )
+  ```
+
+- Making library optional:
+
+  ```cmake
+  option(USE_LIBTEST "Use test lib" ON)
+  configure_file(LibName.h.in LibName.h)
+  if (USE_LIBTEST)
+    add_subdirectory(LibName)
+    list(APPEND EXTRA_LIBS LibName)
+    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/LibName")
+  endif()
+  ```
+
+-------
 
 ### Including other scripts
 
 - `add_library`
 - `add_custom_target`
-- `set_property`
-- `get_property`
+
+-------
+
+### Installing the Software
+
+> If you are only ever using your software from a source build, you can probably ignore it. If you ever want to deploy your software, however, I would strongly encourage having an install process.  
+Installing makes a software package generally available to users of the system, by installing its components into a well-known prefix (e.g. /usr, /usr/local, /opt/MySoft). It is often much more convenient to use an installed software package rather than stuff in a build directory, as installed binaries tend to be in e.g. PATH, whereas build directories may not be readable by all users [[cmake.org](https://cmake.org/pipermail/cmake/2013-April/054247.html)].
+
+Syntax:
 
 ```cmake
-# Get the target's SOURCES property and assign it to MYAPP_SOURCES
-get_property(MYAPP_SOURCES TARGET MyApp PROPERTY SOURCES)
+install(TARGETS ${target_name} DESTINATION bin)
+install(FILES "${PROJECT_BINARY_DIR}/TargetConfig.h" DESTINATION include)
 ```
 
-### Target properties
+Command:
 
-Common target properties and the commands to change them:
+```bash
+cmake --install
+# for cmake before 3.15
+# make install
+```
 
-- `target_link_libraries` -
-- `target_include_directories` -
+-------
 
-- `target_compile_definitions` -
-- `target_compile_options`
+### Build Types
 
-### CMake Structure for ROS1
+Source: [stackoverflow](https://stackoverflow.com/questions/48754619/what-are-cmake-build-t.ype-debug-release-relwithdebinfo-and-minsizerel)
 
-[WIKI ROS](http://wiki.ros.org/catkin/CMakeLists.txt)
+- Only makes sense for single-target generators, like `Makefiles`.
+- `Release`: high optimization level, no debug info, code or asserts.
+- `Debug`: No optimization, asserts enabled, [custom debug (output) code enabled], debug info included in executable (so you can step through the code with a debugger and have address to source-file:line-number translation).
+- `RelWithDebInfo`: optimized, *with* debug info, but no debug (output) code or asserts.
+- `MinSizeRel`: same as Release but optimizing for size rather than speed.
 
-> Your CMakeLists.txt file **MUST** follow this format otherwise your packages will not build correctly. The order in the configuration **DOES** count.
+Commands:
 
-1. Required CMake Version (cmake_minimum_required)
-2. Package Name (project())
-3. Find other CMake/Catkin packages needed for build (find_package())
-4. Enable Python module support (catkin_python_setup())
-5. Message/Service/Action Generators (add_message_files(), add_service_files(), add_action_files())
-6. Invoke message/service/action generation (generate_messages())
-7. Specify package build info export (catkin_package())
-8. Libraries/Executables to build (add_library()/add_executable()/target_link_libraries())
-9. Tests to build (catkin_add_gtest())
-10. Install rules (install())
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+```
 
-### CMake for ROS2
+<!-- TODO - Explain debug info -->
+<!-- TODO - Don't really understand yet -->
 
-`ament_cmake` is the build system for `CMake` based packages in ROS2.
+<!-- TODO
+Ask Marco about:
+- Build types: example of debug info, code enabled?
+- Linking
+- find_library v/s find_package
+- find_package = find_library + find_path (auto the necessary)
+- link_directory -->
