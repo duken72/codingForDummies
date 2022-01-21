@@ -68,6 +68,13 @@ This will go back to CMake link_libraries later.
 - [Google Style Guide](https://google.github.io/styleguide/cppguide.html)
 - [Modern C++ Coding Guidelines](https://github.com/Microsoft/AirSim/blob/master/docs/coding_guidelines.md)
 
+The ROS2 build system has a number of linters, which will complain about coding style violations.
+
+```cpp
+ament_uncrustify --reformat #will automatically fix them.
+ament_cpplint #to see the output in isolation
+```
+
 ### Naming Conventions
 
 | Code Element          | Style                            |
@@ -82,6 +89,8 @@ This will go back to CMake link_libraries later.
 | Enums and its mems    | EnumsAndMem                      |
 
 ### Header Files
+
+Use VS-Code snippet for this header guards:
 
 ```cpp
 #ifndef FOO_BAR_BAZ_H_
@@ -114,6 +123,8 @@ Example:
 #include "base/commandlineflags.h"
 #include "foo/server/bar.h"
 ```
+
+For ROS2, 
 
 ### Namespaces
 
