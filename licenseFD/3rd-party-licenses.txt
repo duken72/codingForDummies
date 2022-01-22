@@ -1,0 +1,28 @@
+Shipped Third Party Components
+======================================
+
+This product contains the following open source components
+
+
+--------------------------------------------------------------------------
+Overview
+--------------------------------------------------------------------------
+
+package_name/include/package_name/header.h:
+
+Name:      another_package_name
+Version:   2.7.5
+URL:       https://github.com/another_package_name
+License:   MIT
+Copyright: Copyright (c) ...
+Comment:   God help me
+
+--------------------------------------------------------------------------
+Licenses
+--------------------------------------------------------------------------
+
+a) another_package_name
+
+MIT License
+
+Copyright (c), etc.
