@@ -1,0 +1,13 @@
+{
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--max-line-length=100"],
+  "python.linting.enabled": true,
+  "python.languageServer": "Pylance",
+  "python.analysis.extraPaths": [
+      "/opt/ros/foxy/lib/python3.8/site-packages",
+  ],
+  "python.autoComplete.extraPaths": [
+      "/opt/ros/foxy/lib/python3.8/site-packages",
+  ]
+}

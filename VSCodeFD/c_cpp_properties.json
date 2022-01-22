@@ -1,0 +1,20 @@
+{
+  "configurations": [
+      {
+          "name": "Linux",
+          "includePath": [
+              "${workspaceFolder}/**",
+              "/opt/ros/foxy/**",
+              "/usr/include/eigen3",
+              "/usr/include/pcl-1.10",
+              "~/something/ros_ws/install/**"
+          ],
+          "defines": [],
+          "compilerPath": "/usr/lib/ccache//g++",
+          "cStandard": "c11",
+          "cppStandard": "c++14",
+          "intelliSenseMode": "linux-gcc-x64"
+      }
+  ],
+  "version": 4
+}

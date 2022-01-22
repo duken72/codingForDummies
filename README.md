@@ -22,6 +22,8 @@ Important things about coding that I have learnt by myself and from the professi
 - [Agile Project Management](#agile-project-management)
 - [LICENSE](#license)
 
+-------
+
 ## Abbreviations & Definitions
 
 - CLI - Command-line Interface.
@@ -29,6 +31,29 @@ Important things about coding that I have learnt by myself and from the professi
 - Compiling: translates source code (human-readeable, eg., in Python, C++) to low-level machine language (eg., Assembly). [How do computers read code?
 ](https://youtu.be/QXjU9qTsYCc)
 - Building: could include generating source code, documentation, compiling of source code, packaging complied code, installing, etc.
+
+-------
+
+## Pull Requests
+
+Yes :)) I made a section just for Pull Requests.
+
+- Remember to merge the main/develop branch and fix merge conflicts:
+
+  ```bash
+  git fetch -a && git merge origin/develop
+  ```
+
+- Invite issue reporter and colleagues to review your code and contribute changes
+- Write decent PRs when you submit, and look out for these when you review one:
+  - **What does the PR do?**: eg. screenshots, videos  
+  Does the PR do what it's supposed to do? Does it do it correctly?
+  - **Is the code readable and clean?** too long functions doing too many things, coding-style, indentation, etc.)
+  - **Can the code be shorter, smarter?** duplicated of codes, suggest efficency optimization)
+  - **Are changes covered by tests?** "fairly complex" functions should have unit tests)
+  - **Is it documented?** README updated, functions commented in Doxygen style
+
+-------
 
 ## Package and Package Management System
 
@@ -38,22 +63,27 @@ Important things about coding that I have learnt by myself and from the professi
 - .deb -
 - dpkg - Debian package management system
 
+-------
+
 ## License
 
-What is it and what are different types:
+Goto [licenseFD.md](licenseFD/licenseFD.md)
 
-- [Open Source Licenses](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633)
-- [MIT vs. Apache vs. GPL](https://exygy.com/blog/which-license-should-i-use-mit-vs-apache-vs-gpl/).
+-------
 
 ## Docker
 
 Check [Docker.md](dockerFD/README.md)
+
+-------
 
 ## Unit Testing
 
 - GTEST: also known as Google test, for C++ [1](https://youtu.be/nbFXI9SDfbk), [2](https://youtu.be/BwO07hUzFNQ).
 - pytest [1](https://youtu.be/DhUpxWjOhME)
 - unittest [1](https://youtu.be/6tNS--WetLI), [2](https://youtu.be/1Lfv5tUGsn8), [3](https://youtu.be/uCxL7NGEohI).
+
+-------
 
 ## DevOps
 
@@ -78,6 +108,8 @@ Autotomate test, build and deploy.
 
 - Selenium
 
+-------
+
 ## Agile Project Management
 
 This's a bit actually off to project management than just coding.
@@ -85,6 +117,8 @@ This's a bit actually off to project management than just coding.
 - Jira: [YouTube](https://youtu.be/xrCJv0fTyR8)
 - Atlassian: [YouTube](https://youtu.be/hWXNmcSN4bE)
 - Confluence: [YouTube](https://youtu.be/uhWCMlcY_Zw)
+
+-------
 
 ## LICENSE
 

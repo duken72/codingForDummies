@@ -70,9 +70,12 @@ This will go back to CMake link_libraries later.
 
 The ROS2 build system has a number of linters, which will complain about coding style violations.
 
-```cpp
-ament_uncrustify --reformat #will automatically fix them.
-ament_cpplint #to see the output in isolation
+```bash
+# will automatically fix them.
+ament_uncrustify --reformat
+# to see the output in isolation
+ament_cpplint
+ament_cppcheck
 ```
 
 ### Naming Conventions
@@ -90,7 +93,7 @@ ament_cpplint #to see the output in isolation
 
 ### Header Files
 
-Use VS-Code snippet for this header guards:
+Use [VS-Code snippet](../VSCodeFD/global.code-snippets) for this header guards:
 
 ```cpp
 #ifndef FOO_BAR_BAZ_H_
@@ -124,16 +127,50 @@ Example:
 #include "foo/server/bar.h"
 ```
 
-For ROS2, 
+For ROS2, there is an order to include header.
+
+- Use `#include <sth>` for standard libs and files from other packages.
+- Use `#include "sth"` for header files of current package.
 
 ### Namespaces
 
+Create and use [VS-Code Snippets](../VSCodeFD/global.code-snippets)
+
 ```cpp
 namespace outer {
-inline namespace inner {
+namespace inner {
   void foo();
 }  // namespace inner
 }  // namespace outer
+```
+
+### Documentation
+
+Use Doxygen style comments, if the function is non-obvious
+
+- /// and /** */ comments for documentation purposes, @tags only support a single line!
+- // style comments for notes and general comments.
+- // Avoid trivial cluttering comments, prefer meaningful variable and function names.
+
+```cpp
+/**
+ * Sum numbers in a vector.
+ *
+ * This sum is the arithmetic sum, not some other kind of sum that only
+ * mathematicians have heard of.
+ *
+ * @param values Container whose values are summed.
+ * @return sum of `values`, or 0.0 if `values` is empty.
+ */
+double sumInt(std::vector<double> values);
+
+/**
+ * @brief Sum numbers in a vector
+ * @param values Container whose values are summed.
+ * @return sum of `values`, or 0.0 if `values` is empty.
+ * @throw Exception something
+ */
+double sumInt(std::vector<double> values);
 ```
 
 -------

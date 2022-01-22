@@ -16,21 +16,51 @@
 
 -------
 
-## Snippets
+## Code Style Support
 
-Go to File -> Preferences -> User snippets
+### Code completion and Liting for Python
+
+Set in workspace configuration `<path-to-ws>/.vscode/` a [setting.json](settings.json)
+
+### Code completion for C++
+
+In similar manner, maintain in the `<path-to-ws>/.vscode/` a [c_cpp_properties.json](c_cpp_properties.json)
+
+### Format code C++
+
+Using the extension [RunOnSave](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave).
+
+Add to `settings.json` of VSCode (via `Ctrl+P`, `>Preferences: Open Settings (JSON)`):
 
 ```json
-"Add include guard": {
-  "prefix": "guard",
-  "description": "Adds an ifndef include guard to a C/C++ header",
+"emeraldwalk.runonsave": {
+  "commands": [
+  {
+    "match": ".(h|hpp|c|cpp)$",
+    "isAsync": true,
+    "cmd": "ament_uncrustify ${file} --reformat"
+  },
+  ]
+}
+```
+
+-------
+
+## Snippets
+
+Go to `File >Preferences >User snippets`.
+
+Check [global.code-snippets](global.code-snippets)
+
+```json
+"Snippet purpose": {
+  "prefix": "prefix_name",
+  "description": "Do something",
   "body": [
-    "#ifndef ${TM_DIRECTORY/(.*[\\/](\\w+$))/${2:/upcase}/}__${TM_FILENAME/^([^\\.]*)\\..*$/${1:/upcase}/}_${TM_FILENAME/^.*\\.([^\\.]*)$/${1:/upcase}/}__",
-    "#define ${TM_DIRECTORY/(.*[\\/](\\w+$))/${2:/upcase}/}__${TM_FILENAME/^([^\\.]*)\\..*$/${1:/upcase}/}_${TM_FILENAME/^.*\\.([^\\.]*)$/${1:/upcase}/}__",
+    "line 1",
+    "line 2",
     "",
-    "$0",
-    "",
-    "#endif ${LINE_COMMENT} ${TM_DIRECTORY/(.*[\\/](\\w+$))/${2:/upcase}/}__${TM_FILENAME/^([^\\.]*)\\..*$/${1:/upcase}/}_${TM_FILENAME/^.*\\.([^\\.]*)$/${1:/upcase}/}__",
+    "line 3",
     ""
   ]
 }

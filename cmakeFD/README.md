@@ -411,3 +411,11 @@ Ask Marco about:
 - find_library v/s find_package
 - find_package = find_library + find_path (auto the necessary)
 - link_directory -->
+
+## Code Style
+
+For ROS2 package, use:
+
+```bash
+ament_lint_cmake
+```
