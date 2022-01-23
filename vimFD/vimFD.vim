@@ -48,8 +48,12 @@ o / O		# insert line below/above and enter insert mode
 p / P		# paste after/before the cursor
 u		    # undo last command
 U		    # undo all cmds in the current line
-Ctrl-r		# redo command
+Ctrl-r	# redo command
 .	    	# repeat the last command, could be somewhere else
+q<char> # start record keystrokes into register <char>
+q       # stop record
+@<char> # play recorded keystrokes into register <char>
+@@      # repeat last recording
 ##### Modifiers
 ci(	    	# change inside ( bracket
 da{	    	# delete around { bracket, so include { and }

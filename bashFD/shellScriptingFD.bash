@@ -18,8 +18,8 @@ read #Keyboard Input, tag -p, -t, -s
 
 mcd()
 {
-    mkdir -p "$1"
-    cd "$1"
+  mkdir -p "$1"
+  cd "$1"
 }
 
 # $0 - Name of the script
@@ -48,18 +48,21 @@ convert image.png image.jpg
 # Flow Control
 # if - elif - else
 if conditions; then
-    commands
+  commands
 [elif conditions; then
-    commands]
+  commands]
 [else conditions; then
-    commands]
+  commands]
+fi
+if ([condition1] || [condition2]) && [condition3]; then
+  commands
 fi
 # for
 for i in word1 word2 word3; do
-    echo "$i"
+  echo "$i"
 done
 for i in "$@"; do
-    echo $i
+  echo $i
 done
 
 # Test
@@ -80,3 +83,8 @@ if [ -z string ]; then echo "string is empty" fi
 if [ -n string ]; then echo "string is not empty" fi
 if [ string1 = string2 ]; then echo "string1 equals string2" fi
 if [ string1 != string2 ]; then echo "string1 does not equal string2" fi
+
+## Comment block
+: <<'END'
+echo "I hope that there is no error"
+END
