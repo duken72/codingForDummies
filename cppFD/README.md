@@ -47,8 +47,6 @@ Example of compiler, object file, binary file, assembly code: [The Cherno](https
 
 In reality, use build system, such as [CMake](../cmakeFD/README.md):
 
-TODO - Compiler path vs Include path in VSCode
-
 RAII - Resource Acquisition is Initialization
 
 ## Linking
@@ -59,7 +57,7 @@ This explains why you can simply include header files, which only have function 
 
 Also, if you define a function in header file, then include that header file in other files, it leads to linking error: multiple definition of a function.
 
-This will go back to CMake link_libraries later.
+This will go back to `(target_)link_libraries` in [CMake](../cmakeFD/README.md).
 
 -------
 

@@ -11,19 +11,21 @@ Hopefully, these notes will give you a brief overview of what is needed.
 ## Table of Contents
 
 - [Makefile](#makefile)
-  - [Example 1](#example-1)
 - [CMake](#cmake)
   - [CMake Overview](#cmake-overview)
-    - [Example 2](#example-2)
   - [Basic Definition](#basic-definition)
   - [CMake Syntax Overview](#cmake-syntax-overview)
-    - [Example 3](#example-3)
-- [CMake with C++ and ROS](#cmake-with-c-and-ros)
-  - [Important commands](#important-commands)
+- [Important commands](#important-commands)
+  - [Add target](#add-target)
+  - [Find / Include Package](#find--include-package)
+  - [Add Subdirectory](#add-subdirectory)
+  - [Include Directories](#include-directories)
+  - [Link Libraries](#link-libraries)
   - [Including other scripts](#including-other-scripts)
-  - [Target properties](#target-properties)
-  - [CMake Structure for ROS1](#cmake-structure-for-ros1)
-  - [CMake for ROS2](#cmake-for-ros2)
+  - [Installing the Software](#installing-the-software)
+  - [Build Types](#build-types)
+- [Code Style](#code-style)
+- [ROS](#ros)
 
 -------
 
@@ -33,9 +35,7 @@ Hopefully, these notes will give you a brief overview of what is needed.
 
 In the terminal, at the directory level where there is a `Makefile`, running `make` will simply execute commands in the file.
 
-### Example 1
-
-In [MakefileTest](MakefileTest), the content of [Makefile](MakefileTest/Makefile):
+**Example 1**: In [MakefileTest](MakefileTest), the content of [Makefile](MakefileTest/Makefile):
 
 ```make
 default:
@@ -78,9 +78,7 @@ So `cmake` makes `Makefile`. Instead of manually write and manage `Makefile`(s),
 
 CMake has its own language. If you're going to work with ROS, working with CMake would be, like Thanos once said, "**I am inevitable**".
 
-#### Example 2
-
-Go to [CMakeEmptyTest](CMakeEmptyTest) and try `cmake` with an empty `CMakeLists.txt`.
+**Example 2**: Go to [CMakeEmptyTest](CMakeEmptyTest) and try `cmake` with an empty `CMakeLists.txt`.
 
 ```bash
 cd CMakeEmptyTest
@@ -105,11 +103,13 @@ At the dir level with `Makefile`, running `make` will generates the executable f
 
 ### Basic Definition
 
-"**Target**" are executable files, binary files. As the name itself suggests, they are the ultimate targets, the goal of CMake, to compile and build source code to these executables.
+"**Target**" are executable files, binary files. As the name itself suggests, they are the ultimate targets, the goal of CMake, to compile and build source code (in C++) to these executables.
 
 These targets have properties, which are to be managed in order for the source code to be compiled and built properly. Some common properties are: `LINK_LIBRARIES`, `INCLUDE_DIRECTORIES`, `COMPILE_DEFINITIONS`, `COMPILE_OPTIONS`.
 
-And the commands to change them:
+Include directories are where you need to find the C++ header files. With correct ones, you can add header files on top of your `.cpp` files: `#include <something.h>`. This is where the compiler will find function declarations, type definitions, classes, structures, etc. While compiler concerns with the declarations, linker concerns with functions, methods definitions. These are handled by link libraries. In the build process, a target has to be compiled and linked in order to become a executable. Check [C++ for Dummies](../cppFD/README.md) for more in depth understand.
+
+The commands to change them:
 
 - `target_include_directories`
 - `target_link_libraries`
@@ -122,6 +122,8 @@ And the commands to change them:
 # Get the target's SOURCES property and assign it to MYAPP_SOURCES
 get_property(MYAPP_SOURCES TARGET MyApp PROPERTY SOURCES)
 ```
+
+In other cases, instead of executable(s), the targets to build could be "**libraries**" - group of functionalities that could be used somewhere else.
 
 -------
 
@@ -138,7 +140,7 @@ Some Statement Commands:
 - math: `math(EXPR VAR "1+1")`
 - list: `list(REMOVE_ITEM MY_LIST "separate")`
 - Quotes around arguments are **optional**, as long as there are no **spaces** or **variable references** in the argument. Example, the following two lines are equivalent: `set(THING funk)` and `set(THING "funk")`.
-- Lists are Just Semicolon-Delimited Strings
+- Lists are just semicolon-delimited strings
 
   ```cmake
   set(ARGS "EXPR;T;1 + 1")
@@ -153,9 +155,7 @@ Flow Control Commands:
 - while()-endwhile()
 - foreach()-endforeach()
 
-#### Example 3
-
-Try the script in [CMakeScriptTest](CMakeScriptTest). Play with the content of [test.txt](CMakeScriptTest/test.txt) and see how the output changes.
+**Example 3**: Try the script in [CMakeScriptTest](CMakeScriptTest). Play with the content of [test.txt](CMakeScriptTest/test.txt) and see how the output changes.
 
 ```bash
 cd CMakeScriptTest
@@ -168,8 +168,6 @@ cmake -DNAME=DUCK -P test.txt #Set variable NAME = DUCK
 ## Important commands
 
 CMake Tutorials: [Youtube](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&t=0s), [cmake.org](https://cmake.org/cmake/help/latest/guide/tutorial/index.html).
-
--------
 
 ### Add target
 
@@ -184,44 +182,25 @@ add_executable(duck duck.cpp)
 
 -------
 
-### Include v/s link libraries
-
-[stackoverflow discussion](https://stackoverflow.com/questions/56565665/difference-between-target-link-libraries-and-target-include-directories)
-
-1. `*include_directories`  
-Supply a list of include directories to the compiler. When a file is included using the pre-processor, these directories will be searched for the file.
-
-2. `*link_libraries`  
-Supply a list of libraries (object archives) to the linker. If the linked item is a cmake target, with specified include directories, they don't need to be specified separately with *include_directories.
-
-3. `target_*` versions ([stackoverflow](https://stackoverflow.com/questions/31969547/what-is-the-difference-between-include-directories-and-target-include-directorie#:~:text=include_directories(x%2Fy)%20affects,include%20path%20for%20target%20t%20.))
-
-- Apply only to the target that is given as an operand.
-- The non-target versions apply to all targets in the directory.
-
--> `include_directories` v/s `target_include_directories`  
--> `link_libraries` v/s `target_link_libraries`
-
--------
-
 ### Find / Include Package
 
-- `include` executes another CMake script in the same scope as the calling script.
 - `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [CMake docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
-- `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`.
-- Let just stick with `find_package`.
+
+  ```cmake
+  # Module mode finds Find<PackageName>.cmake
+  find_package(OpenCV MODULE REQUIRED) #find FindOpenCV.cmake
+  # Config mode finds <PackageName>Config.cmake or <PackageName>-config.cmake
+  find_package(OpenCV MODULE REQUIRED) #find OpenCVConfig.cmake
+  ```
+
+- `include` executes another CMake script in the same scope as the calling script. Eg., `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`. Let just stick with `find_package`.
 - `find_package` = `find_library` + `find_path` ??
 
 ```cmake
 find_library(NameYouMadeUp ActualName NAMES LiBnAmE lIbNaMe)
-if (${NameYouMadeUp} STREQUAL NameYouMadeUp-NOTFOUND)
-  message(FATAL_ERROR "NameYouMadeUp not FOUND!")
-else()
-  message(STATUS "NameYouMadeUp found!")
-endif()
 ```
 
-`find_library` assumes ActualName to be `libActualName.o`. If found, `NameYouMadeUp` becomes the path to the library, if not, then it's set as `NameYouMadeUp-NOTFOUND`
+`find_library` assumes `ActualName` to be `libActualName.o`. If found, `NameYouMadeUp` becomes the path to the library, if not, then it's set as `NameYouMadeUp-NOTFOUND`
 
 ```cmake
 message("suffixes: ${CMAKE_FIND_LIBRARY_SUFFIXES}")
@@ -323,35 +302,41 @@ After using `find_package` to find a package, it almost always sets the variable
 
 ### Link Libraries
 
-- Library also contains executables:
+I understand library as a group of object files / targets, not necessary executables. Define the library for internal / external usages (to your package/workspace) with:
 
-  ```cmake
-  add_library(LibName file.cpp)
-  ```
+```cmake
+add_library(LibName file1.cpp, file2.cpp)
+```
 
-- Link library
+For a newly defined target to be able to use the group for object files, the target needs to be linked with that group, aka., the library.
 
-  ```cmake
+1. Get the library definition. If the library is defined somewhere else, not in the same `CMakeLists.txt`, then it can be included with `add_subdirectory`, `find_library`, `find_package`, `link_directories`.
+
+2. Link to target(s) with `(target_)link_libraries`
+
+**Example 4:**
+
+```cmake
+add_subdirectory(LibName)
+add_executable(TargetName file.cpp)
+target_link_libraries(TargetName PUBLIC LibName)
+target_include_directories(TargetName PUBLIC
+  "${PROJECT_BINARY_DIR}"
+  "${PROJECT_SOURCE_DIR}/LibName"
+)
+```
+
+Making library optional:
+
+```cmake
+option(USE_LIBTEST "Use test lib" ON)
+configure_file(LibName.h.in LibName.h)
+if (USE_LIBTEST)
   add_subdirectory(LibName)
-  add_executable(TargetName file.cpp)
-  target_link_libraries(TargetName PUBLIC LibName)
-  target_include_directories(TargetName PUBLIC
-    "${PROJECT_BINARY_DIR}"
-    "${PROJECT_SOURCE_DIR}/LibName"
-  )
-  ```
-
-- Making library optional:
-
-  ```cmake
-  option(USE_LIBTEST "Use test lib" ON)
-  configure_file(LibName.h.in LibName.h)
-  if (USE_LIBTEST)
-    add_subdirectory(LibName)
-    list(APPEND EXTRA_LIBS LibName)
-    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/LibName")
-  endif()
-  ```
+  list(APPEND EXTRA_LIBS LibName)
+  list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/LibName")
+endif()
+```
 
 -------
 
@@ -412,6 +397,8 @@ Ask Marco about:
 - find_package = find_library + find_path (auto the necessary)
 - link_directory -->
 
+-------
+
 ## Code Style
 
 For ROS2 package, use:
@@ -419,3 +406,9 @@ For ROS2 package, use:
 ```bash
 ament_lint_cmake
 ```
+
+-------
+
+## ROS
+
+Check CMake for [ROS1]((ROS1CMAKE.md)), [ROS2](ROS2CMAKE.md).
