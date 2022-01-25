@@ -456,11 +456,29 @@ auto obj2 = std::make_shared<XyzType>(args...);
 
 -------
 
+### Stack and Heap Memory
+
+Source: [The Cherno](https://youtu.be/wJ1L2nSIV1s)
+
+- Allocating on the stack is fast, simple as only one CPU commands.
+- There is a lot going on when assigning a value on heap memory. To find the free space, assign, book keeping, .. In case you have something very memory heavy, then you have to use the heap.
+
+```cpp
+// Allocate with the stack
+int value = 5;
+
+// Allocate with the heap
+int* hvalue = new int;
+*hvalue = 5;
+```
+
+-------
+
 ### new and delete operator
 
 Sources: [stackoverflow1](https://stackoverflow.com/questions/679571/when-to-use-new-and-when-not-to-in-c), [stackoverflow2](https://stackoverflow.com/questions/655065/when-should-i-use-the-new-keyword-in-c), [stackoverflow3](https://stackoverflow.com/questions/392455/about-constructors-destructors-and-new-delete-operators-in-c-for-custom-object).
 
-- The `new` operator does two things: allocating memory and calling the constructor.
+- The `new` operator does two things: allocating memory and calling the constructor. The **MAIN PURPOSE** of `new`, is to allocate memory, on the **HEAP** specifically.
 - The `delete` operator calls the destructor and then frees the memory.
 - Arrays created with `new []` must be destroyed with `delete[]`.
 - Using `new`, the object created remains in existance until you `delete` it. Without using `new`, the object will be destroyed when it goes out of scope.
