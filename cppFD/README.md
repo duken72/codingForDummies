@@ -10,20 +10,23 @@
   - [Header Files](#header-files)
   - [Names and Order of Includes](#names-and-order-of-includes)
   - [Namespaces](#namespaces)
+  - [Documentation](#documentation)
 - [Best practices, tips and notes](#best-practices-tips-and-notes)
   - [Variable assignment and initialization](#variable-assignment-and-initialization)
   - [Constructor member initializer lists](#constructor-member-initializer-lists)
   - [Pointer](#pointer)
   - [Structure v/s Class](#structure-vs-class)
-  - [POD - Plain Old Data](#pod---plain-old-data)
   - [Inline Specifier (since C++17)](#inline-specifier-since-c17)
   - [Explicit Specifier](#explicit-specifier)
   - [Smart Pointers](#smart-pointers)
   - [Virtual Specifier & Override Identifier](#virtual-specifier--override-identifier)
   - [Keyword auto](#keyword-auto)
+  - [Stack and Heap Memory](#stack-and-heap-memory)
   - [new and delete operator](#new-and-delete-operator)
   - [Using & Typedef Keywords](#using--typedef-keywords)
   - [TODO](#todo)
+
+-------
 
 ## Courses
 
@@ -32,6 +35,8 @@
 - [Modern C++ (2020, Uni Bonn)](https://www.ipb.uni-bonn.de/cpp-course-2020/)
 - [Modern C++ (Summer 2018, Uni Bonn)](https://youtube.com/playlist?list=PLgnQpQtFTOGR50iIOtO36nK6aNPtVq98C)
 - [C++ For Programmers, Udacity](https://classroom.udacity.com/courses/ud210)
+
+-------
 
 ## Compiling
 
@@ -289,6 +294,7 @@ Structure:
 - Default access specifier will be `public`.
 - The instance of the structure is known as "Structure variable".
 - A `struct` is a **bundle**. A `struct` is several related elements that needed to be tied up together in a certain context.
+- Practical: When a collection of POD ([Plain Old Data](https://stackoverflow.com/questions/146452/what-are-pod-types-in-c)) is needed.
 
 Class:
 
@@ -298,12 +304,7 @@ Class:
 - Operators to work on new data type can be defined using special methods (over-loading operators??)
 - One class can be used as the basis for definition of another (inheritance)
 - Declaration of a var of the new class type requires just the name of the class: `classA varA;`, not: `struct structA varA;`
-
--------
-
-### POD - Plain Old Data
-
-Src: [stackoverflow](https://stackoverflow.com/questions/146452/what-are-pod-types-in-c).
+- If you use inheritance, don't use struct, use class.
 
 -------
 
