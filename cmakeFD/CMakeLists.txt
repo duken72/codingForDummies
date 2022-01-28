@@ -20,6 +20,9 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake_modules)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 # find_package(<PackageName> [version] [EXACT] [QUIET] [MODULE]
 #              [REQUIRED] [[COMPONENTS] [components...]]
 #              [OPTIONAL_COMPONENTS components...]

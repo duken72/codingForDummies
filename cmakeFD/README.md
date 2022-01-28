@@ -412,3 +412,22 @@ ament_lint_cmake
 ## ROS
 
 Check CMake for [ROS1]((ROS1CMAKE.md)), [ROS2](ROS2CMAKE.md).
+
+-------
+
+## Tips
+
+In case `FindPackage.cmake` is not found, search for customized script online and put it in your package directory as follow:
+
+```bash
+pkg
+├── CMakeLists.txt
+└── cmake_modules
+    └── FindPackage.cmake
+```
+
+In the top-level `CMakeLists.txt`, add this line, before `find_package`:
+
+```cmake
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake_modules)
+```
