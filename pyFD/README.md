@@ -52,7 +52,8 @@ root_folder
 Importing package basically run package's ```__init__.py```  
 Can import packageA, can't import packageB because there is no ```__init__.py``` in packageB (but ```__init__.py``` is no longer needed for Python 3.3+)
 
-```import <package>
+```python
+import <package>
 import <module>
 from <package> import <module / subpackage / object>
 from <module> import <object>

@@ -546,3 +546,4 @@ Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpress
 - buffer
 - mutex
 - is_transparent [src](https://www.fluentcpp.com/2017/06/09/search-set-another-type-key/)
+- documentation with file.pu and UML Diagram in .svg

@@ -120,6 +120,15 @@ This's a bit actually off to project management than just coding.
 
 -------
 
+## TODO
+
+- Artifactory - JFrog
+- Azure Storage, KeyVault, Container Registry, etc.
+- Jenkins
+- Gliffy diagram
+
+-------
+
 ## LICENSE
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
