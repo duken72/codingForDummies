@@ -23,6 +23,16 @@ Keep an updated [`3rd-party-licenses.txt`](3rd-party-licenses.txt) around.
 
 -------
 
+## ROS2
+
+```bash
+ament_copyright -h
+ament_copyright --add-missing "<name copyright holder>" bsd_3clause --verbose .
+ament_copyright --list-licenses
+```
+
+-------
+
 ## Corporate Stuffs
 
 \#not_so_basic_any_more

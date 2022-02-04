@@ -108,6 +108,21 @@ Autotomate test, build and deploy.
 
 - Selenium
 
+### Example Build Pipeline
+
+- Clone target repo
+- Configure GBP pipeline
+- Clone dependency repos
+- Setup docker build
+- Setup build environment
+- Prepare workspace
+- Build dependencies
+- Lint target
+- Build target
+- Test target
+- Run custom smoke test
+- Parse logs
+
 -------
 
 ## Agile Project Management
