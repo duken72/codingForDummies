@@ -26,6 +26,8 @@ Hopefully, these notes will give you a brief overview of what is needed.
   - [Build Types](#build-types)
 - [Code Style](#code-style)
 - [ROS](#ros)
+- [Tips](#tips)
+  - [`FindPackage.cmake` NOT FOUND](#findpackagecmake-not-found)
 
 -------
 
@@ -417,7 +419,9 @@ Check CMake for [ROS1]((ROS1CMAKE.md)), [ROS2](ROS2CMAKE.md).
 
 ## Tips
 
-In case `FindPackage.cmake` is not found, search for customized script online and put it in your package directory as follow:
+### `FindPackage.cmake` NOT FOUND
+
+Search for customized script online and put it in your package directory as follow:
 
 ```bash
 pkg

@@ -2,6 +2,7 @@
 
 struct structA
 {
+// public:
 	char a;
 	int b;
 	float c;
@@ -10,6 +11,7 @@ struct structA
 	{
 		b = 4;
 	}
+
 private:
 	char d;
 	int e;

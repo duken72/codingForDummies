@@ -41,7 +41,7 @@ There are 3 classes of licenses, in simple words:
 
 - **Permissive OSS Licenses**: can be used for commercial purposes with ease
   > “do whatever you want with this, just don’t sue me.”
-- **Weak Copyleft licenses**: becareful when using, should ask someone more experienced about it
+- **Weak Copyleft licenses**: be careful when using, should ask someone more experienced about it
 - **Strong Copyleft licenses**: is a turnoff for corporations
   > “I open sourced my code so you should too”
 
@@ -49,7 +49,8 @@ Go to [tldrlegal.com](https://tldrlegal.com/) to check the license infos.
 
 1. Permissive OSS Licenses:
    - MIT License (Expat)
-   - Apache License 2.0 (Apache-2.0) BSD 3-Clause License (Revised)
+   - Apache License 2.0 (Apache-2.0)
+   - BSD 3-Clause License (Revised)
    - BSD 2-Clause License (FreeBSD/Simplified)
    - ISC License
    - BSD 0-Clause License (0BSD)

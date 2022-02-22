@@ -27,7 +27,7 @@ public:
   void setVar(varType varIn);
   int getVar();
   // add "virtual" if inherited classes have functions with same names
-  (virtual) varType accessFunction1(parameters);
+  virtual varType accessFunction1(varType varIn);
   // defining a function inside here
   // then don't need to declare it
   varType Function2(varType params)
@@ -49,7 +49,7 @@ public:
   void Foo() const
   {
     // Trying to change member value will lead to error
-    member1_++;
+    // member1_++;
   }
 
 // if listed after "public", use keyword "private"
@@ -80,9 +80,9 @@ ClassName::~ClassName()
 // ClassName<T>::ClassName(varType params)
 
 template<class T>
-returnVariable ClassName<T>:: accessFunction1(paramsVarType parameters)
+ClassName<T>::accessFunction1(paramsVarType parameters)
 {
-    function statements;
+  function statements;
 }
 
 #endif CLASS_NAME

@@ -13,9 +13,9 @@ using LENGTH = int;
 // typedef int LENGTH;
 typedef struct
 {
-    int scruples;
-    int drams;
-    int grains;
+  int scruples;
+  int drams;
+  int grains;
 } WEIGHT;
 
 // A pointer to a function returning void and accepting double
@@ -58,7 +58,7 @@ namespace sth
 {
 void func_test()
 {
-    LENGTH length, width, height;
-    WEIGHT chicken;
+  LENGTH length, width, height;
+  WEIGHT chicken;
 };
 } // namespace sth

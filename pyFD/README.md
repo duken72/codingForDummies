@@ -99,8 +99,8 @@ global_var_name, instance_var_name, local_var_name
 
 ```python
 def func(abc, fds=4.6):
- # One-line Docstrings, note the "." at the end
- '''Do sth and return sth.'''
+    # One-line Docstrings, note the "." at the end
+    '''Do sth and return sth.'''
     
     # Multi-line Docstrings, Google Style (check also Sphinx, Numpy style)
     '''Summary line.
@@ -136,15 +136,17 @@ print(func.__annotations__)
 
 ## Best practices, tips and tricks
 
+-------
+
 ### PEP - Python Enhancement Proposal
 
 - Type hinting: [docs](https://docs.python.org/3/library/typing.html)
 
+-------
+
 ### Iterable, iterator and generator
 
-Source: [stackoverflow1](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do), [stackoverflow2](https://stackoverflow.com/questions/2776829/difference-between-pythons-generators-and-iterators).
-
-Everything you can use `for... in...` on is an `iterable`; lists, strings, files, etc. Reading its items one by one is called `iteration`. Any object, whose class is `iterable`, is an `interator`, which has a `__next__` method.
+Everything you can use `for... in...` on is an `iterable`, eg., lists, strings, files. Reading its items one by one is called `iteration`. Any object, whose class is `iterable`, is an `interator`, which has a `__next__` method.
 
 `generator`s are `iterator`s, but not vice versa. You can only iterate over once. They do not store all the values in memory, **they generate the values on the fly**.
 
@@ -163,7 +165,7 @@ def create_generator():
         yield i*i
 ```
 
-Read the above source for more in depth explanation.
+Read the following sources for more in depth explanation: [stackoverflow1](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do), [stackoverflow2](https://stackoverflow.com/questions/2776829/difference-between-pythons-generators-and-iterators).
 
 In many cases, generators are memory efficient and faster. In other cases, you get stuck in an infinite loop.
 

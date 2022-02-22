@@ -2,44 +2,43 @@
 
 class Student
 {
-        string name;
-        int id;
-        int gradDate;
+  std::string name;
+  int id;
+  int gradDate;
 
-    public:
-        void setName(string nameIn);
-        void setId(int idIn);
-        void setGradDate(int dateIn);
-        
-        string getName();
-        int getId();
-        int getGradDate();
+public:
+  void setName(std::string nameIn);
+  void setId(int idIn);
+  void setGradDate(int dateIn);
+  std::string getName();
+  int getId();
+  int getGradDate();
 };
 
 // Functions that access and/or modify data values in classes are called mutators.
 // need namespace classname:: to signify that the functions are part of the class definition
-void Student::setName(string nameIn)
+void Student::setName(std::string nameIn)
 {
-     name = nameIn;
+  name = nameIn;
 }
 void Student::setId(int idIn)
 {
-     id = idIn;
+  id = idIn;
 }
 void Student::setGradDate(int gradDateIn)
 {
-     gradDate = gradDateIn;
+  gradDate = gradDateIn;
 }
 
-string Student::getName()
+std::string Student::getName()
 {
-     return name;
+  return name;
 }
 int Student::getId()
 {
-     return id; 
+  return id; 
 }
 int Student::getGradDate()
 {
-     return gradDate;
+  return gradDate;
 }

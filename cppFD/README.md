@@ -1,28 +1,34 @@
 # C++ for dummies
 
+[![tokei](https://tokei.rs/b1/github/duken72/codingForDummies/cppFD)](https://github.com/duken72/codingForDummies/cppFD)
+
 ## Table of Contents
 
 - [Courses](#courses)
-- [Compiling](#compiling)
-- [Linking](#linking)
+- [Building](#building)
+  - [Compiling](#compiling)
+  - [Linking](#linking)
 - [Style Guide](#style-guide)
   - [Naming Conventions](#naming-conventions)
   - [Header Files](#header-files)
   - [Names and Order of Includes](#names-and-order-of-includes)
   - [Namespaces](#namespaces)
   - [Documentation](#documentation)
-- [Best practices, tips and notes](#best-practices-tips-and-notes)
-  - [Variable assignment and initialization](#variable-assignment-and-initialization)
-  - [Constructor member initializer lists](#constructor-member-initializer-lists)
-  - [Pointer](#pointer)
-  - [Structure v/s Class](#structure-vs-class)
-  - [Inline Specifier (since C++17)](#inline-specifier-since-c17)
-  - [Explicit Specifier](#explicit-specifier)
-  - [Smart Pointers](#smart-pointers)
-  - [Virtual Specifier & Override Identifier](#virtual-specifier--override-identifier)
-  - [Keyword auto](#keyword-auto)
+- [Memory Management and Pointer](#memory-management-and-pointer)
+  - [Variable types and sizes](#variable-types-and-sizes)
   - [Stack and Heap Memory](#stack-and-heap-memory)
   - [new and delete operator](#new-and-delete-operator)
+  - [Pointer](#pointer)
+  - [Smart Pointers](#smart-pointers)
+- [Advanced Class Features](#advanced-class-features)
+  - [Constructor member initializer lists](#constructor-member-initializer-lists)
+  - [Structure v/s Class](#structure-vs-class)
+  - [Virtual Specifier & Override Identifier](#virtual-specifier--override-identifier)
+- [Best practices, tips and notes](#best-practices-tips-and-notes)
+  - [Variable assignment and initialization](#variable-assignment-and-initialization)
+  - [Inline Specifier (since C++17)](#inline-specifier-since-c17)
+  - [Explicit Specifier](#explicit-specifier)
+  - [Keyword auto](#keyword-auto)
   - [Using & Typedef Keywords](#using--typedef-keywords)
   - [TODO](#todo)
 
@@ -38,7 +44,9 @@
 
 -------
 
-## Compiling
+## Building
+
+Building CPP implies compiling and linking.
 
 For simple test:
 
@@ -48,21 +56,21 @@ g++ main.cpp -S #this will generate assemply file main.s
 ./main.out input.txt
 ```
 
+### Compiling
+
 Example of compiler, object file, binary file, assembly code: [The Cherno](https://youtu.be/3tIqpEmWMLI)
 
 In reality, use build system, such as [CMake](../cmakeFD/README.md):
 
 RAII - Resource Acquisition is Initialization
 
-## Linking
+### Linking
 
 Source: [The Cherno](https://youtu.be/H4s55GgAg0I)
 
-This explains why you can simply include header files, which only have function declarations. When linking, the linker will find the function definitions.
+When linking, the linker will find the function definitions. This is why you can simply include header files, which only have function declarations.
 
-Also, if you define a function in header file, then include that header file in other files, it leads to linking error: multiple definition of a function.
-
-This will go back to `(target_)link_libraries` in [CMake](../cmakeFD/README.md).
+Also, if you define a function in header file, then include that header file in other files, it leads to linking error: multiple definition of a function. This concerns with using `(target_)link_libraries` in [CMake](../cmakeFD/README.md).
 
 -------
 
@@ -114,6 +122,7 @@ code...
 - C++ standard lib headers
 - Other libraries's headers
 - Your project headers
+
 Example:
 
 ```cpp
@@ -178,33 +187,175 @@ double sumInt(std::vector<double> values);
 
 -------
 
-## Best practices, tips and notes
+## Memory Management and Pointer
 
-### Variable assignment and initialization
+### Variable types and sizes
 
-Source [Learn C++](https://www.learncpp.com/cpp-tutorial/variable-assignment-and-initialization/).
+The primitive data types vary in the memory size that they occupy. 1 byte is equal to 8 bits. Be aware that sometimes, the actual memory size also depends on the compiler, or the data models ([32 bit systems v/s 64 bit systems](https://en.cppreference.com/w/cpp/language/types))
 
-```cpp
-// no initializer
-int a;
-// copy initialization
-int b = 5;
-// Direct initialization
-int c( 6 );
-// Uniform initialization / list initialization
-int d { 7 };
-```
+**Modifiers**:
 
-- Copy initialization: was inherited from the C language.
-- Direct initialization: For simple data types (like `int`), copy and direct initialization are essentially the same. For more complicated types, direct initialization tends to be more efficient than copy initialization.
-- Uniform initialization / list initialization: To provide a more consistent initialization mechanism. Because, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data).
+- Signedness
+  - `signed` (default) - target type will have signed representation, loosing 1 bit
+  - `unsigned` - target type will have unsigned representation
+- Size
+  - `short` - target type will be optimized for space and will have width of at least 16 bits.
+  - `long` - target type will have width of at least 32 bits.
 
-**In practice**:
+|          Type           |        Size         |      Typical Range       |
+|:----------------------: |:------------------: |:-----------------------: |
+|         boolean         |   8 bits = 1 byte   |          $0-1$           |
+|      (signed) char      |   8 bits = 1 byte   |    $-2^7$ to $2^7-1$     |
+|      unsigned char      |   8 bits = 1 byte   |      $0$ to $2^8-1$      |
+|      (signed) int       |  32 bits = 4 bytes  | $-2^{31}$ to $2^{31}-1$  |
+|      unsigned int       |  32 bits = 4 bytes  |    $0$ to $2^{32}-1$     |
+|   (signed) short int    |  16 bits = 2 bytes  | $-2^{15}$ to $2^{15}-1$  |
+|   unsigned short int    |  16 bits = 2 bytes  |    $0$ to $2^{16}-1$     |
+|    (signed) long int    |  32 bits = 4 bytes  | $-2^{31}$ to $2^{31}-1$  |
+|    unsigned long int    |  32 bits = 4 bytes  |    $0$ to $2^{32}-1$     |
+| (signed) long long int  |  64 bits = 8 bytes  | $-2^{63}$ to $2^{63}-1$  |
+| unsigned long long int  |  64 bits = 8 bytes  |    $0$ to $2^{64}-1$     |
+|          float          |  32 bits = 4 bytes  |  $3.4E\pm38$ (7 digits)  |
+|         double          |  64 bits = 8 bytes  | $1.7E\pm308$ (15 digits) |
+|       long double       |  96 bits = 12bytes  |                          |
 
-- Favor initialization using curly braces whenever possible.
-- But don't over-dramatic simple things: `int d{7};`
+**Notes**:
+
+- One `boolean` actually just needs 1 bit, but you can only access byte, thus it still occupies 1 byte, which is 8 bits. We could however store 8 `bool`(s) in 1 byte.
+- To differentiate types when assigning variables, use suffixes. Aware that these suffixes are case-insensitive: ie., `u` is equivalent to `U`, `UL` is equivalent to `uL, Ul, ul`.
+
+| Data Type  |   Suffix   |       Meaning       |
+|:---------: |:---------: |:------------------: |
+|    int     |     U      |    unsigned int     |
+|    int     |     L      |        long         |
+|    int     |  UL / LU   |    unsigned long    |
+|    int     |     LL     |      long long      |
+|    int     | ULL / LLU  | unsigned long long  |
+|   double   |     F      |        float        |
+|   double   |     L      |     long double     |
 
 -------
+
+### Stack and Heap Memory
+
+Source: [The Cherno](https://youtu.be/wJ1L2nSIV1s)
+
+- Allocating on the stack is fast, simple as only one CPU commands.
+- There is a lot happen behind the scene when assigning a value on heap memory. To find the free space, assign, book keeping, .. In case you have something very memory heavy, then you have to use the heap.
+
+```cpp
+// Allocate with the stack
+int value = 5;
+
+// Allocate with the heap
+int* hvalue = new int;
+*hvalue = 5;
+```
+
+-------
+
+### new and delete operator
+
+Sources: [stackoverflow1](https://stackoverflow.com/questions/679571/when-to-use-new-and-when-not-to-in-c), [stackoverflow2](https://stackoverflow.com/questions/655065/when-should-i-use-the-new-keyword-in-c), [stackoverflow3](https://stackoverflow.com/questions/392455/about-constructors-destructors-and-new-delete-operators-in-c-for-custom-object).
+
+- The `new` operator does two things: allocating memory and calling the constructor. The **MAIN PURPOSE** of `new`, is to allocate memory, on the **HEAP** specifically.
+- The `delete` operator calls the destructor and then frees the memory.
+- Arrays created with `new []` must be destroyed with `delete[]`.
+- Using `new`, the object created remains in existance until you `delete` it. Without using `new`, the object will be destroyed when it goes out of scope.
+- Every time you type `new`, type `delete`.
+
+```cpp
+ptr_var = new data_type;
+int * var = new int(7);
+
+void foo()
+{
+  int i = 0;
+} // i is now destroyed.
+
+for (...)
+{
+  int i = 0;
+} // p is destroyed after each loop
+
+void foo(int size)
+{
+  Point* pointArray = new Point[size];
+  delete[] pointArray;
+  MyClass* myClass = new MyClass();
+  delete myClass;
+}
+```
+
+-------
+
+### Pointer
+
+| Expression | What is evaluated                     | Equivalent |
+|:----------:|---------------------------------------|:----------:|
+|     a.b    | mem b of object a                     |            |
+|    a->b    | mem b of object pointed to by a       |   (*a).b   |
+|    *a.b    | Value pointed to by mem b of object a |   *(a.b)   |
+
+The points of pointer:
+
+- The overhead memory cost  
+  When assigning variables with values will copy that values to different memory space. Eg, `int a = 1, b = 1`, there are two memory space with value 1, type `int`. It could have just taken only one memory space for that value. For simply type like int, float, it wouldn't change much. But for instance/object of complex structure, class, it would reduce the memory cost significantly.
+
+- Change multiple variables  
+  In Python, it's easy to return variables of different types
+
+  ```python
+  def func_ab(c, d):
+    return a, b
+  ```
+
+  For CPP, a function returns only 1 variable of 1 type. To change multiple variables, we use their pointers as input
+
+  ```cpp
+  void func_ab(&a, &b) {}
+  ```
+
+-------
+
+### Smart Pointers
+
+Sources: [geeksforgeeks1](https://www.geeksforgeeks.org/smart-pointers-cpp/), [geeksforgeeks2](https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/).
+
+As we’ve known, unconscious not deallocating a pointer causes a memory leak that may lead to crash of the program. For languages with **Garbage Collection Mechanisms** to smartly deallocate unused memory, like Java and C#, programmers don't have to worry about any memory leak. C++11 comes up with its own mechanism: Smart Pointer. When the object is destroyed, it frees the memory as well.
+
+With `#include <memory>`:
+
+- `std::unique_ptr` stores one pointer only. We can assign a different object by removing the current object from the pointer.
+- `std::shared_ptr` allows more than one pointer pointing to this one object at a time and it’ll maintain a Reference Counter using `use_count()` method.
+- `std::weak_ptr` also allows more than one pointer pointing at one object at a time, but without a Reference Counter.
+- `std::auto_ptr` is replaced by `std::unique_ptr`, with similar functionality, improved security, added features and support for arrays.
+
+Good practice:
+
+- Use `make_shared` as a simple and more efficient way to create an object and a `shared_ptr` to manage shared access to the object at the same time. ([src](https://docs.microsoft.com/en-us/cpp/standard-library/memory-functions?view=msvc-170#make_shared))
+
+```cpp
+#include <memory>
+
+class Example
+{
+  Example(argument)
+  {};
+};
+std::shared_ptr<Example> msp = std::make_shared<Example>(argument);
+std::unique_ptr<Example> mup = std::make_unique<Example>(argument);
+```
+
+Example: [smartPointer.cpp](smartPointer.cpp).
+
+```bash
+g++ smartPointer.cpp -o test && ./test && rm -f test
+```
+
+-------
+
+## Advanced Class Features
 
 ### Constructor member initializer lists
 
@@ -258,35 +409,6 @@ public:
 
 -------
 
-### Pointer
-
-| Expression | What is evaluated                     | Equivalent |
-|:----------:|---------------------------------------|:----------:|
-|     a.b    | mem b of object a                     |            |
-|    a->b    | mem b of object pointed to by a       |   (*a).b   |
-|    *a.b    | Value pointed to by mem b of object a |   *(a.b)   |
-
-The points of pointer:
-
-- The overhead memory cost  
-  When assigning variables with values will copy that values to different memory space. Eg, `int a = 1, b = 1`, there are two memory space with value 1, type `int`. It could have just taken only one memory space for that value. For simply type like int, float, it wouldn't change much. But for instance/object of complex structure, class, it would reduce the memory cost significantly.
-
-- Change multiple variables  
-  In Python, it's easy to return variables of different types
-
-  ```python
-  def func_ab(c, d):
-    return a, b
-  ```
-
-  For CPP, a function returns only 1 variable of 1 type. To change multiple variables, we use their pointers as input
-
-  ```cpp
-  void func_ab(&a, &b) {}
-  ```
-
--------
-
 ### Structure v/s Class
 
 Structure:
@@ -305,91 +427,6 @@ Class:
 - One class can be used as the basis for definition of another (inheritance)
 - Declaration of a var of the new class type requires just the name of the class: `classA varA;`, not: `struct structA varA;`
 - If you use inheritance, don't use struct, use class.
-
--------
-
-### Inline Specifier (since C++17)
-
-Src: [geeksforgeeks](https://www.geeksforgeeks.org/inline-functions-cpp/), [stackoverflow](https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method).
-
-This concerns with the overhead cost for switching time of small functions. When the inline function is called, the whole code of the inline function gets inserted or substituted. This substitution is performed by the C++ compiler at compile time.
-
-Inlining is only a request to the compiler, not a command. There are cases that the compiler can ignore this request. Inline functions have advantages but also disadvantages (check the sources).
-
-```cpp
-inline int cube(int s)
-{
-  return s*s*s;
-}
-
-int main()
-{
-  std::cout << "The cube of 3 is: " << cube(3) << "\n";
-  return 0;
-}
-```
-
-For Class definition, you only need to add inline when defining it, not when declare it inside the class
-
-```cpp
-class S
-{
-public:
-  // redundant to add inline here
-  int square(int s); // declare the function
-};
-  
-inline int S::square(int s) {} // use inline prefix
-```
-
--------
-
-### Explicit Specifier
-
-Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
-
-The reason you might want to do this is to avoid accidental construction that can hide bugs. See example [implicit conversion](implicitConversion.cpp) and [explicit specifier](explicitSpecifier.cpp).
-
-Src: [cppreference](https://en.cppreference.com/w/cpp/language/explicit), [stackoverflow](https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean), [ibm](https://www.ibm.com/docs/en/i/7.4?topic=only-explicit-conversion-constructors-c).
-
-TODO - Should we almost always add `explicit` specifier.
-
--------
-
-### Smart Pointers
-
-Sources: [geeksforgeeks1](https://www.geeksforgeeks.org/smart-pointers-cpp/), [geeksforgeeks2](https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/).
-
-As we’ve known, unconscious not deallocating a pointer causes a memory leak that may lead to crash of the program. For languages with **Garbage Collection Mechanisms** to smartly deallocate unused memory, like Java and C#, programmers don't have to worry about any memory leak. C++11 comes up with its own mechanism: Smart Pointer. When the object is destroyed, it frees the memory as well.
-
-With `#include <memory>`:
-
-- `std::unique_ptr` stores one pointer only. We can assign a different object by removing the current object from the pointer.
-- `std::shared_ptr` allows more than one pointer pointing to this one object at a time and it’ll maintain a Reference Counter using `use_count()` method.
-- `std::weak_ptr` also allows more than one pointer pointing at one object at a time, but without a Reference Counter.
-- `std::auto_ptr` is replaced by `std::unique_ptr`, with similar functionality, improved security, added features and support for arrays.
-
-Good practice:
-
-- Use `make_shared` as a simple and more efficient way to create an object and a `shared_ptr` to manage shared access to the object at the same time. ([src](https://docs.microsoft.com/en-us/cpp/standard-library/memory-functions?view=msvc-170#make_shared))
-
-```cpp
-#include <memory>
-
-class Example
-{
-  Example(argument)
-  {};
-};
-std::shared_ptr<Example> msp = std::make_shared<Example>(argument);
-std::unique_ptr<Example> mup = std::make_unique<Example>(argument);
-```
-
-Example: [smartPointer.cpp](smartPointer.cpp).
-
-```bash
-g++ smartPointer.cpp -o test && ./test && rm -f test
-```
 
 -------
 
@@ -439,73 +476,94 @@ public:
 
 -------
 
+## Best practices, tips and notes
+
+### Variable assignment and initialization
+
+Source [Learn C++](https://www.learncpp.com/cpp-tutorial/variable-assignment-and-initialization/).
+
+```cpp
+// no initializer
+int a;
+// copy initialization
+int b = 5;
+// Direct initialization
+int c( 6 );
+// Uniform initialization / list initialization
+int d { 7 };
+```
+
+- Copy initialization: was inherited from the C language.
+- Direct initialization: For simple data types (like `int`), copy and direct initialization are essentially the same. For more complicated types, direct initialization tends to be more efficient than copy initialization.
+- Uniform initialization / list initialization: To provide a more consistent initialization mechanism. Because, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data).
+
+**In practice**:
+
+- Favor initialization using curly braces whenever possible.
+- But don't over-dramatic simple things: `int d{7};`
+
+-------
+
+### Inline Specifier (since C++17)
+
+Src: [geeksforgeeks](https://www.geeksforgeeks.org/inline-functions-cpp/), [stackoverflow](https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method).
+
+This concerns with the overhead cost for switching time of small functions. When the inline function is called, the whole code of the inline function gets inserted or substituted. This substitution is performed by the C++ compiler at compile time.
+
+Inlining is only a request to the compiler, not a command. There are cases that the compiler can ignore this request. Inline functions have advantages but also disadvantages (check the sources).
+
+```cpp
+inline int cube(int s)
+{
+  return s*s*s;
+}
+
+int main()
+{
+  std::cout << "The cube of 3 is: " << cube(3) << "\n";
+  return 0;
+}
+```
+
+For Class definition, you only need to add inline when defining it, not when declare it inside the class
+
+```cpp
+class S
+{
+public:
+  // redundant to add inline here
+  int square(int s); // declare the function
+};
+  
+inline int S::square(int s) {} // use inline prefix
+```
+
+-------
+
+### Explicit Specifier
+
+Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
+
+The reason you might want to do this is to avoid accidental construction that can hide bugs. See example [implicit conversion](specifierImplicit.cpp) and [explicit specifier](specifierExplicit.cpp).
+
+Src: [cppreference](https://en.cppreference.com/w/cpp/language/explicit), [stackoverflow](https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean), [ibm](https://www.ibm.com/docs/en/i/7.4?topic=only-explicit-conversion-constructors-c).
+
+TODO - Should we almost always add `explicit` specifier.
+
+-------
+
 ### Keyword auto
 
 Use `auto` for cases to increase readability without creating confusion.
 
 ```cpp
-//good : auto increases readability here
-for(auto it = std::begin(v); it != std::end(v); ++it)//v could be array as well
-{
-  //..
-}
+// good : auto increases readability here
+// v could be array as well
+for(auto it = std::begin(v); it != std::end(v); ++it) {}
 
 // No type confusion
 auto obj1 = new SomeType<OtherType>::SomeOtherType();
 auto obj2 = std::make_shared<XyzType>(args...);
-```
-
--------
-
-### Stack and Heap Memory
-
-Source: [The Cherno](https://youtu.be/wJ1L2nSIV1s)
-
-- Allocating on the stack is fast, simple as only one CPU commands.
-- There is a lot going on when assigning a value on heap memory. To find the free space, assign, book keeping, .. In case you have something very memory heavy, then you have to use the heap.
-
-```cpp
-// Allocate with the stack
-int value = 5;
-
-// Allocate with the heap
-int* hvalue = new int;
-*hvalue = 5;
-```
-
--------
-
-### new and delete operator
-
-Sources: [stackoverflow1](https://stackoverflow.com/questions/679571/when-to-use-new-and-when-not-to-in-c), [stackoverflow2](https://stackoverflow.com/questions/655065/when-should-i-use-the-new-keyword-in-c), [stackoverflow3](https://stackoverflow.com/questions/392455/about-constructors-destructors-and-new-delete-operators-in-c-for-custom-object).
-
-- The `new` operator does two things: allocating memory and calling the constructor. The **MAIN PURPOSE** of `new`, is to allocate memory, on the **HEAP** specifically.
-- The `delete` operator calls the destructor and then frees the memory.
-- Arrays created with `new []` must be destroyed with `delete[]`.
-- Using `new`, the object created remains in existance until you `delete` it. Without using `new`, the object will be destroyed when it goes out of scope.
-- Every time you type `new`, type `delete`.
-
-```cpp
-ptr_var = new data_type;
-int * var = new int(7);
-
-void foo()
-{
-  int i = 0;
-} // i is now destroyed.
-
-for (...)
-{
-  int i = 0;
-} // p is destroyed after each loop
-
-void foo(int size)
-{
-  Point* pointArray = new Point[size];
-  delete[] pointArray;
-  MyClass* myClass = new MyClass();
-  delete myClass;
-}
 ```
 
 -------
@@ -546,4 +604,3 @@ Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpress
 - buffer
 - mutex
 - is_transparent [src](https://www.fluentcpp.com/2017/06/09/search-set-another-type-key/)
-- documentation with file.pu and UML Diagram in .svg
