@@ -4,29 +4,38 @@
 
 ## Move around
 
-- CTRL A / E    -     move - line home/end
-- CTRL F / B    -     move - char for/backward
-- ALT  F / B    -     move - word for/backward
+|  Commands  |          Actions         |
+|:----------:|:------------------------:|
+| Ctrl-A / E |   move - line home/end   |
+| Ctrl-F / B | move - char for/backward |
+| Alt -F / B | move - word for/backward |
 
 -------
 
 ## Editing
 
-- CTRL H        -     delete - char
-- CTRL W        -     delete - word back
-- CTRL K        -     clear - line -> end
-- CTRL U        -     clear - line
+| Commands |       Actions       |
+|:--------:|:-------------------:|
+|  Ctrl-H  |    delete - char    |
+|  Ctrl-W  |  delete - word back |
+|  Ctrl-K  | clear - line -> end |
+|  Ctrl-U  |     clear - line    |
 
 -------
 
 ## Processes?
 
-- CTRL C
-- CTRL Z
+| Commands | Actions |
+|:--------:|:-------:|
+|  Ctrl-C  |         |
+|  Ctrl-Z  |         |
 
 -------
 
 ## Screen outputs
 
-- CTRL S / Q    -     toggle screen output
-- CTRL L        -     clear screen output
+|  Commands  |        Actions       |
+|:----------:|:--------------------:|
+| Ctrl-S / Q | toggle screen output |
+|   Ctrl-L   |  clear screen output |
+|   Ctrl-D   |      exit shell      |

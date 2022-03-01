@@ -152,19 +152,3 @@ fg || bg # resume task in foreground, background
 jobs
 kill -l
 kill -9
-
-# -------------------------------------------------
-# Shortcut - Action
-# Ctrl-S - stop output to screen
-# Ctrl-Q - re-enable screen output
-# Ctrl-A - beginning of line
-# Ctrl-E - end of line
-# Ctrl-F - forward one char
-# Ctrl-B - backward one char
-# Ctrl-H - delete one char (backwards)
-# Alt-F - forward one word
-# Alt-B - backward one word
-# Ctrl-W - delete one word (backwards)
-# Ctrl-U - clear to beginning of line
-# Ctrl-K - clear to end of the line
-# Ctrl-D - exit shell

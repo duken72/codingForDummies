@@ -1,4 +1,4 @@
-message("Hello world!")		# A message to print
+message("Hello world!")		  # A message to print
 message("Hello ${NAME}!")   # Substitute a variable into the message
 
 set(THING duck)

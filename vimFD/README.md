@@ -19,7 +19,7 @@ alias lessg='less $(fd lessFD.bash ~)'
 
 ## Hotkeys
 
-Check [vimFD.bash](vimFD.bash) and [lessFD.bash](lessFD.bash) for useful hotkeys
+Check [vimFD.vim](vimFD.vim) and [lessFD.bash](lessFD.bash) for useful hotkeys
 
 -------
 

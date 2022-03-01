@@ -28,8 +28,9 @@ mcd()
 # $# - Number of arguments
 # $? - Return code of the previous command
 # $$ - Process identification number (PID) for the current script
-# !! - Entire last command, including arguments, ex: sudo !! if last command fail cause permission
-# $_ - Last argument from the last command. If you are in an interactive shell, you can also quickly get this value by typing Esc followed by .
+# !! - Entire last command, including arguments, ex: sudo !! if last command fail due to permission
+# $_ - Last argument from the last command.
+# If you are in an interactive shell, you can also quickly get this value by typing Esc followed by .
 
 # Logical
 # true -> 0, false -> 1
@@ -66,7 +67,7 @@ for i in "$@"; do
 done
 
 # Test
-# Check file/directory existance
+# Check file/directory existence
 if [ -d file ]; then echo "file is a directory" fi
 if [ -e file ]; then echo "file exists" fi
 if [ -f file ]; then echo "file exists and is a regular file" fi

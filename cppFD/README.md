@@ -82,9 +82,9 @@ Also, if you define a function in header file, then include that header file in 
 The ROS2 build system has a number of linters, which will complain about coding style violations.
 
 ```bash
-# will automatically fix them.
+# automatically fix them.
 ament_uncrustify --reformat
-# to see the output in isolation
+# see the output in isolation
 ament_cpplint
 ament_cppcheck
 ```
@@ -261,7 +261,7 @@ Sources: [stackoverflow1](https://stackoverflow.com/questions/679571/when-to-use
 - The `new` operator does two things: allocating memory and calling the constructor. The **MAIN PURPOSE** of `new`, is to allocate memory, on the **HEAP** specifically.
 - The `delete` operator calls the destructor and then frees the memory.
 - Arrays created with `new []` must be destroyed with `delete[]`.
-- Using `new`, the object created remains in existance until you `delete` it. Without using `new`, the object will be destroyed when it goes out of scope.
+- Using `new`, the object created remains in existence until you `delete` it. Without using `new`, the object will be destroyed when it goes out of scope.
 - Every time you type `new`, type `delete`.
 
 ```cpp
@@ -322,7 +322,7 @@ The points of pointer:
 
 Sources: [geeksforgeeks1](https://www.geeksforgeeks.org/smart-pointers-cpp/), [geeksforgeeks2](https://www.geeksforgeeks.org/auto_ptr-unique_ptr-shared_ptr-weak_ptr-2/).
 
-As we’ve known, unconscious not deallocating a pointer causes a memory leak that may lead to crash of the program. For languages with **Garbage Collection Mechanisms** to smartly deallocate unused memory, like Java and C#, programmers don't have to worry about any memory leak. C++11 comes up with its own mechanism: Smart Pointer. When the object is destroyed, it frees the memory as well.
+As we’ve known, unconscious not deallocating a pointer causes a memory leak that may lead to crash of the program. For languages with **Garbage Collection Mechanisms** to smartly deallocate unused memory, like Java and C#, programmers don't have to worry about memory leak. C++11 comes up with its own mechanism: Smart Pointer. When the object is destroyed, it frees the memory as well.
 
 With `#include <memory>`:
 
@@ -578,7 +578,7 @@ Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpress
   int main()
   {
     using std::cout; // declare cout resolve to std::cout
-    cout << "Hello world!"; // so no std:: prefix is needed here!
+    cout << "Hello world!"; // no std:: prefix is needed here!
     return 0;
   } // the using declaration expires here
   ```
