@@ -34,21 +34,21 @@
 
 ## Code Style Support
 
-### Code completion and Liting for Python
+### Code completion and Linting for Python
 
-Set in workspace configuration `<path-to-ws>/.vscode/` a [setting.json](settings.json)
+Set in workspace configuration `<path-to-ws>/.vscode/` a [setting.JSON](settings.JSON)
 
 ### Code completion for C++
 
-In similar manner, maintain in the `<path-to-ws>/.vscode/` a [c_cpp_properties.json](c_cpp_properties.json)
+In similar manner, maintain in the `<path-to-ws>/.vscode/` a [c_cpp_properties.JSON](c_cpp_properties.JSON)
 
 ### Format code C++
 
 Using the extension [RunOnSave](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave).
 
-Add to `settings.json` of VSCode (via `Ctrl+P`, `>Preferences: Open Settings (JSON)`):
+Add to `settings.JSON` of VSCode (via `Ctrl+P`, `>Preferences: Open Settings (JSON)`):
 
-```json
+```JSON
 "emeraldwalk.runonsave": {
   "commands": [
   {
@@ -68,7 +68,7 @@ Go to `File >Preferences >User snippets`.
 
 Check [global.code-snippets](global.code-snippets)
 
-```json
+```JSON
 "Snippet purpose": {
   "prefix": "prefix_name",
   "description": "Do something",

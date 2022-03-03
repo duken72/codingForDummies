@@ -1,16 +1,19 @@
+<!-- omit in toc -->
 # License For Dummies
 
+<!-- omit in toc -->
 ## Table of Content
 
 - [Basics](#basics)
 - [Documentations](#documentations)
+- [ROS2](#ros2)
 - [Corporate Stuffs](#corporate-stuffs)
 
 -------
 
 ## Basics
 
-What is it and what are different types?
+What is it, and what are different types?
 
 - [Open Source Licenses](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633)
 - [MIT vs. Apache vs. GPL](https://exygy.com/blog/which-license-should-i-use-mit-vs-apache-vs-gpl/)
@@ -43,9 +46,9 @@ There are 3 classes of licenses, in simple words:
   > “do whatever you want with this, just don’t sue me.”
 - **Weak Copyleft licenses**: be careful when using, should ask someone more experienced about it
 - **Strong Copyleft licenses**: is a turnoff for corporations
-  > “I open sourced my code so you should too”
+  > “I open sourced my code, so you should too”
 
-Go to [tldrlegal.com](https://tldrlegal.com/) to check the license infos.
+Go to [tldrlegal.com](https://tldrlegal.com/) to check the license information.
 
 1. Permissive OSS Licenses:
    - MIT License (Expat)
@@ -64,7 +67,7 @@ Go to [tldrlegal.com](https://tldrlegal.com/) to check the license infos.
    - IBM PowerPC Initialization and Boot Software (IBM-pibs)
    - etc.
 
-2. Weak Copyleft licenses: Depend on usage, becareful though
+2. Weak Copyleft licenses: Depend on usage, be careful though
    - GNU Lesser General Public License v3 (LGPL-3.0)
    - GNU Lesser General Public License v2.1 (LGPL-2.1)
    - etc.

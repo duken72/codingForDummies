@@ -1,7 +1,9 @@
+<!-- omit in toc -->
 # C++ for dummies
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies/cppFD)](https://github.com/duken72/codingForDummies/cppFD)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Courses](#courses)
@@ -17,19 +19,19 @@
 - [Memory Management and Pointer](#memory-management-and-pointer)
   - [Variable types and sizes](#variable-types-and-sizes)
   - [Stack and Heap Memory](#stack-and-heap-memory)
-  - [new and delete operator](#new-and-delete-operator)
+  - [`new` and `delete` operator](#new-and-delete-operator)
   - [Pointer](#pointer)
   - [Smart Pointers](#smart-pointers)
 - [Advanced Class Features](#advanced-class-features)
   - [Constructor member initializer lists](#constructor-member-initializer-lists)
   - [Structure v/s Class](#structure-vs-class)
-  - [Virtual Specifier & Override Identifier](#virtual-specifier--override-identifier)
+  - [`virtual` & `override` identifiers](#virtual--override-identifiers)
 - [Best practices, tips and notes](#best-practices-tips-and-notes)
   - [Variable assignment and initialization](#variable-assignment-and-initialization)
-  - [Inline Specifier (since C++17)](#inline-specifier-since-c17)
-  - [Explicit Specifier](#explicit-specifier)
-  - [Keyword auto](#keyword-auto)
-  - [Using & Typedef Keywords](#using--typedef-keywords)
+  - [`inline` specifier (since C++17)](#inline-specifier-since-c17)
+  - [`explicit` specifier](#explicit-specifier)
+  - [Keyword `auto`](#keyword-auto)
+  - [Keywords `using` & `typedef`](#keywords-using--typedef)
   - [TODO](#todo)
 
 -------
@@ -254,7 +256,7 @@ int* hvalue = new int;
 
 -------
 
-### new and delete operator
+### `new` and `delete` operator
 
 Sources: [stackoverflow1](https://stackoverflow.com/questions/679571/when-to-use-new-and-when-not-to-in-c), [stackoverflow2](https://stackoverflow.com/questions/655065/when-should-i-use-the-new-keyword-in-c), [stackoverflow3](https://stackoverflow.com/questions/392455/about-constructors-destructors-and-new-delete-operators-in-c-for-custom-object).
 
@@ -293,9 +295,9 @@ void foo(int size)
 
 | Expression | What is evaluated                     | Equivalent |
 |:----------:|---------------------------------------|:----------:|
-|     a.b    | mem b of object a                     |            |
-|    a->b    | mem b of object pointed to by a       |   (*a).b   |
-|    *a.b    | Value pointed to by mem b of object a |   *(a.b)   |
+|   `a.b`    | member b of object a                  |            |
+|  `a->b`    | member b of object pointed to by a    |  `(*a).b`  |
+|  `*a.b`    | Value pointed to by mem b of object a |  `*(a.b)`  |
 
 The points of pointer:
 
@@ -430,7 +432,7 @@ Class:
 
 -------
 
-### Virtual Specifier & Override Identifier
+### `virtual` & `override` identifiers
 
 These two concerns with **Runtime Polymorphism**.
 
@@ -504,7 +506,7 @@ int d { 7 };
 
 -------
 
-### Inline Specifier (since C++17)
+### `inline` specifier (since C++17)
 
 Src: [geeksforgeeks](https://www.geeksforgeeks.org/inline-functions-cpp/), [stackoverflow](https://stackoverflow.com/questions/1759300/when-should-i-write-the-keyword-inline-for-a-function-method).
 
@@ -540,7 +542,7 @@ inline int S::square(int s) {} // use inline prefix
 
 -------
 
-### Explicit Specifier
+### `explicit` specifier
 
 Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
 
@@ -552,7 +554,7 @@ TODO - Should we almost always add `explicit` specifier.
 
 -------
 
-### Keyword auto
+### Keyword `auto`
 
 Use `auto` for cases to increase readability without creating confusion.
 
@@ -568,7 +570,7 @@ auto obj2 = std::make_shared<XyzType>(args...);
 
 -------
 
-### Using & Typedef Keywords
+### Keywords `using` & `typedef`
 
 Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpresso/what-is-the-using-keyword-in-cpp), [ibm](https://www.ibm.com/docs/en/zos/2.3.0?topic=only-using-declaration-class-members-c), [learncpp](https://www.learncpp.com/cpp-tutorial/using-declarations-and-using-directives/), [stackoverflow](https://stackoverflow.com/questions/20790932/what-is-the-logic-behind-the-using-keyword-in-c)
 

@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # codingForDummies
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
@@ -7,20 +8,24 @@ Important things about coding that I have learnt by myself and from the professi
 - This README contains general terms or problems.
 - Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Abbreviations & Definitions](#abbreviations--definitions)
+- [Pull Requests](#pull-requests)
 - [Package and Package Management System](#package-and-package-management-system)
 - [License](#license)
 - [Docker](#docker)
 - [Unit Testing](#unit-testing)
 - [DevOps](#devops)
-  - [CI](#ci---continuous-integration)
-  - [CD](#cd---continuous-deliverydeployment)
-  - [Build Server](#build-server)
-  - [Test Server](#test-server)
+  - [CI - Continuous Integration](#ci---continuous-integration)
+  - [CD - Continuous Delivery/Deployment](#cd---continuous-deliverydeployment)
+  - [Build server](#build-server)
+  - [Test server](#test-server)
+  - [Example Build Pipeline](#example-build-pipeline)
 - [Agile Project Management](#agile-project-management)
-- [LICENSE](#license)
+- [TODO](#todo)
+- [LICENSE](#license-1)
 
 -------
 
@@ -57,17 +62,17 @@ Yes :)) I made a section just for Pull Requests.
 
 ## Package and Package Management System
 
-- .iso -
-- .exe in Windows - .elf in Linux (kind of, not precisely)
-- apt - Advanced Package Tool
-- .deb -
-- dpkg - Debian package management system
+- `.iso` -
+- `.exe` in Windows - .elf in Linux (kind of, not precisely)
+- `apt` - Advanced Package Tool
+- `.deb` -
+- `dpkg` - Debian package management system
 
 -------
 
 ## License
 
-Goto [licenseFD.md](licenseFD/licenseFD.md)
+Go to [licenseFD.md](licenseFD/licenseFD.md)
 
 -------
 
@@ -79,9 +84,9 @@ Check [Docker.md](dockerFD/README.md)
 
 ## Unit Testing
 
-- GTEST: also known as Google test, for C++ [1](https://youtu.be/nbFXI9SDfbk), [2](https://youtu.be/BwO07hUzFNQ).
-- pytest [1](https://youtu.be/DhUpxWjOhME)
-- unittest [1](https://youtu.be/6tNS--WetLI), [2](https://youtu.be/1Lfv5tUGsn8), [3](https://youtu.be/uCxL7NGEohI).
+- `GTEST`: also known as Google test, for C++ [1](https://youtu.be/nbFXI9SDfbk), [2](https://youtu.be/BwO07hUzFNQ).
+- `pytest`: [1](https://youtu.be/DhUpxWjOhME)
+- `unittest`: [1](https://youtu.be/6tNS--WetLI), [2](https://youtu.be/1Lfv5tUGsn8), [3](https://youtu.be/uCxL7NGEohI).
 
 -------
 
@@ -91,12 +96,12 @@ Set of practices to build, test and release your code in small frequent steps [1
 
 ### CI - Continuous Integration
 
-Autotomate test, build and deploy.
+Automate test, build and deploy.
 
 - Nightly build vs Continuous Integration
 - [Jenkins For Beginners](https://youtu.be/LFDrDnKPOTg)
 - Other open-source tools: Bamboo, Buildbot, Apache Gump, Travis CI.
-- Github action
+- GitHub action
 
 ### CD - Continuous Delivery/Deployment
 

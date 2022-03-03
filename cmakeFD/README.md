@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # CMAKE For Dummies
 
 CMake is a tool for build system. If you don't know or forget what it means to compile and build code, check this video: ["How do computers read code?"](https://youtu.be/QXjU9qTsYCc).
@@ -7,7 +8,7 @@ The project needs to be compiled, built with makefiles. There is a need to maint
 Hopefully, these notes will give you a brief overview of what is needed.
 
 -------
-
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Makefile](#makefile)

@@ -1,7 +1,9 @@
-# Basics
+<!-- omit in toc -->
+# Python
 
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/duken72/codingForDummies.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/duken72/codingForDummies/context:python)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [CLI commands](#cli-commands)
@@ -50,7 +52,7 @@ root_folder
 
 ```import``` search through list of paths in ```sys.path```  
 Importing package basically run package's ```__init__.py```  
-Can import packageA, can't import packageB because there is no ```__init__.py``` in packageB (but ```__init__.py``` is no longer needed for Python 3.3+)
+Can import `packageA`, can't import `packageB` because there is no ```__init__.py``` in `packageB` (but ```__init__.py``` is no longer needed for Python 3.3+)
 
 ```python
 import <package>

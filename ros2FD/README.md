@@ -1,8 +1,11 @@
+<!-- omit in toc -->
 # ROS2
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [CLI commands](#cli-commands)
+- [Code Style](#code-style)
 - [ROS2 Workspace](#ros2-workspace)
 - [Launch file](#launch-file)
 - [ROS2 Package](#ros2-package)

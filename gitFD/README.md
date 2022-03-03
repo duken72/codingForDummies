@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # GIT
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [CLI commands](#cli-commands)
@@ -38,7 +40,7 @@ To stop asking for PAT when pushing to origin, save the key in `.git-credentials
 git config --global credential.helper store
 ```
 
-Use .gitignore to intentionally specify untracked files.
+Use `.gitignore` to intentionally specify untracked files.
 
 -------
 

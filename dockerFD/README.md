@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Docker
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Resources](#resources)
@@ -13,7 +15,7 @@
 
 - Short guide: [1](https://youtu.be/_dfLOzuIg2o).
 - More comprehensive guide: [2](https://youtu.be/rOTqprHv1YE), [3](https://youtu.be/gAkwW2tuIqE).
-- More sharings: [4](https://youtu.be/IbUXb4pQbPY), [5](https://youtu.be/u-YWtdbpEhQ).
+- More sharing: [4](https://youtu.be/IbUXb4pQbPY), [5](https://youtu.be/u-YWtdbpEhQ).
 
 -------
 

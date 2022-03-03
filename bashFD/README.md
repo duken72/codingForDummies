@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # BASH
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [CLI commands](#cli-commands)
