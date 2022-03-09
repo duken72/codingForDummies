@@ -4,6 +4,7 @@
 """
 multiline comment
 """
+
 ## -------------------------------------------------
 
 ## Operators
@@ -19,11 +20,14 @@ print('hi', 'duck', sep='\n')
 print('hi', 'duck', sep='/') # / for file path, "," for CSV format
 print('hi', 'duck', end='\r')
 f"something {d}" # better string formating, PEP	498
+
 ## -------------------------------------------------
 
 # Variables
 ## Collections
 ##### List (ordered & changeable)
+##### Elements are not unique (can exist duplicate)
+##### Elements may not in the same type
 list_var1 = [1, 2, 3]
 list_var7 = [i+1 for i in list_var1] # list comprehension
 list_var5 = [1, 2, "d", [2, 7]]
@@ -45,6 +49,7 @@ tuple_var2 = (1, "d", [1, 2])
 tuple_var1 + (4, ) # append tuple
 
 ##### Dictionaries (unordered, changable & indexed)
+##### Keys are unique, but not variables/values
 dict_var = {"a":1, "b":2, "c":3}
 dict_var["a"] # 1
 dict_var["b"] # 2
@@ -60,9 +65,14 @@ dict_var["d"] = 7 # add key-val pair
 dict_var({"b":5, "d":7}) # add & overwrite
 
 ##### Set ( unordered, changeable & unindexed)
+##### Elements are unique, no duplicate
 set_var = {"a", "b", "c"}
-## -------------------------------------------------
 
+for idx, item in enumerate(list_var1):
+    print(idx, item)
+zipped_tuple = zip((list_var1, list_var2))
+
+## -------------------------------------------------
 
 ## Conditional - Control flow
 x = 72
@@ -99,8 +109,8 @@ finally: # useful to close objects and clean up resources, execute regardless if
 x = "hello"
 if not type(x) is int:
   raise TypeError("Only integers are allowed")
-## -------------------------------------------------
 
+## -------------------------------------------------
 
 ## Functions
 def square(x):
@@ -121,8 +131,8 @@ def print_all(*args,**kwargs):
 print_all(1,2,3,b=7,c=4)
 # args (1, 2, 3)
 # kwargs {'b': 7, 'c': 4}
-## -------------------------------------------------
 
+## -------------------------------------------------
 
 ## Classes
 class Person:
@@ -137,8 +147,8 @@ class Person:
 p1 = Person("Antine")
 p1.name = "Antoine"
 p1.talk()
-## -------------------------------------------------
 
+## -------------------------------------------------
 
 ## Common library
 help(print) # If possible, just use this first
@@ -193,8 +203,8 @@ file_obj.writelines(list_of_str)
 
 import matplotlib.pyplot as plt
 plt.plot() # subplot
-plt.figure(figure_size()), grid, title
-plt.scatter, hist
+plt.figure(figure_size()), # grid, title
+plt.scatter # hist
 plt.show()
 
 from sklearn import duck
@@ -205,7 +215,7 @@ os.chdir()
 os.system('mkdir duck')
 os.walk()
 os.listdir()
-os.path.dirname(dir_path)
+os.path.dirname("/home")
 os.path.realpath(__file__)
 
 import glob
@@ -213,17 +223,17 @@ glob.glob(name, recursive = False)
 glob.escape
 glob.glob('*.py')
 for name in glob.glob('dir/*'):
-	cmd
+	print(1)
 for name in glob.glob('dir/name?.txt'):
-	cmd
+	print(1)
 # Find recursively
 for files in glob.glob('dir/**/*.txt', recursive = True):
-	cmd
+	print(1)
 
 import sys
 print(sys.argv)
 sys.path
-sys.path.append(path)
+sys.path.append("/home")
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 import argparse
@@ -237,22 +247,24 @@ print(args)
 import cv2
 # cv2 axis: x - left to right, y - up to down
 cv2.imread #imwrite, imshow, VideoWriter, waitKey, destroyAllWindows
-cv2.VideoWriter(name, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+cv2.VideoWriter(name, cv2.VideoWriter_fourcc(*'DIVX'), fps=5, size=(5,5))
 ## The fun parts of opencv
-cv2.cvtColor, flip, resize, threshold, adaptiveThreshold
+cv2.cvtColor, cv2.flip, cv2.resize, cv2.threshold, cv2.adaptiveThreshold
 cv2.bitwise_and #or, not, xor
 ## Contour stuffs
+img = np.zeros((5,5))
 contours, hierarchy = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 # CHAIN_APPROX_NONE for all contour points
 # check coutour retrieval mode for more infos on hierarchy
-cv2.drawContours, contourArea, arcLength, approxPolyDP, isContourConvex, convexHull, boundingRect, minAreaRect
+cv2.drawContours, cv2.contourArea, cv2.arcLength, cv2.approxPolyDP,
+cv2.isContourConvex, cv2.convexHull, cv2.boundingRect, cv2.minAreaRect
 # this thickness is also stupid, becareful :)
 ## Basic drawings
-cv2.line, polylines, circle, text
+cv2.line, cv2.polylines, cv2.circle, cv2.text
 # the width is stupid, be careful when it's small
 ## Advance feature extraction
-cv2.HoughLines, HoughLinesP, cornerHarris
-cv2.norm, moments
+cv2.HoughLines, cv2.HoughLinesP, cv2.cornerHarris
+cv2.norm, cv2.moments
 cv2.addWeighted
 cv2.getRotationMatrix2D
 cv2.warpAffine
@@ -263,6 +275,7 @@ for i in tqdm(range(1,5)): # wrap around iterator
   print(i)
 
 import pickle, cpickle
+var = d; content = d
 pickle.dump(var, open('name.pickle', 'wb'))
 var = pickle.load(open('file.pickle', 'rb'))
 ## use dumps and loads with gzip
@@ -275,6 +288,7 @@ var = gzip.open('file.gz', 'rb')
 with gzip.open('file.txt.gz', 'wb') as f:
 	f.write(content)
 ## Save a compressed pickle file
+filename = "blank.txt"
 file = gzip.GzipFile(filename, 'wb')
 file.write(pickle.dumps, protocol = 0)
 file.close
@@ -302,3 +316,8 @@ from shapely.geometry import Polygon, MultiPolygon, MultiLineString
 from shapely.geometry import CAP_STYLE, JOIN_STYLE
 from shapely.ops import polygonize, cascaded_union, unary_union
 
+from abc import ABC, abstractmethod
+class Something(ABC):
+  @abstractmethod
+  def something():
+    pass
