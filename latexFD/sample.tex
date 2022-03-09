@@ -1,0 +1,60 @@
+% !TeX TXS-program:bibliography = txs:///biber
+% !TeX spellcheck = en_GB
+
+% Comment block
+\iffalse
+Content of comment block
+\fi
+
+\documentclass[
+  english,
+  draft = false,
+  twoside = true,
+  fleqn
+  ]{scrbook}
+
+\usepackage{user-defined-package}
+
+\input{Contents/Additions}
+
+% Meta data
+\author{Huu Duc Nguyen}
+% \authordegreefront{}
+% \authordegreeback{B. Eng.}
+% \type{Masterarbeit}
+% \title{Something}
+% \year{1995}
+% \submissiondate{7 February 1995}
+
+% \addbibresource{Contents/bibliography.bib}
+
+\begin{document}
+\frontmatter          % Begin of the prefix
+\AddTitlePage
+\cleardoublepage
+\clearpage
+
+\ihead[]{\headmark}
+\pdfbookmark[1]{\contentsname}{toc}
+\tableofcontents
+\cleardoublepage
+
+\mainmatter           % Begin of the main body
+\include{Contents/Abstraction}
+\cleardoublepage
+\include{Contents/Introduction}
+\cleardoublepage
+\include{Contents/Conclusion}
+\cleardoublepage
+
+\pagenumbering{Roman}
+\printbibliography[heading=bibintoc]
+\cleardoublepage
+\listoftables
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+\appendix
+
+\backmatter
+\end{document}

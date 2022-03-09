@@ -1,0 +1,136 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{user-defined-package}%[yyyy/mm/dd]
+% Credit: F.Freikowski, F.Schoeler
+
+\KOMAoptions{
+	fontsize		  = 12pt,
+	parskip			  = half,
+	listof        = totoc,
+	bibliography	= totoc,	% 			Literature in table of content
+	%toc 			= chapterentrywithdots,	
+	headinclude}
+
+\RequirePackage[setspace=false]{scrhack} 	% Interaction of several packages with the KOMA-Script
+
+% --------------------------------------------------------------------------
+% Language, font and text
+% --------------------------------------------------------------------------
+\RequirePackage[utf8]{inputenc}    		% Input-encoding
+\RequirePackage{babel}          			% Spell aid
+\RequirePackage[autostyle]{csquotes} 	% German quotation marks
+\RequirePackage[T1]{fontenc}         	% T1-encoded fonts, correct seperation of words with umlauts
+\RequirePackage{lmodern}						  % Nicer font
+\RequirePackage{textcomp}						  % Special characters in the text (e.g. €)
+\RequirePackage{textgreek}						% Greek symbols in the text
+
+% --------------------------------------------------------------------------
+%	Layout of the pages
+% --------------------------------------------------------------------------
+% Adjust the font and font size of the headings
+\setkomafont{chapter}{\rmfamily\bfseries}
+\setkomafont{section}{\rmfamily\bfseries}
+\setkomafont{subsection}{\rmfamily\bfseries}
+\setkomafont{subsubsection}{\rmfamily\bfseries}
+\renewcommand*{\sectfont}{\rmfamily\bfseries}
+
+% Adjust the gap before and after the headings
+\renewcommand*{\chapterheadstartvskip}{\vspace*{\baselineskip}}
+\renewcommand*{\chapterheadendvskip}{\vspace{\baselineskip}}
+
+% TOC: same indent for section and subseection
+\renewcommand*\l@subsection{\bprot@dottedtocline{2}{1.5em}{2.9em}}
+\tolerance		= 200 	  % White space	
+\clubpenalty 	= 1000 	  % orphan child
+\widowpenalty 	= 1000 	% Widow
+
+% --------------------------------------------------------------------------
+%	Line spacing, header and footer
+% --------------------------------------------------------------------------
+\RequirePackage{setspace}					                % Line spacing
+\onehalfspacing								                    % One and a half times the regular line spacing
+% \RequirePackage[automark, headsepline]{scrpage2}  % Header and footer
+% \pagestyle{scrheadings}
+\RequirePackage[
+  format          = hang,
+  textformat 		  = simple,         % no modifications, period = full stop at the end
+  justification   = justified,
+  font 			      = {normalsize},   % stretch =1.25},
+  labelfont 		  = {bf},
+  parskip			    = 24pt,
+  aboveskip 	    = 6pt
+  ]{caption}       	                % adjust multiline captions
+
+% --------------------------------------------------------------------------
+%	Tables
+% --------------------------------------------------------------------------
+\RequirePackage{booktabs}		 				% Nicer horizontal lines
+\RequirePackage{multirow}		 				% Divide lines and columns further
+\RequirePackage{rccol}			 				% Align columns according to the decimal point
+
+% --------------------------------------------------------------------------
+%	Graphics
+% --------------------------------------------------------------------------
+\RequirePackage{graphicx, psfrag} 	% Incorporation of graphics
+\RequirePackage{subcaption}         % Sub-illustrations
+
+% --------------------------------------------------------------------------
+%	Mathematics-mode
+% --------------------------------------------------------------------------
+\RequirePackage[intlimits]{amsmath} % Complex mathematic constructions
+\RequirePackage{mathtools}					% Mathematical formula: Indeces top left
+\RequirePackage{mathrsfs,amssymb}		% Mathematical formula: Symbols
+\RequirePackage{amsfonts}					  % Mathematical formula: Fonts
+\RequirePackage{bm}							    % Bold lettering for matrices and vectors
+\RequirePackage{arydshln}				    % lines for matrices and vectors
+
+% --------------------------------------------------------------------------
+%	Bibliopraphy
+% --------------------------------------------------------------------------
+\RequirePackage[backend = biber,
+% citestyle 		= igm,
+% bibstyle 		  = igm,
+giveninits		= true,
+uniquename		= false,
+uniquelist		= false,
+isbn 			= true,
+maxnames 		= 99,
+minalphanames 	= 3,
+url				= true,
+doi				= true,
+block			= space
+]{biblatex}
+
+\RequirePackage[printonlyused]{acronym}   % For the list of abbreviations
+\RequirePackage{siunitx}
+\sisetup{per-mode = fraction}
+
+% --------------------------------------------------------------------------
+%	PDF creation 
+% --------------------------------------------------------------------------
+\pdfoutput=1
+\RequirePackage{pdflscape}       				% Seiten im Querformat im PDF richtig anzeigen / Display pages properly in landscape mode
+\RequirePackage[pdftex,	
+  pdfusetitle,		
+  pdfborder			={0 0 0},			% Avoid borders in PDF
+  linkcolor			= red, 				% simple internal links
+  colorlinks		= false,		  % Set text color
+  anchorcolor		= black,		  % Anchor text
+  filecolor			= magenta, 		% Links that open local files
+  citecolor			= blue, 			% Reference to entries in the bibliography used in the text
+  menucolor			= red, 				% Acrobat-menu
+  urlcolor			= cyan				% Reference to internet links 
+  ]{hyperref}
+
+\RequirePackage[
+  left        = 3cm,
+  right       = 2cm,
+  top         = 1.15cm,
+  bottom      = 1.25cm,
+  headheight  = 8.5mm,
+  headsep     = 1.0cm,
+  footskip    = 1.25cm,
+  includeheadfoot
+  ]{geometry}	% margins
+
+\Macros and Functions
+\def\authordegreeback#1{\gdef\@authordegreeback{#1}}
