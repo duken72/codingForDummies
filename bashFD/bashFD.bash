@@ -152,3 +152,10 @@ fg || bg # resume task in foreground, background
 jobs
 kill -l
 kill -9
+
+# -------------------------------------------------
+# PDF
+pdfunite in-1.pdf in-2.pdf in-n.pdf out.pdf # combine PDF files
+ps2pdf -dPDFSETTINGS=/ebook input.pdf output.pdf # compress PDF files
+pdf2ps large.pdf very_large.ps
+ps2pdf very_large.ps small.pdf
