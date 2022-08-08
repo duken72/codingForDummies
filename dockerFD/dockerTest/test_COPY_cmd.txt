@@ -1,0 +1,7 @@
+test the Dockerfile COPY command
+test the Dockerfile COPY command
+test the Dockerfile COPY command
+test the Dockerfile COPY command
+test the Dockerfile COPY command
+test the Dockerfile COPY command
+test the Dockerfile COPY command
