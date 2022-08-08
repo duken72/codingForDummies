@@ -3,7 +3,7 @@
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
 
-Important things about coding that I have learnt by myself and from the professionals. Overall, this is more like a collection of notes from different sources. Others have already done an amazing job of explaining stuffs. Let's not re-invent the wheel. It's just that .. everything by themselves is scatterred everywhere .. Perhaps this would make your search a bit more directed.
+Important things about coding that I have learned by myself and from the professionals. Overall, this is more like a collection of notes from different sources. Others have already done an amazing job of explaining stuffs. Let's not re-invent the wheel. It's just that … everything by themselves is scattered everywhere … Perhaps this would make your search a bit more directed.
 
 - This README contains general terms or problems.
 - Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.
@@ -11,11 +11,9 @@ Important things about coding that I have learnt by myself and from the professi
 <!-- omit in toc -->
 ## Table of Contents
 
+- [Resources](#resources)
 - [Abbreviations & Definitions](#abbreviations--definitions)
-- [Pull Requests](#pull-requests)
 - [Package and Package Management System](#package-and-package-management-system)
-- [License](#license)
-- [Docker](#docker)
 - [Unit Testing](#unit-testing)
 - [DevOps](#devops)
   - [CI - Continuous Integration](#ci---continuous-integration)
@@ -25,7 +23,18 @@ Important things about coding that I have learnt by myself and from the professi
   - [Example Build Pipeline](#example-build-pipeline)
 - [Agile Project Management](#agile-project-management)
 - [TODO](#todo)
-- [LICENSE](#license-1)
+- [LICENSE](#license)
+
+-------
+
+## Resources
+
+Though normal googling might just always do the job, it's good to have some fixed references.
+
+- [The Cherno](https://www.youtube.com/c/TheChernoProject): C++, OpenGL, game engine, etc.
+- [Be A Better Dev](https://www.youtube.com/c/BeABetterDev): AWS
+- [Fireship](https://www.youtube.com/c/Fireship): overview on everything in 100 secs
+- [Telusko](https://www.youtube.com/c/Telusko): Python, Golang, NodeJS, Java, etc.
 
 -------
 
@@ -39,27 +48,6 @@ Important things about coding that I have learnt by myself and from the professi
 
 -------
 
-## Pull Requests
-
-Yes :)) I made a section just for Pull Requests.
-
-- Remember to merge the main/develop branch and fix merge conflicts:
-
-  ```bash
-  git fetch -a && git merge origin/develop
-  ```
-
-- Invite issue reporter and colleagues to review your code and contribute changes
-- Write decent PRs when you submit, and look out for these when you review one:
-  - **What does the PR do?**: eg. screenshots, videos  
-  Does the PR do what it's supposed to do? Does it do it correctly?
-  - **Is the code readable and clean?** too long functions doing too many things, coding-style, indentation, etc.)
-  - **Can the code be shorter, smarter?** duplicated of codes, suggest efficency optimization)
-  - **Are changes covered by tests?** "fairly complex" functions should have unit tests)
-  - **Is it documented?** README updated, functions commented in Doxygen style
-
--------
-
 ## Package and Package Management System
 
 - `.iso` -
@@ -67,18 +55,6 @@ Yes :)) I made a section just for Pull Requests.
 - `apt` - Advanced Package Tool
 - `.deb` -
 - `dpkg` - Debian package management system
-
--------
-
-## License
-
-Go to [licenseFD.md](licenseFD/licenseFD.md)
-
--------
-
-## Docker
-
-Check [Docker.md](dockerFD/README.md)
 
 -------
 
