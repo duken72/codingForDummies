@@ -43,6 +43,7 @@ git diff <revision> <filename> #examine - see current changes
 git diff <source_branch> <target_branch>
 git show #examine - see last changes
 git blame # show who edited which line, too details, git show is better
+git checkout [commitID] #branch - checkout specified commit
 
 # LOGGING
 git log --author=duke #log

@@ -8,6 +8,7 @@
 - [CLI commands](#cli-commands)
 - [Syncing](#syncing)
 - [Pull Requests](#pull-requests)
+- [README Badges](#readme-badges)
 
 -------
 
@@ -67,9 +68,15 @@ Yes :)) I made a section just for Pull Requests.
 
 - Invite issue reporter and colleagues to review your code and contribute changes
 - Write decent PRs when you submit, and look out for these when you review one:
-  - **What does the PR do?**: eg. screenshots, videos  
+  - **What does the PR do?**: e.g. screenshots, videos  
   Does the PR do what it's supposed to do? Does it do it correctly?
-  - **Is the code readable and clean?** too long functions doing too many things, coding-style, indentation, etc.)
-  - **Can the code be shorter, smarter?** duplicated of codes, suggest efficency optimization)
-  - **Are changes covered by tests?** "fairly complex" functions should have unit tests)
+  - **Is the code readable and clean?** Too long functions doing too many things, coding-style, indentation, etc.
+  - **Can the code be shorter, smarter?** Duplicated of codes, suggest efficiency optimization
+  - **Are changes covered by tests?** "Fairly complex" functions should have unit tests
   - **Is it documented?** README updated, functions commented in Doxygen style
+
+-------
+
+## README Badges
+
+Check <https://shields.io/>
