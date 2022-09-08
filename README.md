@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# codingForDummies
+# Coding For Dummies
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
 
@@ -21,7 +21,6 @@ Important things about coding that I have learned by myself and from the profess
   - [Build server](#build-server)
   - [Test server](#test-server)
   - [Example Build Pipeline](#example-build-pipeline)
-- [Agile Project Management](#agile-project-management)
 - [TODO](#todo)
 - [LICENSE](#license)
 
@@ -41,7 +40,7 @@ Though normal googling might just always do the job, it's good to have some fixe
 ## Abbreviations & Definitions
 
 - CLI - Command-line Interface.
-- API - Application Programming Interface: [What is an API?](https://youtu.be/s7wmiS2mSXY).
+- API - Application Programming Interface: [MuleSoft Videos](https://youtu.be/s7wmiS2mSXY), [Aaron Jack](https://youtu.be/ByGJQzlzxQg).
 - Compiling: translates source code (human-readeable, eg., in Python, C++) to low-level machine language (eg., Assembly). [How do computers read code?
 ](https://youtu.be/QXjU9qTsYCc)
 - Building: could include generating source code, documentation, compiling of source code, packaging complied code, installing, etc.
@@ -103,16 +102,6 @@ Automate test, build and deploy.
 - Test target
 - Run custom smoke test
 - Parse logs
-
--------
-
-## Agile Project Management
-
-This's a bit actually off to project management than just coding.
-
-- Jira: [YouTube](https://youtu.be/xrCJv0fTyR8)
-- Atlassian: [YouTube](https://youtu.be/hWXNmcSN4bE)
-- Confluence: [YouTube](https://youtu.be/uhWCMlcY_Zw)
 
 -------
 
