@@ -4,11 +4,24 @@
 <!-- omit in toc -->
 ## Table of Contents
 
+- [Installation](#installation)
 - [CLI commands](#cli-commands)
 - [Code Style](#code-style)
 - [ROS2 Workspace](#ros2-workspace)
 - [Launch file](#launch-file)
 - [ROS2 Package](#ros2-package)
+
+-------
+
+## Installation
+
+Installing ROS2 for Arch Linux is pain in the ass. Read some references materials:
+
+- Use [Docker](https://www.docker.com/) (probably the easiest)
+- [ROS2 Arch Wiki](https://wiki.archlinux.org/title/ROS#ROS_2)
+- [ROS2 Eloquent on Arch](https://discourse.ros.org/t/get-ros2-working-on-archlinux/12827)
+- [ROS2 Foxy on Arch](https://discourse.ros.org/t/some-tips-for-ros2-on-archlinux/17768)
+- [Reddit discussion](https://www.reddit.com/r/archlinux/comments/m4j7eu/has_anyone_managed_to_properly_build_ros2_foxy_on/)
 
 -------
 

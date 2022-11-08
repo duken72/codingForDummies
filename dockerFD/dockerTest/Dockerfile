@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
 LABEL maintainer="Duck"
 LABEL version="1.0"
@@ -16,7 +16,8 @@ ENV PORT=8080
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get install -y build-essential
-RUN apt-get install -y vim
+RUN apt-get install -y vim git iputils-ping
+
 
 CMD ["echo", "hello world"]
 

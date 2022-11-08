@@ -5,10 +5,10 @@ Docker is a tool to package software in a *"containers"* that can run reliably i
 It's a better replacement for traditional Virtual Machines (VM).
 
 - An application should be compatible to many operating systems (OS) and types of machines (PC, laptop, smartphone, server)
-- A Server is a piece of computer hardware (or/and software) that provides functionality for other programs or devices.   A server has CPU, RAM, hard drive, etc. It is basically just like your PC, but not at your home.
+- A Server is a piece of computer hardware (or/and software) that provides functionality for other programs or devices. A server has CPU, RAM, hard drive, etc. It is basically just like your PC, but not at your home.
 - Before VM, only one OS can be installed on a server (or any computer).\
   Thus, all resources of that server / computer would be dedicated to that OS (Windows, Linux, etc.)
-- Then VM comes. You can now run multiple OS on one server machine with VM and a hypervisor. The hypervisor divides the server's resources to specified amount of resources.
+- With VM and a hypervisor, you can now run multiple OS on one server machine. The hypervisor divides the server's resources to specified amount of resources.
 - Prior problem with traditional VMs is that it just overloads everything. You can only run a limited number of VMs on a machine.
 - VMs simulate hardware for other OS. While Docker simulates the OS directly, kind of. VMs will use different kernels, probably duplications of the same one.
 - Docker communicates natively with the host system and uses less disk space.
@@ -98,8 +98,8 @@ For details, check [dockerFD.bash](dockerFD.bash), [Docker docs](https://docs.do
 - Manage images
 
   ```bash
-  docker images # list images/OS
-  docker image ... # manage images
+  docker images         # list images/OS
+  docker image ...      # manage images
   docker rmi <IMAGE ID> # remove image(s)
   ```
 
@@ -115,11 +115,11 @@ For details, check [dockerFD.bash](dockerFD.bash), [Docker docs](https://docs.do
 
   ```bash
   docker ps [-a]
-  docker stop containerName #or containerID
-  docker start containerName #or containerID
-  docker kill containerName #or containerID
-  docker rm containerName #or containerID
-  docker container ... # manage container(s)
+  docker stop containerName   #or containerID
+  docker start containerName  #or containerID
+  docker kill containerName   #or containerID
+  docker rm containerName     #or containerID
+  docker container ...        # manage container(s)
   ```
 
 -------
