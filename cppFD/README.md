@@ -32,6 +32,8 @@
   - [`explicit` specifier](#explicit-specifier)
   - [Keyword `auto`](#keyword-auto)
   - [Keywords `using` & `typedef`](#keywords-using--typedef)
+  - [Lambda Expressions](#lambda-expressions)
+  - [Variadic Functions](#variadic-functions)
   - [TODO](#todo)
 
 -------
@@ -204,24 +206,24 @@ The primitive data types vary in the memory size that they occupy. 1 byte is equ
   - `short` - target type will be optimized for space and will have width of at least 16 bits.
   - `long` - target type will have width of at least 32 bits.
 
-|          Type           |        Size         |      Typical Range       |
-|:----------------------: |:------------------: |:-----------------------: |
-|         boolean         |   8 bits = 1 byte   |          $0-1$           |
-|      (signed) char      |   8 bits = 1 byte   |    $-2^7$ to $2^7-1$     |
-|      unsigned char      |   8 bits = 1 byte   |      $0$ to $2^8-1$      |
-|      (signed) int       |  32 bits = 4 bytes  | $-2^{31}$ to $2^{31}-1$  |
-|      unsigned int       |  32 bits = 4 bytes  |    $0$ to $2^{32}-1$     |
-|   (signed) short int    |  16 bits = 2 bytes  | $-2^{15}$ to $2^{15}-1$  |
-|   unsigned short int    |  16 bits = 2 bytes  |    $0$ to $2^{16}-1$     |
-|    (signed) long int    |  32 bits = 4 bytes  | $-2^{31}$ to $2^{31}-1$  |
-|    unsigned long int    |  32 bits = 4 bytes  |    $0$ to $2^{32}-1$     |
-| (signed) long long int  |  64 bits = 8 bytes  | $-2^{63}$ to $2^{63}-1$  |
-| unsigned long long int  |  64 bits = 8 bytes  |    $0$ to $2^{64}-1$     |
-|          float          |  32 bits = 4 bytes  |  $3.4E\pm38$ (7 digits)  |
-|         double          |  64 bits = 8 bytes  | $1.7E\pm308$ (15 digits) |
-|       long double       |  96 bits = 12bytes  |                          |
+|          Type          |        Size       |      Typical Range      |       Decimal Range      |
+|:----------------------:|:-----------------:|:-----------------------:|:------------------------:|
+|         boolean        |  8 bits = 1 byte  |          $0-1$          |                          |
+|      (signed) char     |  8 bits = 1 byte  |    $-2^7$ to $2^7-1$    |      $-128$ to $127$     |
+|      unsigned char     |  8 bits = 1 byte  |      $0$ to $2^8-1$     |      $-256$ to $255$     |
+|      (signed) int      | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |       $\pm 2.1 E 9$      |
+|      unsigned int      | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
+|   (signed) short int   | 16 bits = 2 bytes | $-2^{15}$ to $2^{15}-1$ |       $\pm 3.2 E 4$      |
+|   unsigned short int   | 16 bits = 2 bytes |    $0$ to $2^{16}-1$    |     $0$ to $6.5 E 4$     |
+|    (signed) long int   | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |       $\pm 2.1 E 9$      |
+|    unsigned long int   | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
+| (signed) long long int | 64 bits = 8 bytes | $-2^{63}$ to $2^{63}-1$ |      $\pm 9.2 E 18$      |
+| unsigned long long int | 64 bits = 8 bytes |    $0$ to $2^{64}-1$    |     $0$ to $1.8 E 19$    |
+|          float         | 32 bits = 4 bytes |                         |  $3.4E\pm38$ (7 digits)  |
+|         double         | 64 bits = 8 bytes |                         | $1.7E\pm308$ (15 digits) |
+|       long double      | 96 bits = 12bytes |                         |                          |
 
-**Notes**:
+**Notes**:****
 
 - One `boolean` actually just needs 1 bit, but you can only access byte, thus it still occupies 1 byte, which is 8 bits. We could however store 8 `bool`(s) in 1 byte.
 - To differentiate types when assigning variables, use suffixes. Aware that these suffixes are case-insensitive: ie., `u` is equivalent to `U`, `UL` is equivalent to `uL, Ul, ul`.
@@ -243,7 +245,9 @@ The primitive data types vary in the memory size that they occupy. 1 byte is equ
 Source: [The Cherno](https://youtu.be/wJ1L2nSIV1s)
 
 - Allocating on the stack is fast, simple as only one CPU commands.
-- There is a lot happen behind the scene when assigning a value on heap memory. To find the free space, assign, book keeping, .. In case you have something very memory heavy, then you have to use the heap.
+- In case you have something very memory heavy, then you have to use the heap.
+- There is a lot happen behind the scene when assigning a value on heap memory.\
+  Find the free space, assign, bookkeeping, ...
 
 ```cpp
 // Allocate with the stack
@@ -496,7 +500,9 @@ int d { 7 };
 ```
 
 - Copy initialization: was inherited from the C language.
-- Direct initialization: For simple data types (like `int`), copy and direct initialization are essentially the same. For more complicated types, direct initialization tends to be more efficient than copy initialization.
+- Direct initialization:
+  - For simple data types (like `int`), copy and direct initialization are essentially the same. 
+  - For more complicated types, direct initialization tends to be more efficient than copy initialization.
 - Uniform initialization / list initialization: To provide a more consistent initialization mechanism. Because, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data).
 
 **In practice**:
@@ -596,6 +602,39 @@ Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpress
 - Bring a base class method or variable into the current class’s scope.
 
 - In C++11, the `using` keyword is used for `type alias`, which is identical to `typedef`. In many cases, `using` has improving readability, compared to the equivalent `typedef`, especially with pointer and template ([TypeDefs.hpp](TypeDefs.hpp)).
+
+-------
+
+### Lambda Expressions
+
+Source: [learn.microsoft](https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?redirectedfrom=MSDN&view=msvc-170)
+
+A lambda is a convenient way of defining an anonymous function object.
+
+```cpp
+auto x1 = [](int i){ return i; };
+auto rev = [=](int id) -> int
+    { return N - id + 1; }; // Reverse lambda function
+```
+
+-------
+
+### Variadic Functions
+
+Source:
+
+- [Variable number of arguments in C++?](https://stackoverflow.com/q/1657883/11397588)
+- [Variadic functions - cppreference.com](https://en.cppreference.com/w/cpp/utility/variadic)
+
+```cpp
+template<typename T, typename... Args>
+void func(T t, Args... args) // recursive variadic function
+{
+    std::cout << t <<std::endl ;
+
+    func(args...) ;
+}
+```
 
 -------
 
