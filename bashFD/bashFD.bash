@@ -185,3 +185,18 @@ pdfunite in-1.pdf in-2.pdf in-n.pdf out.pdf # combine PDF files
 ps2pdf -dPDFSETTINGS=/ebook input.pdf output.pdf # compress PDF files
 pdf2ps large.pdf very_large.ps
 ps2pdf very_large.ps small.pdf
+
+# -------------------------------------------------
+# Arch package manager
+# -------------------------------------------------
+pacman                      # Arch package manager
+pacman -S package=1.2.3-1   # install specify version
+pacman -Sg [group]          # list pkgs in group
+pacman -Si [package_name]   # list pkg dependencies
+pacman -Rs [package_name]   # remove pkg and its dependencies
+pacman -Qtdq | sudo pacman -Rns -   # remove orphan
+pacman -Qqd | sudo pacman -Rsu -    # remove more unnecessary pkgs
+pacman -Syu                 # update
+pacman -U file:///path/to/package/package_name-version.pkg.tar.zst	# keep a copy of the local package in pacman's cache
+pacman -U http://www.example.com/repo/example.pkg.tar.zst	# install a remote package
+
