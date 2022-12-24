@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Python
 
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/duken72/codingForDummies.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/duken72/codingForDummies/context:python)
+-------
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -15,6 +15,7 @@
 - [Best practices, tips and tricks](#best-practices-tips-and-tricks)
   - [PEP - Python Enhancement Proposal](#pep---python-enhancement-proposal)
   - [Iterable, iterator and generator](#iterable-iterator-and-generator)
+  - [Cool libraries to use](#cool-libraries-to-use)
 
 -------
 
@@ -73,9 +74,9 @@ dir(package_name / module_name)
 File paths on Windows
 
 ```python
-'C:\Users\jdoe'    # Wrong!
-'C:\\Users\\jdoe'
-r'C:\Users\duck' # raw string
+'C:\Users\jdoe'     # Wrong!
+'C:\\Users\\jdoe'   # Correst
+r'C:\Users\duck'    # raw string
 ```
 
 -------
@@ -89,12 +90,12 @@ As usual when it comes to coding style, stick with what your company is using. I
 According to the Google Python Style Guide:
 
 ```python
-module_name, package_name,
+local_var_name, global_var_name, instance_var_name,
 function_name, function_parameter_name,
-ClassName, method_name
+module_name, package_name,
 GLOBAL_CONSTANT_NAME
+ClassName, method_name
 ExceptionName
-global_var_name, instance_var_name, local_var_name
 ```
 
 ### Docstrings
@@ -122,6 +123,13 @@ def func(abc, fds=4.6):
 
 print(func.__doc__)
 help(func)
+```
+
+If working in IPython, instead of `help(func)`, use:
+
+```python
+func?
+func??
 ```
 
 ### Function annotations
@@ -172,3 +180,12 @@ Read the following sources for more in depth explanation: [stackoverflow1](https
 In many cases, generators are memory efficient and faster. In other cases, you get stuck in an infinite loop.
 
 -------
+
+### Cool libraries to use
+
+[Awesome Python](https://github.com/vinta/awesome-python):
+
+- [rich](https://github.com/Textualize/rich)
+- [scalene](https://github.com/plasma-umass/scalene)
+- [sphinx](https://github.com/sphinx-doc/sphinx/)
+- [tqdm](https://github.com/tqdm/tqdm)

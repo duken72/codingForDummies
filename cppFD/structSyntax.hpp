@@ -1,13 +1,17 @@
 #include <iostream>
 
+// Use struct for plain-old-data structures
+// without any class-like features
+
 struct structA
 {
-// public:
+// public: as default
 	char a;
 	int b;
 	float c;
-	structA(char q, int w, float r) // constructor for structA
-	: a(q), b(w), c(r) // a(q) run the constructor of class char, for var a, with input q
+
+	structA(char q, int w, float r)
+	: a(q), b(w), c(r) // member initializer lists
 	{
 		b = 4;
 	}
@@ -15,15 +19,17 @@ struct structA
 private:
 	char d;
 	int e;
-};
+} a1, a2, a3, a4;
+/*
+  Right at the end of the struct definition
+  and before the ending semicolon (;),
+  the optional field object_names can be used
+  to directly declare objects of the structure type.
+*/ 
 
-// could also declare the constructor outside
-// structA::structA() {}
+typedef struct structB;
 
-struct structA varA{'d', 5, 7.2};
+// Declaration
+struct structA a5;		// C style struct declaration
+structB varB;			// C++ style struct declaration
 
-// If use typedef struct, then don't need to add struct when declare a new var
-typedef struct structB {};
-structB varB;
-
-// Use struct for plain-old-data structures without any class-like features

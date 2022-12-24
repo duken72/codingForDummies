@@ -12,7 +12,9 @@
 #include <memory>
 #include <set>
 #include <unordered_set>
+#include <map>
 #include <unordered_map>
+#include <thread>
 
 // Random definition to avoid errors
 // using namespace std;

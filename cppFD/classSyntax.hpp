@@ -1,56 +1,47 @@
 #include "header.hpp"
 
-//file guards to prevent redefinition error
+// file guards to prevent re-definition error
 // header guard: prevent include a file multiple times
 // in a single translation unit
+// could use #pragma once instead, but not for ROS
 #ifndef CLASS_NAME
 #define CLASS_NAME
 
-// Random definition to avoid errors
-using varType = int;
-
-// template<class T>
 // class ClassName (: public/private/protected ParentClassName1, public ParentClassName2)
+template<class T>
 class ClassName
 // : classA(arg1) // run constructor of class A with arg1 before constructor of ClassName
 {
   // if members are listed here, do not need keyword "private"
-  varType member1_;
-  varType member2_;
+  T member1_;
+  T member2_;
 
 public:
-  // declaring the constructor
-  ClassName(varType params);
-  // declaring the destructor
-  ~ClassName();
-  // convention for mutators: set and get
-  void setVar(varType varIn);
-  int getVar();
-  // add "virtual" if inherited classes have functions with same names
-  virtual varType accessFunction1(varType varIn);
-  // defining a function inside here
-  // then don't need to declare it
-  varType Function2(varType params)
-  {
-    //sth here
-  }
+  ClassName(T params)           // constructor
+  : member1_(params), member4_(params) {};
+  // have to set some default value for array member
+  // so that the memory space is allocated for the array
 
-  // "this" pointer
-  // Check https://www.geeksforgeeks.org/this-pointer-in-c/
-  ClassName setMember1(varType a)
+  ~ClassName();                 // destructor
+
+  void setVar(T varIn);   // convention set mutator
+  int getVar();                 // convention get mutator
+  
+  // Using "virtual" to set the API for inherited classes
+  // Define but don't declare it
+  virtual T accessFunction1(T varIn);
+  
+  T Function2(T params) {}
+
+  ClassName setMember1(T a)
   {
     member1_ = a;
-    return *this;
+    return *this;   // "this" pointer (https://www.geeksforgeeks.org/this-pointer-in-c/)
   }
   
-  // "this" pointer will become a pointer to "const" object
-  // you cannot change any member data, unless it is "mutable"
-  // check stackoverflow.com/questions/751681
-  void Foo() const
-  {
-    // Trying to change member value will lead to error
-    // member1_++;
-  }
+  // Add "const" to specifiy not changing current object
+  // stackoverflow.com/questions/751681
+  void Foo() const { member1_++; }  // will lead to error
 
 // if listed after "public", use keyword "private"
 private:
@@ -58,33 +49,10 @@ private:
   float member4_;
 }; // ClassName
 
-// Constructor
-// Usually used to set initial values
-ClassName::ClassName(varType params)
-{
-  member1_ = params;
-  member4_ = params;
-}
-
-// Destructor
-// can't return a value, accept parameters
-ClassName::~ClassName()
-{
-  //tasks to be completed before going out of scope
-}
-
-// for array member, have to set some default value in the constructor
-// so that the memory space is allocated for the array
-
-// template<class T>
-// ClassName<T>::ClassName(varType params)
-
 template<class T>
-ClassName<T>::accessFunction1(paramsVarType parameters)
+T ClassName<T>::Function2(T params)
 {
-  function statements;
+  member2_ += params;
 }
 
 #endif CLASS_NAME
-// use #pragma once instead of infdef-define-endif
-// but not for ROS

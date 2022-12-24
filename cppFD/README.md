@@ -34,6 +34,8 @@
   - [Keywords `using` & `typedef`](#keywords-using--typedef)
   - [Lambda Expressions](#lambda-expressions)
   - [Variadic Functions](#variadic-functions)
+  - [String_view](#string_view)
+  - [`emplace_back` vs `push_back`](#emplace_back-vs-push_back)
   - [TODO](#todo)
 
 -------
@@ -635,6 +637,48 @@ void func(T t, Args... args) // recursive variadic function
     func(args...) ;
 }
 ```
+
+-------
+
+### String_view
+
+Source: [The Cherno](https://youtu.be/ZO68JEgoPeg)
+
+- Normally, `std::string` always create data on the heap, which is slow
+- It's would be more efficient to use `std::string_view` and `const char*`
+
+```cpp
+// 3 allocations on the heap
+std::string name = "Yan Chernikov";
+str::string firstName = name.substr(0,3);
+str::string lastName = name.substr(4,9);
+
+// 1 allocation
+std::string name = "Yan Chernikov";
+std::string_view firstName(name.c_str(), 3);
+std::string_view lastName(name.c_str() + 4, 9);
+
+// 0 allocation
+const char* name = "Yan Chernikov";
+std::string_view firstName(name, 3);
+std::string_view lastName(name + 4, 9);
+```
+
+-------
+
+### `emplace_back` vs `push_back`
+
+Source: [Yasen Hu](https://yasenh.github.io/post/cpp-diary-1-emplace_back/), [The Cherno](https://youtu.be/HcESuwmlHEY)
+
+- Speed:
+  - `push_back` is SLOWER because it calls a constructor for temporary object, a copy of the temporary object will be constructed in the memory for the container, then the destructor will be called
+  - `emplace_back` directly takes constructor arguments for objects to be inserted, and avoids constructing and destructing temporary objects.
+- Safety:
+  - `push_back` is CLEARER, the type of the inserted element is explicitly listed.
+  - `emplace_back` might lead to unexpected leakage
+
+  > As always, the rule of thumb is that you should avoid “optimizations” that make the code less safe or less clear, unless the performance benefit is big enough to show up in your application benchmarks. [Geoff Romer](https://abseil.io/tips/112)
+- A compromise would be to consider using `vector.reserve(N)`
 
 -------
 

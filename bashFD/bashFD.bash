@@ -18,7 +18,8 @@ broot # install with brew
 # drwxrwxrwx : d - implies directory, rwx - read-write-execute
 # 3 groups for owner, owning group, and everyone else permission on this file/dir
 chown USER[:GROUP] [file] # change ownership of a file
-chmod +x [file] # change permission of a file, +/- rwx
+chmod +x [file]           # change permission of a file, +/- rwx
+sudo chsh -s $(which zsh) # change shell
 
 pwd # current working directories
 cd [dir] / cd .. / cd # or cd ~ = root
@@ -85,19 +86,25 @@ ls duc[^a-c]* # [^a-c] - any character not in [abc]
 # View and edit files
 # -------------------------------------------------
 # bat > less > more > cat
-less [file_name] || more [file_name] || cat [file_name]
+less [file] || more [file] || cat [file] || bat [file]
 # vim > gedit ~ nano
 gedit [file] || nano [file] || vim [file]
 
-# sd > sed
-sd [prev_expression] [new_expression] [file]
-sd [prev_expression] [new_expression] [file] -p #p-preview
-sed 's/[prev_expression]/[new_expression]/g' [file.txt] # just print out the results
-sed -i 's/[prev_expression]/[new_expression]/g' [file.txt] # replace a string with another
-sed '/searchStr/c\newLine' [file.txt] # replace a line contain a string
+# sd > sed - String replacement
+sd [prev_str] [new_str] [file] -p # -p - preview
+sd [prev_str] [new_str] [file]
+sed 's/[prev_str]/[new_str]/g' [file.txt]       # preview result
+sed -i 's/[prev_str]/[new_str]/g' [file.txt]    # replace a string
+sed '/searchStr/c\newLine' [file.txt]           # replace a line contain a string
 
-awk '/pattern/ {print $2}' file.txt
-awk -f awkFD.awk file.txt
+awk '/pattern/ {print $2}' file.txt         # awk / gawk
+awk -f awkFD.awk file.txt                   # awk / gawk
+gawk '{print $2}' input.txt                 # awk / gawk
+gawk '/string/ {print $1, $2}' input.txt    # awk / gawk
+gawk '$1 == "string" {print $2}' input.txt  # awk / gawk
+gawk '$1 ~ "string" {print $2}' input.txt   # awk / gawk
+gawk -F ":" '{print $1, $6}' input.txt      # awk / gawk
+cmd | gawk '{print $2}'                     # awk / gawk
 
 # counting lines of code
 # tokei > cloc
@@ -130,21 +137,21 @@ xargs # ??
 # Archive
 # -------------------------------------------------
 # zip tags: r-recursive, e-encrypt, v-verbose, 9-compress better
-zip -er9 output.zip file1 file2 # zip with encryption
+zip -er9 output.zip file1 file2         # zip with password
+zipcloack file.zip                      # add password
+zipsplit -n [size_in_bytes] file.zip    # split to size restriction
 # unzip tags: x *.h - exclude files .h, o-overwriting target_dir
 # unzip tags: n-not overwrite, just unzip files not in target_dir
-unzip -o input.zip -d target_dir # unzip to a dir
-upzip -l input.zip | less # looking inside zip file
-zipcloack file.zip # add password, in case u forgot it before
-zipsplit -n [size_in_bytes] file.zip # split to size restriction
+unzip -o input.zip -d target_dir        # unzip
+upzip -l input.zip | less               # preview content
 # tar tags: v-verbose, f-files, c-create, z-gunzip, x-extract, t-list
-tar cvf [target_file.tar] [files/dirs] # create .tar
-tar zcvf [target_file.tar.gz] [files/dirs] # create .tar.gz
-tar tvf [file.tar] # list out files in file.tar
-tar xvf [file.tar] -C [dirs] # extract tar file
-tar xvfz [file.tar.gz] [dirs] # extract tar.gz file
-gzip [file.tar] # compress the tar file -> .tar.gz file
-gunzip [file.tar.gz] # uncompress the .tar.gz file -> .tar file
+tar cvf [target_file.tar] [files/dirs]      # create .tar
+tar zcvf [target_file.tar.gz] [files/dirs]  # create .tar.gz
+tar tvf [file.tar]                          # list out content
+tar xvf [file.tar] -C [dirs]                # extract
+tar xvfz [file.tar.gz] [dirs]               # extract
+gzip [file.tar]         # compress .tar -> .tar.gz
+gunzip [file.tar.gz]    # uncompress .tar.gz -> .tar
 unrar x [file.rar]
 
 
@@ -181,7 +188,7 @@ kill -9
 # -------------------------------------------------
 # PDF
 # -------------------------------------------------
-pdfunite in-1.pdf in-2.pdf in-n.pdf out.pdf # combine PDF files
+pdfunite in-1.pdf in-n.pdf out.pdf      # combine PDF files
 ps2pdf -dPDFSETTINGS=/ebook input.pdf output.pdf # compress PDF files
 pdf2ps large.pdf very_large.ps
 ps2pdf very_large.ps small.pdf
@@ -200,3 +207,11 @@ pacman -Syu                 # update
 pacman -U file:///path/to/package/package_name-version.pkg.tar.zst	# keep a copy of the local package in pacman's cache
 pacman -U http://www.example.com/repo/example.pkg.tar.zst	# install a remote package
 
+# -------------------------------------------------
+# Oracle VM VirtualBox Management
+# -------------------------------------------------
+VBoxManage list vms                                     # VM
+VBoxManage startvm "vm-name" --type headless            # VM
+VBoxManage controlvm "vm-name" pause --type headless    # VM
+VBoxManage controlvm "vm-name" resume --type headless   # VM
+VBoxManage controlvm "vm-name" poweroff --type headless # VM

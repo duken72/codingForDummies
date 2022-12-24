@@ -1,7 +1,9 @@
-BEGIN { FS="," print "Header line"} # FS - Field seperator, in case it's not " "
+#!/bin/awk
+
+BEGIN { print "Header line" }
 
 /pattern/ {action}
 /produce/ {print $2}
 $3>1 {print $1}
 
-END {print "Ending line"}
+END { print "Ending line" }
