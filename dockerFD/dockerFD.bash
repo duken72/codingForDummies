@@ -57,3 +57,16 @@ docker push image_name                          # Docker Hub
 # Example
 docker pull ubuntu
 docker pull ubuntu:16.04
+
+###################################
+# ROS 2
+###################################
+docker run -it --rm osrf/ros:humble-desktop     # ROS2
+ros2 run demo_nodes_cpp listener                # ROS2, inside container
+
+xhost +     # run once each time you login
+docker run -it --rm --env="DISPLAY" \           # ROS2
+  --env="QT_X11_NO_MITSHM=1" \                  # ROS2
+  --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \ # ROS2
+  osrf/ros:humble-desktop                       # ROS2
+ros2 run turtlesim turtlesim_node               # ROS2, inside container

@@ -10,18 +10,19 @@
 - [ROS2 Workspace](#ros2-workspace)
 - [Launch file](#launch-file)
 - [ROS2 Package](#ros2-package)
+- [Running from Docker](#running-from-docker)
 
 -------
 
 ## Installation
 
-Installing ROS2 for Arch Linux is pain in the ass. Read some references materials:
-
-- Use [Docker](https://www.docker.com/) (probably the easiest)
-- [ROS2 Arch Wiki](https://wiki.archlinux.org/title/ROS#ROS_2)
-- [ROS2 Eloquent on Arch](https://discourse.ros.org/t/get-ros2-working-on-archlinux/12827)
-- [ROS2 Foxy on Arch](https://discourse.ros.org/t/some-tips-for-ros2-on-archlinux/17768)
-- [Reddit discussion](https://www.reddit.com/r/archlinux/comments/m4j7eu/has_anyone_managed_to_properly_build_ros2_foxy_on/)
+- If you are using supported OSes (Ubuntu, Windows, Debian, Fedora), just follow the instructions
+- Installing ROS2 for Arch Linux is pain in the ass. Read some references materials:
+  - Use [Docker](https://www.docker.com/) (probably the easiest)
+  - [ROS2 Arch Wiki](https://wiki.archlinux.org/title/ROS#ROS_2)
+  - [ROS2 Eloquent on Arch](https://discourse.ros.org/t/get-ros2-working-on-archlinux/12827)
+  - [ROS2 Foxy on Arch](https://discourse.ros.org/t/some-tips-for-ros2-on-archlinux/17768)
+  - [Reddit discussion](https://www.reddit.com/r/archlinux/comments/m4j7eu/has_anyone_managed_to_properly_build_ros2_foxy_on/)
 
 -------
 
@@ -101,3 +102,42 @@ The structure should be: `build  install  log  src` (as the result from `ls ws_f
 -------
 
 ## ROS2 Package
+
+-------
+
+## Running from Docker
+
+References: [docs.ros.org](https://docs.ros.org/en/humble/How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html)
+
+```bash
+docker pull osrf/ros:humble-desktop
+
+docker run -it --rm osrf/ros:humble-desktop     # start the container
+ros2 pkg list | grep demo                       # inside the container
+ros2 pkg executables demo_nodes_cpp
+ros2 run demo_nodes_cpp talker
+```
+
+Start another container for the `listener`:
+
+```bash
+docker run -it --rm osrf/ros:humble-desktop     # start the container
+ros2 run demo_nodes_cpp listener
+```
+
+- The two nodes can also be run in one single container
+
+    ```bash
+    ros2 run demo_nodes_cpp listener & ros2 run demo_nodes_cpp talker
+    ```
+
+- Alternatively, you can create a `docker-compose.yml` file
+- To run with GUI:
+
+```bash
+xhost +     # run once each time you log into your machine
+docker run -it --rm --env="DISPLAY" \
+  --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+  osrf/ros:humble-desktop
+ros2 run turtlesim turtlesim_node
+```

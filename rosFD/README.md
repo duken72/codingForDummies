@@ -7,6 +7,7 @@
 - [CLI commands](#cli-commands)
 - [ROS Package](#ros-package)
 - [Building ROS Package](#building-ros-package)
+- [Listening to ROS node in external Docker container](#listening-to-ros-node-in-external-docker-container)
 
 ## CLI commands
 
@@ -66,4 +67,20 @@ workspace_folder  -- WORKSPACE
 ├── build         -- 'cmake' and 'make' are called to configure and build packages
 ├── devel         -- the executables and libraries go here, before the packages are installed
 └── src           -- SOURCE SPACE
+```
+
+-------
+
+## Listening to ROS node in external Docker container
+
+References:
+- [finnrietz.dev](https://www.finnrietz.dev/linux/ros-docker/)
+- [roboticseabass.com](https://roboticseabass.com/2021/04/21/docker-and-ros/)
+- [tuw-cpsg.github](https://tuw-cpsg.github.io/tutorials/docker-ros/)
+
+- This is just for ROS1, not for ROS2
+- Has to specify the network connection when starting the Docker container
+
+```bash
+docker run -it --network=host ros:melodic
 ```

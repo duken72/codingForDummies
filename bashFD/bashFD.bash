@@ -68,8 +68,9 @@ touch [file_name] # create or update
 cp -r [files] [dir] # r-recursive
 mv [files] [dir]
 mmv 'name_pattern' 'new_name_pattern' # rename multiple files with desired pattern
-for file in *.txt; do mv "$file" "${file%.txt}.sh"; done
-rm (-r) (-f)
+for file in *.suffix; do mv "$file" "${file%.suffix}.new_suffix"; done
+for file in prefix.*; do mv "$file" "new_prefix${file#prefix}"; done
+rm (-r) (-f) [files] [dir]
 ln -s [OPTIONS] ORIGINAL_FILE LINKED_FILE #(soft) Symbolic link 
 
 
