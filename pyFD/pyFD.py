@@ -1,9 +1,6 @@
-exam_st_date = (11, 12, 2014)
 #!/usr/bin/env python3
 
 # Coding Syntax
-
-import datetime
 
 # Single line comment
 """
@@ -23,9 +20,13 @@ print("hi", D)		# multiple printing
 print('hi', 'duck', sep='\n')
 print('hi', 'duck', sep='/') # / for file path, "," for CSV format
 print('hi', 'duck', end='\r')
-# better string formating, PEP	498
+# better string formating, PEP 498
+import datetime
 NAME = "Duke"; DOB = datetime.date(1995, 2, 7)
 print(f'My name is {NAME}, DoB is {DOB:%A, %B %d, %Y}.')
+print(f'{NAME:_>20}')       # ________________Duke
+print(f'{NAME:_<20}')       # Duke________________
+print(f'{NAME:_^20}')       # ________Duke________
 
 ## -------------------------------------------------
 
