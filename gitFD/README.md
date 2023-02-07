@@ -6,6 +6,8 @@
 
 - [Guides](#guides)
 - [CLI commands](#cli-commands)
+- [Tips and Tricks](#tips-and-tricks)
+- [Advanced Techniques](#advanced-techniques)
 - [Syncing](#syncing)
 - [Pull Requests](#pull-requests)
 - [README Badges](#readme-badges)
@@ -19,6 +21,10 @@
 - [git - the simple guide](https://rogerdudler.github.io/git-guide/)
 - [Learn Git Branching](https://learngitbranching.js.org/)
 - [Git Tutorial for Beginners](https://www.youtube.com/watch?v=HVsySz-h9r4)
+- [13 Advanced (but useful) Git Techniques and Shortcuts](https://youtu.be/ecK3EnyGD8o)
+- [Version control git](https://missing.csail.mit.edu/2020/version-control/)
+- [Oh Shit, Git!?!](https://ohshitgit.com/#accidental-commit-master)
+- [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 -------
 
@@ -29,13 +35,52 @@ alias gitg='less $(fd gitFD.bash ~)'
 alias gitgg='less $(fd gitFD.bash ~) | grep'
 ```
 
-Check [gitFD.bash](gitFD.bash) for commands.
+- Check [gitFD.bash](gitFD.bash) for commands.
+- Alternatively, just go with `git help <verb>`
 
-Some guides:
+-------
 
-- [Version control git](https://missing.csail.mit.edu/2020/version-control/)
-- [Oh Shit, Git!?!](https://ohshitgit.com/#accidental-commit-master)
-- [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+## Tips and Tricks
+
+```bash
+git commit -am "Message"                    # combine add and commit
+git config --global alias.ac "commit -am"   # setting git alias
+```
+
+-------
+
+## Advanced Techniques
+
+Source: [13 Advanced (but useful) Git Techniques and Shortcuts](https://youtu.be/ecK3EnyGD8o)
+
+- `git commit --amend`
+  - can be used to change previous commit message, if you haven't pushed it to the remote repo
+
+  ```bash
+  git commit --amend -m "New message"
+  ```
+
+  - can also be used to add more changes to previous commit
+
+  ```bash
+  git add .
+  git commit --amend --no-edit
+  ```
+
+- `git revert`: undo a commit with a new commit, but the previous commit is still in history
+- `git stash`: remove the changes, but save them for later use
+
+  ```bash
+  git stash       # remove the changes, save it
+  git stash save <something>
+  git stash list
+  git stash pop   # apply the saved changes
+  git stash apply <something>
+  ```
+
+- `git bisect`: TODO
+- Squash multiple commits:
+- Git hook: TODO
 
 -------
 

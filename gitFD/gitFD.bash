@@ -25,11 +25,16 @@ gpg --list-secret-keys --keyid-format=long # check current keys
 # -------------------------------------------------
 # BASICS
 git status
-git pull
-git add [files/dirs]            # staging
-git reset [files/dirs]          # unstaging
-git commit --admend --no-edit   # not the commit contains no change!
-git push [origin] [branch_name] # push to remote repo, branch [branch_name]
+git rm                              # remove from the working tree
+git restore                         # unchange
+git add [files/dirs]                # staging   / stage
+git reset [files/dirs]              # unstaging / unstage
+git commit -m "Message"             # Commit with a message
+git commit -am "Message"            # add and commit
+git commit --admend "New message"   # change commit message
+git add . && git commit --admend --no-edit  # add files to previous commit, same message
+git pull                            # pull from remote repo
+git push [origin] [branch_name]     # push to remote repo, branch [branch_name]
 
 # -------------------------------------------------
 # CLONE / SUBMODULE
@@ -50,16 +55,12 @@ git log --author=duke               # log
 git log --pretty=oneline            # log
 git log --all --graph --decorate    # log
 git log -p, shortlog                # log
-git revert
-git rebase
 
 # -------------------------------------------------
 # WHEN YOU FUCKED THINGS UP
-# Replace local changes to last content in HEAD # fucked
-git checkout -- <filename>      # fucked
-# Drop all local changes and commits, fetch the latest history from server # fucked
-git fetch origin                # fucked
-git reset --hard origin/master  # fucked
+git checkout -- <filename>      # fucked - replace local changes to last content in HEAD
+git fetch origin                # fucked - update local remote branches from server
+git reset --hard origin/master  # fucked - unstage and remove all changes
 
 # -------------------------------------------------
 # BRANCHING
@@ -70,6 +71,7 @@ git branch [name]       # branch - create a branch
 git branch -d [name]    # branch - delete a branch locally
 git checkout [branch_name/hash_of_snapshot] # branch - switch to branch
 git checkout -b feature_x   # branch - create then switch branch
+git checkout -          # branch - checkout previous branch
 git push origin --delete remoteBranchName   # branch - delete branch remotely
 # If you have made changes, you have to either stash or commit before checkout other branches
 
@@ -87,6 +89,12 @@ git tag 1.0.0 <commitID>
 
 # -------------------------------------------------
 # ADVANCE STUFFS (MAYBE JUST TO ME)
-git stash                   # stash
-git stash list              # stash
-git stash apply <sth>       # stash
+git stash                   # stash - remove the changes, save it
+git stash pop               # stash - apply the saved changes
+git stash save <name>       # stash - but with specified name
+git stash list              # stash - list the saved changes
+git stash apply <name>      # stash - apply specified change
+
+git revert <commitID>   # undo a commit with a new commit, ID from `git log --oneline`
+git rebase              # TODO
+git bisect              # TODO
