@@ -25,17 +25,22 @@
 - [Advanced Class Features](#advanced-class-features)
   - [Constructor member initializer lists](#constructor-member-initializer-lists)
   - [Structure v/s Class](#structure-vs-class)
-  - [`virtual` & `override` identifiers](#virtual--override-identifiers)
+  - [`virtual` \& `override` identifiers](#virtual--override-identifiers)
 - [Best practices, tips and notes](#best-practices-tips-and-notes)
+  - [Useful STL containers](#useful-stl-containers)
+  - [Union](#union)
   - [Variable assignment and initialization](#variable-assignment-and-initialization)
   - [`inline` specifier (since C++17)](#inline-specifier-since-c17)
   - [`explicit` specifier](#explicit-specifier)
   - [Keyword `auto`](#keyword-auto)
-  - [Keywords `using` & `typedef`](#keywords-using--typedef)
+  - [Keywords `using` \& `typedef`](#keywords-using--typedef)
   - [Lambda Expressions](#lambda-expressions)
   - [Variadic Functions](#variadic-functions)
-  - [String_view](#string_view)
+  - [String\_view](#string_view)
   - [`emplace_back` vs `push_back`](#emplace_back-vs-push_back)
+  - [`array`, `std::array`, `std::vector`, `std::forward_list` and `std::list`](#array-stdarray-stdvector-stdforward_list-and-stdlist)
+    - [`std::array` vs. `C` `array`](#stdarray-vs-c-array)
+    - [`std::vector` vs. `std::forward_list` vs. `std::list`](#stdvector-vs-stdforward_list-vs-stdlist)
   - [TODO](#todo)
 
 -------
@@ -335,7 +340,7 @@ As we’ve known, unconscious not deallocating a pointer causes a memory leak th
 With `#include <memory>`:
 
 - `std::unique_ptr` stores one pointer only. We can assign a different object by removing the current object from the pointer.
-- `std::shared_ptr` allows more than one pointer pointing to this one object at a time and it’ll maintain a Reference Counter using `use_count()` method.
+- `std::shared_ptr` allows more than one pointer pointing to this one object at a time, and it’ll maintain a Reference Counter using `use_count()` method.
 - `std::weak_ptr` also allows more than one pointer pointing at one object at a time, but without a Reference Counter.
 - `std::auto_ptr` is replaced by `std::unique_ptr`, with similar functionality, improved security, added features and support for arrays.
 
@@ -343,13 +348,18 @@ Good practice:
 
 - Use `make_shared` as a simple and more efficient way to create an object and a `shared_ptr` to manage shared access to the object at the same time. ([src](https://docs.microsoft.com/en-us/cpp/standard-library/memory-functions?view=msvc-170#make_shared))
 
+Note:
+
+- Using smart pointers is safer (auto delete), but SLOWER\
+  E.g.: [AoC-2022/day20/day20-p1.cpp](https://github.com/duken72/Advent-of-Code/blob/main/AoC-2022/day20/day20-p1.cpp), from `30ms` to `700ms`
+
 ```cpp
 #include <memory>
 
 class Example
 {
-  Example(argument)
-  {};
+    Example(argument)
+    {};
 };
 std::shared_ptr<Example> msp = std::make_shared<Example>(argument);
 std::unique_ptr<Example> mup = std::make_unique<Example>(argument);
@@ -448,19 +458,19 @@ Without "virtual" you get "early binding". With "virtual" you get "late binding"
 class Base
 {
 public:
-          void Method1() { std::cout << "Base::Method1" << std::endl; }
-  virtual void Method2() { std::cout << "Base::Method2" << std::endl; }
+    void Method1() { std::cout << "Base::Method1" << std::endl; }
+    virtual void Method2() { std::cout << "Base::Method2" << std::endl; }
 };
 
 class Derived : public Base
 {
 public:
-  void Method1() { std::cout << "Derived::Method1" << std::endl; }
-  void Method2() { std::cout << "Derived::Method2" << std::endl; }
+    void Method1() { std::cout << "Derived::Method1" << std::endl; }
+    void Method2() { std::cout << "Derived::Method2" << std::endl; }
 };
 
+// Constructed as Derived, but pointer stored as Base*
 Base* basePtr = new Derived ();
-  //  Note - constructed as Derived, but pointer stored as Base*
 basePtr->Method1 ();  //  Prints "Base::Method1"
 basePtr->Method2 ();  //  Prints "Derived::Method2"
 ```
@@ -471,20 +481,58 @@ When using `virtual` functions, it is possible to make mistakes while declaring 
 class Base
 {
 public:
-  virtual void Method2() { std::cout << "Base::Method2" << std::endl; }
+    virtual void Method2() { std::cout << "Base::Method2" << std::endl; }
 };
 
 class Derived : public Base
 {
 public:
-  // override identifier will give Error for miss-typing Metod2
-  void Metod2() { std::cout << "Derived::Method2" << std::endl; } override
+    // override identifier will give Error for miss-typing Metod2
+    void Metod2() { std::cout << "Derived::Method2" << std::endl; } override
 };
 ```
 
 -------
 
 ## Best practices, tips and notes
+
+### Useful STL containers
+
+Check [CS/README.md](CS/README.md) for more on:
+
+- `std::forward_list`, `std::list`
+- `std::stack`
+- `std::queue`, `std::deque`, `std::heap`, `std::priority_queue`
+
+-------
+
+### Union
+
+- [The purpose of C++ Union](https://stackoverflow.com/questions/2310483/purpose-of-unions-in-c-and-c): is to save memory
+
+    ```cpp
+    union RecordType    // Declare a simple union type
+    {
+        char   ch;
+        int    i;
+        long   l;
+        float  f;
+        double d;
+        int *int_ptr;
+    };
+
+    int main()
+    {
+        RecordType t;
+        t.i = 5; // t holds an int
+        t.f = 7.25; // t now holds a float
+    }
+    ```
+
+- [learn.microsoft](https://learn.microsoft.com/en-us/cpp/cpp/unions?view=msvc-170): The most common way to use union is called a *discriminated union*.\
+  It encloses the union in a struct, and includes an enum member that indicates the member type currently stored in the union.
+
+-------
 
 ### Variable assignment and initialization
 
@@ -679,6 +727,38 @@ Source: [Yasen Hu](https://yasenh.github.io/post/cpp-diary-1-emplace_back/), [Th
 
   > As always, the rule of thumb is that you should avoid “optimizations” that make the code less safe or less clear, unless the performance benefit is big enough to show up in your application benchmarks. [Geoff Romer](https://abseil.io/tips/112)
 - A compromise would be to consider using `vector.reserve(N)`
+
+-------
+
+### `array`, `std::array`, `std::vector`, `std::forward_list` and `std::list`
+
+#### `std::array` vs. `C` `array`
+
+- `std::array` is just a simple, thin, zero-overhead wrapper around `C`'s `array`
+- `std::array` has friendly value semantics, so that it can be passed to or returned from functions by value. Its interface makes it more convenient to find the size, and use with STL-style iterator-based algorithms.
+- In terms of performance, no better than `C`'s `array`
+
+```cpp
+int myArray[3] = {1,2,3};
+std::array<int, 3> a = {{1, 2, 3}};
+```
+
+#### `std::vector` vs. `std::forward_list` vs. `std::list`
+
+- If you're doing many insertions or removal to and from anywhere in the container other than the end, using `std::list` is faster than `std::vector`
+- If you need random access, use `std::vector`, not `std::list`.
+- When bidirectional iteration is not needed, `std::forward_list` is more memory efficient than `std::list`
+
+|                              |       `std::vector`       |  `std::forward_list`  |     `std::list`     |
+|------------------------------|:-------------------------:|:---------------------:|:-------------------:|
+|                              |     dynamically array     |   singly linked list  |  doubly linked list |
+|                              |                           | no underlying array   | no underlying array |
+| Bidirectional iteration      |            YES            |           NO          |         YES         |
+|                              |                           | no rbegin, rend, etc. |                     |
+| Fast random access           |      v.at(id) / v[id]     |           NO          |          NO         |
+| Insertion/removal at the end |      $\mathcal{O}(1)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
+| Insertion/removal            |      $\mathcal{O}(N)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
+| Insertion                    | Re-allocate entire memory |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
 
 -------
 
