@@ -16,15 +16,20 @@
 
 ## Guides
 
-- [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+More advanced:
+
 - [Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
-- [git - the simple guide](https://rogerdudler.github.io/git-guide/)
+- [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 - [Learn Git Branching](https://learngitbranching.js.org/)
-- [Git Tutorial for Beginners](https://www.youtube.com/watch?v=HVsySz-h9r4)
 - [13 Advanced (but useful) Git Techniques and Shortcuts](https://youtu.be/ecK3EnyGD8o)
-- [Version control git](https://missing.csail.mit.edu/2020/version-control/)
-- [Oh Shit, Git!?!](https://ohshitgit.com/#accidental-commit-master)
 - [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+- [Oh Shit, Git!?!](https://ohshitgit.com/#accidental-commit-master): What to do when you fucked things up
+
+Basics:
+
+- [Version control git](https://missing.csail.mit.edu/2020/version-control/)
+- [git - the simple guide](https://rogerdudler.github.io/git-guide/)
+- [Git Tutorial for Beginners](https://www.youtube.com/watch?v=HVsySz-h9r4)
 
 -------
 

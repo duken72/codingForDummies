@@ -12,7 +12,7 @@ Important things about coding that I have learned by myself and from the profess
 ## Table of Contents
 
 - [Resources](#resources)
-- [Abbreviations & Definitions](#abbreviations--definitions)
+- [Abbreviations \& Definitions](#abbreviations--definitions)
 - [Package and Package Management System](#package-and-package-management-system)
 - [Unit Testing](#unit-testing)
 - [DevOps](#devops)
