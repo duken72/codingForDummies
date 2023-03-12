@@ -131,10 +131,14 @@ int main()
     // #include <set>
     // #include <unordered_set>
     // https://en.cppreference.com/w/cpp/container/set
+    // In a set the keys must be unique
     set<int> set_int;
     unordered_set<int> set_unord_int;
     // For descending order
     set<int, std::greater<int>> set_int;
+
+    // A multiset permits duplicate keys
+    multiset<int> multiset_int;
 
     // Map (is a balanced tree)
     // #include <map>

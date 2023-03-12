@@ -5,6 +5,7 @@
 template <typename T = int>
 class SegmentTree {
     static T merge(const T &a, const T &b) { return a + b; }
+    
     int m_size;
     std::vector<T> m_array;
 

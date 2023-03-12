@@ -10,6 +10,8 @@
 - [Building](#building)
   - [Compiling](#compiling)
   - [Linking](#linking)
+  - [Precompiled Header](#precompiled-header)
+  - [Macros in C++](#macros-in-c)
 - [Style Guide](#style-guide)
   - [Naming Conventions](#naming-conventions)
   - [Header Files](#header-files)
@@ -22,25 +24,32 @@
   - [`new` and `delete` operator](#new-and-delete-operator)
   - [Pointer](#pointer)
   - [Smart Pointers](#smart-pointers)
+  - [Copying \& Copy constructors](#copying--copy-constructors)
+  - [`lvalues` and `rvalues` (C++11)](#lvalues-and-rvalues-c11)
+  - [Move semantics \& `std::move` (C++11)](#move-semantics--stdmove-c11)
+  - [Type Punning](#type-punning)
+  - [Casting](#casting)
 - [Advanced Class Features](#advanced-class-features)
   - [Constructor member initializer lists](#constructor-member-initializer-lists)
   - [Structure v/s Class](#structure-vs-class)
   - [`virtual` \& `override` identifiers](#virtual--override-identifiers)
-- [Best practices, tips and notes](#best-practices-tips-and-notes)
-  - [Useful STL containers](#useful-stl-containers)
+- [String](#string)
+  - [String Literals in C++](#string-literals-in-c)
+  - [Small String Optimization in C++](#small-string-optimization-in-c)
+  - [String\_view](#string_view)
+- [Useful STL containers](#useful-stl-containers)
   - [Union](#union)
+  - [`emplace_back` vs `push_back`](#emplace_back-vs-push_back)
+  - [`std::array` vs. `C` `array`](#stdarray-vs-c-array)
+  - [`std::vector` vs. `std::forward_list` vs. `std::list`](#stdvector-vs-stdforward_list-vs-stdlist)
+- [Best practices, tips and notes](#best-practices-tips-and-notes)
   - [Variable assignment and initialization](#variable-assignment-and-initialization)
   - [`inline` specifier (since C++17)](#inline-specifier-since-c17)
   - [`explicit` specifier](#explicit-specifier)
-  - [Keyword `auto`](#keyword-auto)
-  - [Keywords `using` \& `typedef`](#keywords-using--typedef)
+  - [`auto` keyword](#auto-keyword)
+  - [`using` \& `typedef` keywords](#using--typedef-keywords)
   - [Lambda Expressions](#lambda-expressions)
   - [Variadic Functions](#variadic-functions)
-  - [String\_view](#string_view)
-  - [`emplace_back` vs `push_back`](#emplace_back-vs-push_back)
-  - [`array`, `std::array`, `std::vector`, `std::forward_list` and `std::list`](#array-stdarray-stdvector-stdforward_list-and-stdlist)
-    - [`std::array` vs. `C` `array`](#stdarray-vs-c-array)
-    - [`std::vector` vs. `std::forward_list` vs. `std::list`](#stdvector-vs-stdforward_list-vs-stdlist)
   - [TODO](#todo)
 
 -------
@@ -82,6 +91,44 @@ Source: [The Cherno](https://youtu.be/H4s55GgAg0I)
 When linking, the linker will find the function definitions. This is why you can simply include header files, which only have function declarations.
 
 Also, if you define a function in header file, then include that header file in other files, it leads to linking error: multiple definition of a function. This concerns with using `(target_)link_libraries` in [CMake](../cmakeFD/README.md).
+
+### Precompiled Header
+
+Source: [The Cherno](https://youtu.be/eSI4wctZUto)
+
+- For things (code) that you will probably never touch/modify, e.g., `Window.h`, Standard Template Library (STL).
+- Compile / build / test faster
+- Simply compile the header in prior and maintain the `.gch` file around
+- Avoid using it in such way that reduce readability
+
+```bash
+g++ pch.hpp   # this produces file pch.hpp.gch
+```
+
+### Macros in C++
+
+- Use preprocessor `#define` to replace for code
+- Don't use it if it reduces readability
+- E.g.:
+
+  ```cpp
+  #define PR_DEBUG 0
+
+  #if PR_DEBUG == 1
+  something
+  #else defined(PR_RELEASE)
+  something
+  #endif
+  ```
+
+- Multi-line macro: with "\\". Note: no space after "\\"
+
+  ```cpp
+  #define MAIN int main() \
+  {\
+      std::cin.get();\
+  }
+  ```
 
 -------
 
@@ -131,7 +178,7 @@ code...
 - Related header
 - C system headers
 - C++ standard lib headers
-- Other libraries's headers
+- Other library's headers
 - Your project headers
 
 Example:
@@ -152,7 +199,7 @@ Example:
 
 For ROS2, there is an order to include header.
 
-- Use `#include <sth>` for standard libs and files from other packages.
+- Use `#include <sth>` for standard libraries and files from other packages.
 - Use `#include "sth"` for header files of current package.
 
 ### Namespaces
@@ -245,8 +292,6 @@ The primitive data types vary in the memory size that they occupy. 1 byte is equ
 |   double   |     F      |        float        |
 |   double   |     L      |     long double     |
 
--------
-
 ### Stack and Heap Memory
 
 Source: [The Cherno](https://youtu.be/wJ1L2nSIV1s)
@@ -264,8 +309,6 @@ int value = 5;
 int* hvalue = new int;
 *hvalue = 5;
 ```
-
--------
 
 ### `new` and `delete` operator
 
@@ -300,8 +343,6 @@ void foo(int size)
 }
 ```
 
--------
-
 ### Pointer
 
 | Expression | What is evaluated                     | Equivalent |
@@ -328,8 +369,6 @@ The points of pointer:
   ```cpp
   void func_ab(&a, &b) {}
   ```
-
--------
 
 ### Smart Pointers
 
@@ -370,6 +409,102 @@ Example: [smartPointer.cpp](smartPointer.cpp).
 ```bash
 g++ smartPointer.cpp -o test && ./test && rm -f test
 ```
+
+### Copying & Copy constructors
+
+- By default, `struct` and `class` come with a shallow copy constructor, which is prone to error when it comes to pointer ([src](https://youtu.be/BvR1Pgzzr38))
+- Be careful and take care of this explicitly.
+
+### `lvalues` and `rvalues` (C++11)
+
+- [The Cherno](https://youtu.be/fbYknr-HPYE)
+- `lvalue`: is a ***VARIABLE with a LOCATION IN MEMORY***
+- `rvalue`: is a ***TEMPORARY*** value
+- Many functions are written using `const` references as parameters\
+They are compatible with both `lvalue` and `rvalue`
+- `rvalue` ref: e.g., `std::string&&`
+- These are useful when it comes to optimization, e.g., later in move semantics, when we know something is temporary as a `rvalue`
+
+### Move semantics & `std::move` (C++11)
+
+- [The Cherno](https://youtu.be/ehMg6zvXuMY)
+- `std::move` will turn an existing `lvalue` into a temporary `rvalue` variable, so that you can take the resources of that temporary `rvalue` variable
+- Move constructor:
+- Move assignment: if you have a move constructor in your class, you should implement a move assignment as well
+
+```cpp
+// Move constructor
+Entity(Entity&& other) noexcept
+{
+    printf("Moved!");
+    m_Data = other.m_Data;
+    other.m_Data = nullptr;
+}
+
+// Move assignment operator
+Entity& operator=(Entity&& other) noexcept
+{
+    printf("Moved!");
+    if(this != &other) {
+        delete m_Data;
+        m_Data = other.m_Data;
+        other.m_Data = nullptr;
+    }
+    return *this;
+}
+```
+
+### Type Punning
+
+- [The Cherno](https://youtu.be/8egZ_5GA9Bc)
+- Though C++ is a type-enforced language, you can still directly access memory and get around it
+- Type punning is simply treating the memory that we have as a different type than what it was declared as.
+
+```cpp
+struct Entity {
+    int x, y;
+}
+
+Entity e = { 5, 7 };
+int* x = (int*)&e;
+int y = *(int*)((char*)&e + 4)
+```
+
+### Casting
+
+```cpp
+// C style casting
+double a = 5.7;
+double b = int(a) + 5.25;
+
+// C++ style casting
+double a = 5.7;
+double s = static_cast<int>(a) + 5.25;
+```
+
+- C++ style castings do not do anything that C style casting can not do. They might do additional things, but C style casting can achieve the same.
+  - C++ style casting is easier to search
+  - Reduce errors
+- Dynamic Casting is something unique to just C++, not C
+  - Use it for class inheritance structure: Base and Derived classes
+  - It also does validation to check if the casting is valid
+  - If the cast is valid, it returns the desired value, if not, it returns `nullptr`/`null`
+
+  ```cpp
+  class Entity {};
+  class Player : public Entity {};
+  class Enemy : public Entity {};
+
+  Player* player = new Player();
+  Entity* actuallyEnemy = new Enemy();
+
+  Entity* actuallyPlayer = player;
+
+  Player* p0 = dynamic_cast<Player*>(actuallyEnemy);
+  if (p0) {};
+
+  Player* p1 = dynamic_cast<Player*>(actuallyPlayer);
+  ```
 
 -------
 
@@ -494,17 +629,65 @@ public:
 
 -------
 
-## Best practices, tips and notes
+## String
 
-### Useful STL containers
+### String Literals in C++
+
+Source: [The Cherno](https://youtu.be/FeHZHF0f2dw)
+
+- Undefined behavior: (still run in RELEASE MODE). Because it will be a pointer to read-only memory, like pointing to a constant.
+
+  ```cpp
+  char* name = "Cherno";
+  name[2] = 'a';
+  ```
+
+- Well, and more ...
+
+-------
+
+### Small String Optimization in C++
+
+Source: [The Cherno](https://youtu.be/S7oVXMzTo4w)
+
+- Small string will be faster, as it is allocated to a stack-based buffer, instead of to heap memory.
+- How small/short is the string depends on the version, C++ standard, etc. (15 `char`s)
+
+-------
+
+### String_view
+
+Source: [The Cherno](https://youtu.be/ZO68JEgoPeg)
+
+- Normally, `std::string` always create data on the heap, which is slow
+- It's would be more efficient to use `std::string_view` and `const char*`
+
+```cpp
+// 3 allocations on the heap
+std::string name = "Yan Chernikov";
+str::string firstName = name.substr(0,3);
+str::string lastName = name.substr(4,9);
+
+// 1 allocation on the heap
+std::string name = "Yan Chernikov";
+std::string_view firstName(name.c_str(), 3);
+std::string_view lastName(name.c_str() + 4, 9);
+
+// 0 allocation on the heap
+const char* name = "Yan Chernikov";
+std::string_view firstName(name, 3);
+std::string_view lastName(name + 4, 9);
+```
+
+-------
+
+## Useful STL containers
 
 Check [CS/README.md](CS/README.md) for more on:
 
 - `std::forward_list`, `std::list`
 - `std::stack`
 - `std::queue`, `std::deque`, `std::heap`, `std::priority_queue`
-
--------
 
 ### Union
 
@@ -532,7 +715,60 @@ Check [CS/README.md](CS/README.md) for more on:
 - [learn.microsoft](https://learn.microsoft.com/en-us/cpp/cpp/unions?view=msvc-170): The most common way to use union is called a *discriminated union*.\
   It encloses the union in a struct, and includes an enum member that indicates the member type currently stored in the union.
 
+### `emplace_back` vs `push_back`
+
+- Source:
+  - [Yasen Hu](https://yasenh.github.io/post/cpp-diary-1-emplace_back/)
+  - [The Cherno](https://youtu.be/HcESuwmlHEY)
+- Speed:
+  - `push_back` is SLOWER because it calls a constructor for temporary object, a copy of the temporary object will be constructed in the memory for the container, then the destructor will be called
+  - `emplace_back` directly takes constructor arguments for objects to be inserted, and avoids constructing and destructing temporary objects.
+- Safety:
+  - `push_back` is CLEARER, the type of the inserted element is explicitly listed.
+  - `emplace_back` might lead to unexpected leakage
+
+  > As always, the rule of thumb is that you should avoid “optimizations” that make the code less safe or less clear, unless the performance benefit is big enough to show up in your application benchmarks. [Geoff Romer](https://abseil.io/tips/112)
+- A compromise would be to just consider using `vector.reserve(N)`
+
+```cpp
+std::vector<Vertex> vertices;
+vertices.reserve(3);
+vertices.emplace_back(1, 2, 3);
+vertices.emplace_back(4, 5, 6);
+vertices.emplace_back(7, 8, 9);
+```
+
+### `std::array` vs. `C` `array`
+
+- `std::array` is just a simple, thin, zero-overhead wrapper around `C`'s `array`
+- `std::array` has friendly value semantics, so that it can be passed to or returned from functions by value. Its interface makes it more convenient to find the size, and use with STL-style iterator-based algorithms.
+- In terms of performance, no better than `C`'s `array`
+
+```cpp
+int myArray[3] = {1,2,3};
+std::array<int, 3> a = {{1, 2, 3}};
+```
+
+### `std::vector` vs. `std::forward_list` vs. `std::list`
+
+- If you're doing many insertions or removal to and from anywhere in the container other than the end, using `std::list` is faster than `std::vector`
+- If you need random access, use `std::vector`, not `std::list`.
+- When bidirectional iteration is not needed, `std::forward_list` is more memory efficient than `std::list`
+
+|                              |       `std::vector`       |  `std::forward_list`  |     `std::list`     |
+|------------------------------|:-------------------------:|:---------------------:|:-------------------:|
+|                              |     dynamically array     |   singly linked list  |  doubly linked list |
+|                              |                           | no underlying array   | no underlying array |
+| Bidirectional iteration      |            YES            |           NO          |         YES         |
+|                              |                           | no rbegin, rend, etc. |                     |
+| Fast random access           |      v.at(id) / v[id]     |           NO          |          NO         |
+| Insertion/removal at the end |      $\mathcal{O}(1)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
+| Insertion/removal            |      $\mathcal{O}(N)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
+| Insertion                    | Re-allocate entire memory |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
+
 -------
+
+## Best practices, tips and notes
 
 ### Variable assignment and initialization
 
@@ -559,8 +795,6 @@ int d { 7 };
 
 - Favor initialization using curly braces whenever possible.
 - But don't over-dramatic simple things: `int d{7};`
-
--------
 
 ### `inline` specifier (since C++17)
 
@@ -610,7 +844,7 @@ TODO - Should we almost always add `explicit` specifier.
 
 -------
 
-### Keyword `auto`
+### `auto` keyword
 
 Use `auto` for cases to increase readability without creating confusion.
 
@@ -626,10 +860,9 @@ auto obj2 = std::make_shared<XyzType>(args...);
 
 -------
 
-### Keywords `using` & `typedef`
+### `using` & `typedef` keywords
 
-Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpresso/what-is-the-using-keyword-in-cpp), [ibm](https://www.ibm.com/docs/en/zos/2.3.0?topic=only-using-declaration-class-members-c), [learncpp](https://www.learncpp.com/cpp-tutorial/using-declarations-and-using-directives/), [stackoverflow](https://stackoverflow.com/questions/20790932/what-is-the-logic-behind-the-using-keyword-in-c)
-
+- Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpresso/what-is-the-using-keyword-in-cpp), [ibm](https://www.ibm.com/docs/en/zos/2.3.0?topic=only-using-declaration-class-members-c), [learncpp](https://www.learncpp.com/cpp-tutorial/using-declarations-and-using-directives/), [stackoverflow](https://stackoverflow.com/questions/20790932/what-is-the-logic-behind-the-using-keyword-in-c)
 - `using declarations`: Bring a specific member from the namespace into the current scope.
   
   ```cpp
@@ -685,80 +918,6 @@ void func(T t, Args... args) // recursive variadic function
     func(args...) ;
 }
 ```
-
--------
-
-### String_view
-
-Source: [The Cherno](https://youtu.be/ZO68JEgoPeg)
-
-- Normally, `std::string` always create data on the heap, which is slow
-- It's would be more efficient to use `std::string_view` and `const char*`
-
-```cpp
-// 3 allocations on the heap
-std::string name = "Yan Chernikov";
-str::string firstName = name.substr(0,3);
-str::string lastName = name.substr(4,9);
-
-// 1 allocation
-std::string name = "Yan Chernikov";
-std::string_view firstName(name.c_str(), 3);
-std::string_view lastName(name.c_str() + 4, 9);
-
-// 0 allocation
-const char* name = "Yan Chernikov";
-std::string_view firstName(name, 3);
-std::string_view lastName(name + 4, 9);
-```
-
--------
-
-### `emplace_back` vs `push_back`
-
-Source: [Yasen Hu](https://yasenh.github.io/post/cpp-diary-1-emplace_back/), [The Cherno](https://youtu.be/HcESuwmlHEY)
-
-- Speed:
-  - `push_back` is SLOWER because it calls a constructor for temporary object, a copy of the temporary object will be constructed in the memory for the container, then the destructor will be called
-  - `emplace_back` directly takes constructor arguments for objects to be inserted, and avoids constructing and destructing temporary objects.
-- Safety:
-  - `push_back` is CLEARER, the type of the inserted element is explicitly listed.
-  - `emplace_back` might lead to unexpected leakage
-
-  > As always, the rule of thumb is that you should avoid “optimizations” that make the code less safe or less clear, unless the performance benefit is big enough to show up in your application benchmarks. [Geoff Romer](https://abseil.io/tips/112)
-- A compromise would be to consider using `vector.reserve(N)`
-
--------
-
-### `array`, `std::array`, `std::vector`, `std::forward_list` and `std::list`
-
-#### `std::array` vs. `C` `array`
-
-- `std::array` is just a simple, thin, zero-overhead wrapper around `C`'s `array`
-- `std::array` has friendly value semantics, so that it can be passed to or returned from functions by value. Its interface makes it more convenient to find the size, and use with STL-style iterator-based algorithms.
-- In terms of performance, no better than `C`'s `array`
-
-```cpp
-int myArray[3] = {1,2,3};
-std::array<int, 3> a = {{1, 2, 3}};
-```
-
-#### `std::vector` vs. `std::forward_list` vs. `std::list`
-
-- If you're doing many insertions or removal to and from anywhere in the container other than the end, using `std::list` is faster than `std::vector`
-- If you need random access, use `std::vector`, not `std::list`.
-- When bidirectional iteration is not needed, `std::forward_list` is more memory efficient than `std::list`
-
-|                              |       `std::vector`       |  `std::forward_list`  |     `std::list`     |
-|------------------------------|:-------------------------:|:---------------------:|:-------------------:|
-|                              |     dynamically array     |   singly linked list  |  doubly linked list |
-|                              |                           | no underlying array   | no underlying array |
-| Bidirectional iteration      |            YES            |           NO          |         YES         |
-|                              |                           | no rbegin, rend, etc. |                     |
-| Fast random access           |      v.at(id) / v[id]     |           NO          |          NO         |
-| Insertion/removal at the end |      $\mathcal{O}(1)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
-| Insertion/removal            |      $\mathcal{O}(N)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
-| Insertion                    | Re-allocate entire memory |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
 
 -------
 

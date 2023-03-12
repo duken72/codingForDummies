@@ -13,9 +13,9 @@ using LENGTH = int;
 // typedef int LENGTH;
 typedef struct
 {
-  int scruples;
-  int drams;
-  int grains;
+    int scruples;
+    int drams;
+    int grains;
 } WEIGHT;
 
 // A pointer to a function returning void and accepting double
@@ -35,13 +35,13 @@ struct whatever {};
 template <typename T>
 struct rebind
 {
-  typedef whatever<T> type; // to make it possible to substitue the whatever in future.
+    typedef whatever<T> type; // to make it possible to substitue the whatever in future.
 };
 rebind<int>::type variable;
 template <typename U>
 struct bar
 {
-  typename rebind<U>::type _var_member;
+    typename rebind<U>::type _var_member;
 };
 // More simple with `using`
 // template <typename T>
@@ -56,9 +56,11 @@ struct bar
 // Somewhere else
 namespace sth
 {
+
 void func_test()
 {
-  LENGTH length, width, height;
-  WEIGHT chicken;
+    LENGTH length, width, height;
+    WEIGHT chicken;
 };
+
 } // namespace sth

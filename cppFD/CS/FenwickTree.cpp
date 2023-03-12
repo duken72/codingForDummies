@@ -88,11 +88,11 @@ int main(int argc, char const *argv[])
     ft.set(15, 2);
     ft.print();
 
+    std::cout << "\nConstruct Fenwick tree from an existing array" << std::endl;
     FenwickTree ft2({1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0});
     ft2.print();
 
+    std::cout << "\nConstruct Fenwick tree from an existing array" << std::endl;
     FenwickTree ft3({3, 4, -2, 7, 3, 11, 5, -8, -9, 2, 4, -8});
     ft3.print();
-    
-    return 0;
 }
