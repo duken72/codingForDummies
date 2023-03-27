@@ -642,6 +642,14 @@ Source: [The Cherno](https://youtu.be/FeHZHF0f2dw)
   name[2] = 'a';
   ```
 
+- Print string literals in multiple lines:
+
+```cpp
+cout << R"(awta
+awefa
+awefaw)" << endl;
+```
+
 - Well, and more ...
 
 -------

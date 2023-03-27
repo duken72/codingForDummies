@@ -16,6 +16,7 @@ More advance functionalities of `awk` and `gawk`:
     ```bash
     gawk '$1 == "string" { print $2 } ' input.txt
     gawk '$1 ~ "string" { print $2 } ' input.txt
+    gawk '$1 != "string" { print $2 } ' input.txt
     ```
 
 - Take in output from other cmd
@@ -24,8 +25,26 @@ More advance functionalities of `awk` and `gawk`:
     ps | gawk '{print $2 "\t" $4}'
     ```
 
+- Pipe output to other cmd
+  
+    ```bash
+    pacman -S $(gawk '{print}' input.txt)
+    ```
+
 - Consider different field seperator
 
     ```bash
     gawk -F ":" '{print $1, $6}' /etc/passwd
+    ```
+
+- Find lines containing specified substring:
+
+    ```bash
+    gawk '/substring/ {print}' input.txt
+    ```
+
+- Replace substring
+
+    ```bash
+    gawk '{gsub("oldSubstring","newSubstring"); print}' input.txt
     ```
