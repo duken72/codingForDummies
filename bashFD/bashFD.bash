@@ -144,6 +144,7 @@ zipsplit -n [size_in_bytes] file.zip    # split to size restriction
 # unzip tags: x *.h - exclude files .h, o-overwriting target_dir
 # unzip tags: n-not overwrite, just unzip files not in target_dir
 unzip -o input.zip -d target_dir        # unzip
+unzip -p input.zip dir/file.out > out	# unzip - extract specific file
 upzip -l input.zip | less               # preview content
 # tar tags: v-verbose, f-files, c-create, z-gunzip, x-extract, t-list
 tar cvf [target_file.tar] [files/dirs]      # create .tar

@@ -264,7 +264,7 @@ The primitive data types vary in the memory size that they occupy. 1 byte is equ
 |:----------------------:|:-----------------:|:-----------------------:|:------------------------:|
 |         boolean        |  8 bits = 1 byte  |          $0-1$          |                          |
 |      (signed) char     |  8 bits = 1 byte  |    $-2^7$ to $2^7-1$    |      $-128$ to $127$     |
-|      unsigned char     |  8 bits = 1 byte  |      $0$ to $2^8-1$     |      $-256$ to $255$     |
+|      unsigned char     |  8 bits = 1 byte  |      $0$ to $2^8-1$     |       $0$ to $255$       |
 |      (signed) int      | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |       $\pm 2.1 E 9$      |
 |      unsigned int      | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
 |   (signed) short int   | 16 bits = 2 bytes | $-2^{15}$ to $2^{15}-1$ |       $\pm 3.2 E 4$      |

@@ -19,18 +19,24 @@ v               # visual mode
 
 # -------------------------------------------------
 #### Navigating / aka Motion
-hjkl            # simple movement
+hjkl            # simple movement (single char)
 wbe             # words: next, beginning, end of word
 WBE             # words, but seperated by space
+0$		# start/end of line
+^		# start of line (non-blank)
+f{char}/F{char}	# go to next/previous char in current line
+t{char}/T{char}	# move before next/previous char
+{}		# previous/next empty line
+%		# go to matching char '()', '[]', '{}'
 Shift-HML       # screen top, middle, bottom
 Ctrl-UD         # scroll up/down
-Ctrl-G          # tell where you are
 Ctrl-FB         # scroll faster up/down
-f[char]         # find char in that line
-t[char]         # to char in that line. right before that char
-G               # move to bottom of the file
+zz		# center current line
 gg              # move to start of the file
+G               # move to bottom of the file
+Ctrl-G          # tell where you are
 :number         # go to line number
+
 
 # -------------------------------------------------
 #### Editing
@@ -84,3 +90,14 @@ Ctrl+w, v       # split vertical
 Ctrl+w, q       # close splitted window
 Ctrl+w, w       # switch around window
 Ctrl+w, hjkl    # switch around adjacent window
+
+# -------------------------------------------------
+#### Advanced stuffs?
+Ctrl+]		# jump to tag
+Ctrl+O, Ctrl+T	# jump back
+Shift+j		# join two lines togeter
+Shift+Z+Z	# write and exit (same as :wq)
+:help CMD	# show helps relating to cmd, or some feature
+
+> + {motion}	# indent right
+< + {motion}	# indent left
