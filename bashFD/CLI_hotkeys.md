@@ -1,4 +1,9 @@
-# CLI HOTKEYS
+# Shell Keybindings
+
+More sources:
+
+- [GitHubGist](https://gist.github.com/2KAbhishek/9c6d607e160b0439a186d4fbd1bd81df)
+- [Bash/ZSH Cheat Sheet]()https://cheatography.com/davidsouther/cheat-sheets/bash-zsh-shourtcuts/
 
 ## Move around
 
