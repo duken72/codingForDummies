@@ -255,3 +255,26 @@ Resources: Dockerize a Python application
 
 - [runnable.com](https://runnable.com/docker/python/dockerize-your-python-application)
 - [Docker Docs](https://docs.docker.com/language/python/build-images/)
+
+## Docker with ROS
+
+### Errors
+
+- Can not connect to the internet: `;; connection timed out; no servers could be reached`
+  - Get your DNS for the current network interface (wired or wireless): `networkctl status`, 'ifconfig', etc.
+  - Create `/etc/docker/daemon.json` with the 1st DNS as the one you found in previous step
+    
+    ```json
+    {
+        "dns" : ["172.24.100.50", "8.8.8.8"]
+    }
+    ```
+
+  - Restart the docker service:
+
+  ```bash
+  service docker restart
+  systemctl restart docker.service
+  ``` 
+
+  - Check connection with `docker run -rm busybox nslookup google.com`
