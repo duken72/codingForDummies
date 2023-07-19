@@ -1,9 +1,9 @@
-####### Source stuffs
+# Source stuffs
 echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
 
 #################################################
 
-####### rospack, roscd, rosls - navigating
+# rospack, roscd, rosls - navigating
 # only work with things in ROS_PACKAGE_PATH
 echo $ROS_PACKAGE_PATH
 rospack find [package_name]
@@ -21,7 +21,7 @@ rosmv [package] [filename] [destination] #move files
 
 #################################################
 
-####### rosdep - working with dependencies
+# rospack, rosdep - working with dependencies
 rospack depends1 <package_name>/<dependency_name>
 rospack depends <package_name>
 rosdep check <packages> # check if dependencies have been met
@@ -29,7 +29,7 @@ rosdep install <packages> # install dependencies of given packages
 
 #################################################
 
-#######  rosnode, roscore, rosrun, roslaunch - working with nodes 
+#  rosnode, roscore, rosrun, roslaunch - working with nodes 
 roscore # master + rosout(stdout/stderr) + parameter server
 rosnode list
 rosnode info [/node]
@@ -37,14 +37,14 @@ rosnode ping ..
 rosrun [package_name] [node_name] [__name:=new_name] # run node from a given package
 roslaunch [package] [filename.launch] # run multiple nodes, with args, params
 
-####### Create, build and run nodes (Publisher / Subscriber / Service / Client Node)
+# Create, build and run nodes (Publisher / Subscriber / Service / Client Node)
 # 1. Create files src/_.cpp or _.py
 # 2. Edit CMakeLists.txt
 # 3. Rerun catkin_make at ws_folder
 
 #################################################
 
-####### rostopic, rosmsg - working with topic and message 
+# rostopic, rosmsg - working with topic and message 
 rostopic list [-v/-p/-s] # -v verbose, -p only publishers, -s only subscribers
 rostopic info [topic]
 rostopic hz [topic] #return the rate the data is published
@@ -56,7 +56,7 @@ rostopic pub [-1] [topic] [msg_type] [args] # publish data to a topic
 
 #################################################
 
-####### rosservice - working with services
+# rosservice - working with services
 # Another way that nodes can communicate with each others
 # Allow nodes to send a request and receive a response.
 rosservice list [-n]
@@ -65,10 +65,11 @@ rosservice call [service] [args]
 
 #################################################
 
-####### rosparam - working with parameters
+# rosparam - working with parameters
 rosparam list
 rosparam set [param_name] [val]
 rosparam get [param_name]
+rosparam get /      # show all current parameters
 rosparam dump [file.yaml] [namespace]
 rosparam load [file.yaml] [namespace]
 
@@ -82,7 +83,7 @@ rqt_logger_level # rosrun rqt_logger_level rqt_logger_level
 
 #################################################
 
-####### rosmsg, rossrv - working with ROS msg and srv
+# rosmsg, rossrv - working with ROS msg and srv
 # 1. Create files msg/_.msg, srv/_.srv 
 # 2. Edit package.xml and CMakeLists.txt
 # 3. catkin_make # At /catkin_ws, remake the package to apply
@@ -95,7 +96,7 @@ rossrv package [packageName] #list services in a package
 
 #################################################
 
-####### rosbag - Recording and Play
+# rosbag - Recording and Play
 mkdir && cd _/bagfiles
 rosbag record -a # record all
 rosbag record -O [subset_name] [topic_n] ..
@@ -106,7 +107,7 @@ ros_readbagfile <bagfile.bag> [topic7] [topic2] [| tee topics.yaml]
 # using ros_readbagfile because rostopic can only read 1 topic at a time and slower
 # rostopic echo -b large_bag_file /topic1
 
-####### roswtf
+# roswtf
 roswtf # Checking installation, try online and find errors
 
 ####### ROS Action

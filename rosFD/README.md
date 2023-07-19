@@ -1,13 +1,16 @@
-<!-- omit in toc -->
 # ROS
 
-<!-- omit in toc -->
 ## Table of Contents
 
-- [CLI commands](#cli-commands)
-- [ROS Package](#ros-package)
-- [Building ROS Package](#building-ros-package)
-- [Listening to ROS node in external Docker container](#listening-to-ros-node-in-external-docker-container)
+<!-- vim-markdown-toc GFM -->
+
+* [CLI commands](#cli-commands)
+* [ROS Package](#ros-package)
+* [Building ROS Package](#building-ros-package)
+* [Overview of ROS Graph Concepts](#overview-of-ros-graph-concepts)
+* [Listening to ROS node in external Docker container](#listening-to-ros-node-in-external-docker-container)
+
+<!-- vim-markdown-toc -->
 
 ## CLI commands
 
@@ -21,7 +24,7 @@ alias rosgg='less $(fd rosFD.bash ~) | grep'
 To create a new package:
 
 1. Start with create a workspace, a.k.a. a worksplace_folder
-2. Run this code to create package, define some stuffs (dependencies)
+2. Run this code to create a new package, define some dependencies
 
     ```bash
     cd ../src
@@ -39,7 +42,7 @@ To create a new package:
 4. Customize: edit stuffs in package.xml and CMakeLists.txt, mostly related to dependencies
 5. Expected results
 
-    ```bash
+    ```txt
     workspace_folder/         -- WORKSPACE
     ├── src/                  -- SOURCE SPACE
     │  ├── CMakeLists.txt     -- 'Toplevel' CMake file, provided by catkin
@@ -62,12 +65,23 @@ catkin_make [make_targets] [-DCMAKE_VARIABLES=...]
 
 Expected results:
 
-```bash
-workspace_folder  -- WORKSPACE
-├── build         -- 'cmake' and 'make' are called to configure and build packages
-├── devel         -- the executables and libraries go here, before the packages are installed
-└── src           -- SOURCE SPACE
+```txt
+catkin_ws       -- WORKSPACE
+├── build       -- 'cmake' and 'make' are called to configure and build packages
+├── devel       -- the executables and libraries go here, before the packages are installed
+└── src         -- SOURCE SPACE
 ```
+
+-------
+
+## Overview of ROS Graph Concepts
+
+- Node is an executable that uses `ROS` to communicate with other nodes.
+- Messages: `ROS` data type used when subscribing or publishing to a topic.
+- Topics: Nodes can publish messages to a topic, or subscribe to a topic to receive messages.
+- Master: Name service for `ROS` (i.e. helps nodes find each other)
+- `rosout`: `ROS` equivalent of `stdout/stderr`
+- `roscore`: Master + `rosout` + parameter server (parameter server will be introduced later)
 
 -------
 
