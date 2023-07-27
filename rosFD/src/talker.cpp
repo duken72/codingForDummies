@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "talker"); #Init ROS and node names
+  ros::init(argc, argv, "talker"); // Init ROS and node names
   ros::NodeHandle n;
 
   // Tell the master that a message of type std_msgs/String will be published on TOPIC chatter
