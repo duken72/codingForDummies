@@ -1,7 +1,7 @@
 #!/bin/bash
 
-python3 -m venv [dir]           # setup virtual env in dir
-source /dir/bin/activate        # activate virtual env
+python3 -m venv [dir]           # setup virtual env in dir, preferably `venv`
+source venv/bin/activate        # activate virtual env
 deactivate                      # exit virtual env
 rm -rf dir                      # remove the dir to rm the venv
 
