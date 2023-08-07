@@ -27,6 +27,7 @@
 
 ### Others
 
+- Scroll around: Ctrl+B, '[', then UpArrow, PgDown, j, k, Ctrl+D, Ctrl+U
 - Show hotkeys: Ctrl+B, '?'
 - Show clock: Ctrl+B, 'T'
 
