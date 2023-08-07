@@ -78,6 +78,11 @@ g++ main.cpp -S #this will generate assemply file main.s
 
 ### Compiling
 
+- Compiler will translate the source code from the `.cpp` file to intermediate format, which is `.obj` file
+- Steps:
+  - Preprocess, tokenizing, parsing, etc.
+  - Abstract Syntax Tree
+
 Example of compiler, object file, binary file, assembly code: [The Cherno](https://youtu.be/3tIqpEmWMLI)
 
 In reality, use build system, such as [CMake](../cmakeFD/README.md):
@@ -88,7 +93,8 @@ RAII - Resource Acquisition is Initialization
 
 Source: [The Cherno](https://youtu.be/H4s55GgAg0I)
 
-When linking, the linker will find the function definitions. This is why you can simply include header files, which only have function declarations.
+- After compiling, we have seperate `.obj` files, containing symbols/variables, function definitions
+- When linking, the linker will find the function definitions to connect these `.obj` files. This is why you can simply include header files, which only have function declarations.
 
 Also, if you define a function in header file, then include that header file in other files, it leads to linking error: multiple definition of a function. This concerns with using `(target_)link_libraries` in [CMake](../cmakeFD/README.md).
 
