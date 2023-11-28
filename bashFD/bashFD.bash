@@ -222,10 +222,10 @@ VBoxManage controlvm "vm-name" poweroff --type headless # VM
 # SVN
 # -------------------------------------------------
 svn co <URL>    # git clone, also just `svn checkout`
-svn commit	# git commit and push
-svn delete	# remove files and (git) stage
-svn add <file>	# add new files and (git) stage
-svn diff	# git diff
-svn status	# git status
-svn move	# move files and (git) stage
-svn update	# git pull
+svn commit      # git commit and push
+svn delete      # remove files and (git) stage
+svn add <file>  # add new files and (git) stage
+svn diff        # git diff
+svn status      # git status
+svn move        # move files and (git) stage
+svn update      # git pull
