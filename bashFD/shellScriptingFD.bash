@@ -89,3 +89,11 @@ if [ string1 != string2 ]; then echo "string1 does not equal string2" fi
 : <<'END'
 echo "I hope that there is no error"
 END
+
+# String manipulation
+DATA="abc.out"
+pattern=".out"
+DATA=${DATA/$pattern/}
+echo "DATA=${DATA}"
+
+echo ${str%.*}
