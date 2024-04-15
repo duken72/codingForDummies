@@ -226,6 +226,7 @@ svn commit      # git commit and push
 svn delete      # remove files and (git) stage
 svn add <file>  # add new files and (git) stage
 svn diff        # git diff
+svn revert <file/dir> -R		    # git reset (-recursive)
 svn status      # git status
 svn move        # move files and (git) stage
 svn update      # git pull
