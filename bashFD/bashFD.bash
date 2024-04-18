@@ -231,4 +231,4 @@ svn status      # git status
 svn move        # move files and (git) stage
 svn update      # git pull
 svn propset svn:ignore "*.log *.aux" .	    # git ignore
-svn propset svn:ignore -F ignorelist.txt .  # git ignore
+svn propset svn:ignore -RF ignorelist.txt .  # git ignore
