@@ -1,9 +1,11 @@
 <!-- omit in toc -->
+
 # Python
 
--------
+---
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [CLI commands](#cli-commands)
@@ -17,7 +19,7 @@
   - [Iterable, iterator and generator](#iterable-iterator-and-generator)
   - [Cool libraries to use](#cool-libraries-to-use)
 
--------
+---
 
 ## CLI commands
 
@@ -28,7 +30,7 @@ alias pygg='less $(fd pyFD.py ~) | grep'
 
 Check pyFD.py for python syntax.
 
--------
+---
 
 ## Directory / package structure
 
@@ -51,9 +53,9 @@ root_folder
    └── b2.py
 ```
 
-```import``` search through list of paths in ```sys.path```  
-Importing package basically run package's ```__init__.py```  
-Can import `packageA`, can't import `packageB` because there is no ```__init__.py``` in `packageB` (but ```__init__.py``` is no longer needed for Python 3.3+)
+`import` search through list of paths in `sys.path`  
+Importing package basically run package's `__init__.py`  
+Can import `packageA`, can't import `packageB` because there is no `__init__.py` in `packageB` (but `__init__.py` is no longer needed for Python 3.3+)
 
 ```python
 import <package>
@@ -79,7 +81,7 @@ File paths on Windows
 r'C:\Users\duck'    # raw string
 ```
 
--------
+---
 
 ## Style Guide
 
@@ -104,21 +106,21 @@ ExceptionName
 def func(abc, fds=4.6):
     # One-line Docstrings, note the "." at the end
     '''Do sth and return sth.'''
-    
+
     # Multi-line Docstrings, Google Style (check also Sphinx, Numpy style)
     '''Summary line.
-    
+
     Args:
         a (int): the dog
         b (float): the duck
-    
+
     Raises:
         RuntimeError: Out of dog.
-        
+
     Returns:
         dick (float): the dick
     '''
-    
+
     pass
 
 print(func.__doc__)
@@ -142,17 +144,17 @@ def func(abc:'int', fds:'float'=4.6) -> 'list':
 print(func.__annotations__)
 ```
 
--------
+---
 
 ## Best practices, tips and tricks
 
--------
+---
 
 ### PEP - Python Enhancement Proposal
 
 - Type hinting: [docs](https://docs.python.org/3/library/typing.html)
 
--------
+---
 
 ### Iterable, iterator and generator
 
@@ -179,7 +181,7 @@ Read the following sources for more in depth explanation: [stackoverflow1](https
 
 In many cases, generators are memory efficient and faster. In other cases, you get stuck in an infinite loop.
 
--------
+---
 
 ### Cool libraries to use
 
