@@ -1,15 +1,15 @@
-<!-- omit in toc -->
-
 # Virtual Machines for dummies
 
 Some notes on Virtual Machines and the tool VirtualBox.
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
-- [Sources](#sources)
-- [Running VM from CLI](#running-vm-from-cli)
+<!-- vim-markdown-toc GFM -->
+
+* [Sources](#sources)
+* [Running VM from CLI](#running-vm-from-cli)
+
+<!-- vim-markdown-toc -->
 
 ---
 

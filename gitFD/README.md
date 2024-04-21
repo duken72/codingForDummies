@@ -1,20 +1,18 @@
-<!-- omit in toc -->
-
 # GIT
-
-<!-- omit in toc -->
 
 ## Table of Contents
 
-- [Guides](#guides)
-- [CLI commands](#cli-commands)
-- [Tips and Tricks](#tips-and-tricks)
-- [Advanced Techniques](#advanced-techniques)
-- [Syncing](#syncing)
-- [Pull Requests](#pull-requests)
-- [README Badges](#readme-badges)
+<!-- vim-markdown-toc GFM -->
 
----
+* [Guides](#guides)
+* [CLI commands](#cli-commands)
+* [Tips and Tricks](#tips-and-tricks)
+* [Advanced Techniques](#advanced-techniques)
+* [Syncing](#syncing)
+* [Pull Requests](#pull-requests)
+* [README Badges](#readme-badges)
+
+<!-- vim-markdown-toc -->
 
 ## Guides
 

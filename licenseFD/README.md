@@ -1,15 +1,15 @@
-<!-- omit in toc -->
-
 # License For Dummies
-
-<!-- omit in toc -->
 
 ## Table of Content
 
-- [Basics](#basics)
-- [Documentations](#documentations)
-- [ROS2](#ros2)
-- [Corporate Stuffs](#corporate-stuffs)
+<!-- vim-markdown-toc GFM -->
+
+* [Basics](#basics)
+* [Documentations](#documentations)
+* [ROS2](#ros2)
+* [Corporate Stuffs](#corporate-stuffs)
+
+<!-- vim-markdown-toc -->
 
 ---
 

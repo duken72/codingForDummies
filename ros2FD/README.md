@@ -1,18 +1,20 @@
-<!-- omit in toc -->
 # ROS2
 
-<!-- omit in toc -->
 ## Table of Contents
 
-- [Installation](#installation)
-- [CLI commands](#cli-commands)
-- [Code Style](#code-style)
-- [ROS2 Workspace](#ros2-workspace)
-- [Launch file](#launch-file)
-- [ROS2 Package](#ros2-package)
-- [Running from Docker](#running-from-docker)
+<!-- vim-markdown-toc GFM -->
 
--------
+* [Installation](#installation)
+* [CLI commands](#cli-commands)
+* [Code Style](#code-style)
+* [ROS2 Workspace](#ros2-workspace)
+* [Launch file](#launch-file)
+* [ROS2 Package](#ros2-package)
+* [Running from Docker](#running-from-docker)
+
+<!-- vim-markdown-toc -->
+
+---
 
 ## Installation
 
@@ -24,7 +26,7 @@
   - [ROS2 Foxy on Arch](https://discourse.ros.org/t/some-tips-for-ros2-on-archlinux/17768)
   - [Reddit discussion](https://www.reddit.com/r/archlinux/comments/m4j7eu/has_anyone_managed_to_properly_build_ros2_foxy_on/)
 
--------
+---
 
 ## CLI commands
 
@@ -49,7 +51,7 @@ Check with:
 printenv | grep -i ROS
 ```
 
--------
+---
 
 ## Code Style
 
@@ -67,7 +69,7 @@ ament_xmllint
 ament_uncrustify
 ```
 
--------
+---
 
 ## ROS2 Workspace
 
@@ -84,26 +86,26 @@ The structure should be: `build  install  log  src` (as the result from `ls ws_f
 
 - [Overlay and underlay](https://docs.ros.org/en/foxy/Tutorials/Workspace/Creating-A-Workspace.html)
 
--------
+---
 
 ## Launch file
 
 1. Create directory and file in src/
 
-    ```bash
-    mkdir launch
-    touch launch/launch_file.py
-    ```
+   ```bash
+   mkdir launch
+   touch launch/launch_file.py
+   ```
 
 2. Check example
 3. Add `exec_depend` dependency inn `package.xml`:
-`<exec_depend>ros2launch</exec_depend>`
+   `<exec_depend>ros2launch</exec_depend>`
 
--------
+---
 
 ## ROS2 Package
 
--------
+---
 
 ## Running from Docker
 
@@ -127,9 +129,9 @@ ros2 run demo_nodes_cpp listener
 
 - The two nodes can also be run in one single container
 
-    ```bash
-    ros2 run demo_nodes_cpp listener & ros2 run demo_nodes_cpp talker
-    ```
+  ```bash
+  ros2 run demo_nodes_cpp listener & ros2 run demo_nodes_cpp talker
+  ```
 
 - Alternatively, you can create a `docker-compose.yml` file
 - To run with GUI:

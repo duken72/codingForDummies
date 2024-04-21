@@ -1,25 +1,25 @@
-<!-- omit in toc -->
-
 # Jira
 
 Jira is a platform for software development by Atlassian, used by big companies (Bosch, etc.).
 
 It has templates for Scrum, Kanban, etc.
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
-- [Overview](#overview)
-- [Agile Project Management](#agile-project-management)
-  - [Common Terms](#common-terms)
-  - [Stakeholders](#stakeholders)
-- [Project Types](#project-types)
-- [Jira Software Management](#jira-software-management)
-  - [Terms](#terms)
-  - [Story Points](#story-points)
-- [Confluence](#confluence)
-- [Tips and Tricks](#tips-and-tricks)
+<!-- vim-markdown-toc GFM -->
+
+* [Overview](#overview)
+* [Agile Project Management](#agile-project-management)
+  * [Common Terms](#common-terms)
+  * [Stakeholders](#stakeholders)
+* [Project Types](#project-types)
+* [Jira Software Management](#jira-software-management)
+  * [Terms](#terms)
+  * [Story Points](#story-points)
+* [Confluence](#confluence)
+* [Tips and Tricks](#tips-and-tricks)
+
+<!-- vim-markdown-toc -->
 
 ---
 

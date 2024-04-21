@@ -1,5 +1,3 @@
-<!-- omit in toc -->
-
 # Docker For Dummies
 
 Docker is a tool to package software in a _"containers"_ that can run reliably in any environment / with any hardware.\
@@ -14,21 +12,25 @@ It's a better replacement for traditional Virtual Machines (VM).
 - VMs simulate hardware for other OS. While Docker simulates the OS directly, kind of. VMs will use different kernels, probably duplications of the same one.
 - Docker communicates natively with the host system and uses less disk space.
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
-- [Resources](#resources)
-- [Basics](#basics)
-- [CLI Commands](#cli-commands)
-- [Install and Configure](#install-and-configure)
-- [Guide](#guide)
-- [Using given Dockerfile](#using-given-dockerfile)
-- [Anatomy of a Dockerfile](#anatomy-of-a-dockerfile)
-  - [Refs](#refs)
-  - [Commands](#commands)
-  - [Example](#example)
-- [Docker with Python](#docker-with-python)
+<!-- vim-markdown-toc GFM -->
+
+* [Resources](#resources)
+* [Basics](#basics)
+* [CLI Commands](#cli-commands)
+* [Install and Configure](#install-and-configure)
+* [Guide](#guide)
+* [Using given Dockerfile](#using-given-dockerfile)
+* [Anatomy of a Dockerfile](#anatomy-of-a-dockerfile)
+  * [Refs](#refs)
+  * [Commands](#commands)
+  * [Example](#example)
+* [Docker with Python](#docker-with-python)
+* [Docker with ROS](#docker-with-ros)
+  * [Errors](#errors)
+
+<!-- vim-markdown-toc -->
 
 ---
 

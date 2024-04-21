@@ -1,14 +1,14 @@
-<!-- omit in toc -->
-
 # VIM
-
-<!-- omit in toc -->
 
 ## Table of Contents
 
-- [CLI commands](#cli-commands)
-- [Hotkeys](#hotkeys)
-- [Reference](#reference)
+<!-- vim-markdown-toc GFM -->
+
+* [CLI commands](#cli-commands)
+* [Hotkeys](#hotkeys)
+* [Reference](#reference)
+
+<!-- vim-markdown-toc -->
 
 ---
 

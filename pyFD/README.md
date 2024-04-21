@@ -1,23 +1,23 @@
-<!-- omit in toc -->
-
 # Python
 
 ---
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
-- [CLI commands](#cli-commands)
-- [Directory / package structure](#directory--package-structure)
-- [Style Guide](#style-guide)
-  - [Naming Convention](#naming-convention)
-  - [Docstrings](#docstrings)
-  - [Function annotations](#function-annotations)
-- [Best practices, tips and tricks](#best-practices-tips-and-tricks)
-  - [PEP - Python Enhancement Proposal](#pep---python-enhancement-proposal)
-  - [Iterable, iterator and generator](#iterable-iterator-and-generator)
-  - [Cool libraries to use](#cool-libraries-to-use)
+<!-- vim-markdown-toc GFM -->
+
+* [CLI commands](#cli-commands)
+* [Directory / package structure](#directory--package-structure)
+* [Style Guide](#style-guide)
+    * [Naming Convention](#naming-convention)
+    * [Docstrings](#docstrings)
+    * [Function annotations](#function-annotations)
+* [Best practices, tips and tricks](#best-practices-tips-and-tricks)
+    * [PEP - Python Enhancement Proposal](#pep---python-enhancement-proposal)
+    * [Iterable, iterator and generator](#iterable-iterator-and-generator)
+    * [Cool libraries to use](#cool-libraries-to-use)
+
+<!-- vim-markdown-toc -->
 
 ---
 

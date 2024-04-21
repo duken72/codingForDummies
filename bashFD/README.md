@@ -1,5 +1,3 @@
-<!-- omit in toc -->
-
 # BASH
 
 Bash stands for Bourne Again SHell. It's the command language to interact with the OS.  
@@ -9,12 +7,14 @@ All the commands are actually from folders in `PATH`
 echo $PATH
 ```
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
-- [Commands](#commands)
-- [Style Guide for Shell scripting](#style-guide-for-shell-scripting)
+<!-- vim-markdown-toc GFM -->
+
+* [Commands](#commands)
+* [Style Guide for Shell scripting](#style-guide-for-shell-scripting)
+
+<!-- vim-markdown-toc -->
 
 ---
 

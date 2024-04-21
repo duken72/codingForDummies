@@ -2,6 +2,16 @@
 
 ## Table of Contents
 
+<!-- vim-markdown-toc GFM -->
+
+* [Hotkeys](#hotkeys)
+  * [Panes](#panes)
+  * [Windows](#windows)
+  * [Sessions](#sessions)
+  * [Others](#others)
+
+<!-- vim-markdown-toc -->
+
 ## Hotkeys
 
 - Detach from server: Ctrl+B+D

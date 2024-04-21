@@ -1,5 +1,3 @@
-<!-- omit in toc -->
-
 # Coding For Dummies
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
@@ -9,22 +7,24 @@ Important things about coding that I have learned by myself and from the profess
 - This README contains general terms or problems.
 - Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.
 
-<!-- omit in toc -->
-
 ## Table of Contents
 
-- [Resources](#resources)
-- [Abbreviations \& Definitions](#abbreviations--definitions)
-- [Package and Package Management System](#package-and-package-management-system)
-- [Unit Testing](#unit-testing)
-- [DevOps](#devops)
-  - [CI - Continuous Integration](#ci---continuous-integration)
-  - [CD - Continuous Delivery/Deployment](#cd---continuous-deliverydeployment)
-  - [Build server](#build-server)
-  - [Test server](#test-server)
-  - [Example Build Pipeline](#example-build-pipeline)
-- [TODO](#todo)
-- [LICENSE](#license)
+<!-- vim-markdown-toc GFM -->
+
+* [Resources](#resources)
+* [Abbreviations & Definitions](#abbreviations--definitions)
+* [Package and Package Management System](#package-and-package-management-system)
+* [Unit Testing](#unit-testing)
+* [DevOps](#devops)
+  * [CI - Continuous Integration](#ci---continuous-integration)
+  * [CD - Continuous Delivery/Deployment](#cd---continuous-deliverydeployment)
+  * [Build server](#build-server)
+  * [Test server](#test-server)
+  * [Example Build Pipeline](#example-build-pipeline)
+* [TODO](#todo)
+* [LICENSE](#license)
+
+<!-- vim-markdown-toc -->
 
 ---
 
