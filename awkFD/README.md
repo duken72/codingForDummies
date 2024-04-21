@@ -11,40 +11,40 @@ You can do simple tasks like:
 More advance functionalities of `awk` and `gawk`:
 
 - Search for specific part of the content and print out /
-    E.g.: search for line with the first element is/is not something, print out specific other part
+  E.g.: search for line with the first element is/is not something, print out specific other part
 
-    ```bash
-    gawk '$1 == "string" { print $2 } ' input.txt
-    gawk '$1 ~ "string" { print $2 } ' input.txt
-    gawk '$1 != "string" { print $2 } ' input.txt
-    ```
+  ```bash
+  gawk '$1 == "string" { print $2 } ' input.txt
+  gawk '$1 ~ "string" { print $2 } ' input.txt
+  gawk '$1 != "string" { print $2 } ' input.txt
+  ```
 
-- Take in output from other cmd
+- Take in output from other commands
 
-    ```bash
-    ps | gawk '{print $2 "\t" $4}'
-    ```
+  ```bash
+  ps | gawk '{print $2 "\t" $4}'
+  ```
 
-- Pipe output to other cmd
-  
-    ```bash
-    pacman -S $(gawk '{print}' input.txt)
-    ```
+- Pipe output to other commands
 
-- Consider different field seperator
+  ```bash
+  pacman -S $(gawk '{print}' input.txt)
+  ```
 
-    ```bash
-    gawk -F ":" '{print $1, $6}' /etc/passwd
-    ```
+- Consider different field separator
 
-- Find lines containing specified substring:
+  ```bash
+  gawk -F ":" '{print $1, $6}' /etc/passwd
+  ```
 
-    ```bash
-    gawk '/substring/ {print}' input.txt
-    ```
+- Find lines containing specified sub-string:
 
-- Replace substring
+  ```bash
+  gawk '/substring/ {print}' input.txt
+  ```
 
-    ```bash
-    gawk '{gsub("oldSubstring","newSubstring"); print}' input.txt
-    ```
+- Replace sub-string
+
+  ```bash
+  gawk '{gsub("oldSubstring","newSubstring"); print}' input.txt
+  ```

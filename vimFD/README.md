@@ -1,14 +1,16 @@
-<!-- omit in toc -->
 # VIM
 
-<!-- omit in toc -->
 ## Table of Contents
 
-- [CLI commands](#cli-commands)
-- [Hotkeys](#hotkeys)
-- [Reference](#reference)
+<!-- vim-markdown-toc GFM -->
 
--------
+* [CLI commands](#cli-commands)
+* [Hotkeys](#hotkeys)
+* [Reference](#reference)
+
+<!-- vim-markdown-toc -->
+
+---
 
 ## CLI commands
 
@@ -17,13 +19,13 @@ alias vimg='less $(fd vimFD.bash ~)'
 alias lessg='less $(fd lessFD.bash ~)'
 ```
 
--------
+---
 
 ## Hotkeys
 
 Check [vimFD.vim](vimFD.vim) and [lessFD.bash](lessFD.bash) for useful hotkeys
 
--------
+---
 
 ## Reference
 

@@ -1,15 +1,17 @@
-<!-- omit in toc -->
 # License For Dummies
 
-<!-- omit in toc -->
 ## Table of Content
 
-- [Basics](#basics)
-- [Documentations](#documentations)
-- [ROS2](#ros2)
-- [Corporate Stuffs](#corporate-stuffs)
+<!-- vim-markdown-toc GFM -->
 
--------
+* [Basics](#basics)
+* [Documentations](#documentations)
+* [ROS2](#ros2)
+* [Corporate Stuffs](#corporate-stuffs)
+
+<!-- vim-markdown-toc -->
+
+---
 
 ## Basics
 
@@ -18,13 +20,13 @@ What is it, and what are different types?
 - [Open Source Licenses](https://gist.github.com/nicolasdao/a7adda51f2f185e8d2700e1573d8a633)
 - [MIT vs. Apache vs. GPL](https://exygy.com/blog/which-license-should-i-use-mit-vs-apache-vs-gpl/)
 
--------
+---
 
 ## Documentations
 
 Keep an updated [`3rd-party-licenses.txt`](3rd-party-licenses.txt) around.
 
--------
+---
 
 ## ROS2
 
@@ -34,7 +36,7 @@ ament_copyright --add-missing "<name copyright holder>" bsd_3clause --verbose .
 ament_copyright --list-licenses
 ```
 
--------
+---
 
 ## Corporate Stuffs
 
@@ -51,6 +53,7 @@ There are 3 classes of licenses, in simple words:
 Go to [tldrlegal.com](https://tldrlegal.com/) to check the license information.
 
 1. Permissive OSS Licenses:
+
    - MIT License (Expat)
    - Apache License 2.0 (Apache-2.0)
    - BSD 3-Clause License (Revised)
@@ -68,6 +71,7 @@ Go to [tldrlegal.com](https://tldrlegal.com/) to check the license information.
    - etc.
 
 2. Weak Copyleft licenses: Depend on usage, be careful though
+
    - GNU Lesser General Public License v3 (LGPL-3.0)
    - GNU Lesser General Public License v2.1 (LGPL-2.1)
    - etc.

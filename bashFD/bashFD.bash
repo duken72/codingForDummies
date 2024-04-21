@@ -46,7 +46,7 @@ locate [file_name] # locate file in the entire system
 rg [pattern] # t-type
 grep <what> <file_name> # search for a string in a file
 # to search string in a dir
-{grep -R, rgrep, rg, ag} <what> <dir>
+[grep -R / rgrep / rg / ag] <what> <dir>
 
 
 # -------------------------------------------------

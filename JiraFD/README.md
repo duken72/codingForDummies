@@ -1,25 +1,27 @@
-<!-- omit in toc -->
 # Jira
 
 Jira is a platform for software development by Atlassian, used by big companies (Bosch, etc.).
 
 It has templates for Scrum, Kanban, etc.
 
-<!-- omit in toc -->
 ## Table of Contents
 
-- [Overview](#overview)
-- [Agile Project Management](#agile-project-management)
-  - [Common Terms](#common-terms)
-  - [Stakeholders](#stakeholders)
-- [Project Types](#project-types)
-- [Jira Software Management](#jira-software-management)
-  - [Terms](#terms)
-  - [Story Points](#story-points)
-- [Confluence](#confluence)
-- [Tips and Tricks](#tips-and-tricks)
+<!-- vim-markdown-toc GFM -->
 
--------
+* [Overview](#overview)
+* [Agile Project Management](#agile-project-management)
+  * [Common Terms](#common-terms)
+  * [Stakeholders](#stakeholders)
+* [Project Types](#project-types)
+* [Jira Software Management](#jira-software-management)
+  * [Terms](#terms)
+  * [Story Points](#story-points)
+* [Confluence](#confluence)
+* [Tips and Tricks](#tips-and-tricks)
+
+<!-- vim-markdown-toc -->
+
+---
 
 ## Overview
 
@@ -28,12 +30,13 @@ It has templates for Scrum, Kanban, etc.
 - [Confluence Demonstration](https://youtu.be/uhWCMlcY_Zw)
 - [Introduction to JIRA & Agile Project Management](https://youtu.be/NrHpXvDXVrw)
 
--------
+---
 
 ## Agile Project Management
 
-- Agile Project Management, or Agile Software Development, is just an umbrella term for a ***"set of frameworks and practices"***
+- Agile Project Management, or Agile Software Development, is just an umbrella term for a **_"set of frameworks and practices"_**
 - These frameworks and practices:
+
   - (usually) support the development and delivery of software package
   - break down complex projects into small manageable goals
   - deliver the product to the customers in increments
@@ -64,7 +67,7 @@ It has templates for Scrum, Kanban, etc.
     - As a Jira admin, I want to be able to add member so that I can assign them to tasks.
     - As a iPhone user, I want to have voice control over application so that I spend less effort.
   - No technical stuff is mentioned in user story, because it doesn't matter to the customer how the technology works.\
-    It's the developers' job to figure it out how to do it.  
+    It's the developers' job to figure it out how to do it.
   - Epic is a story that is too big for a single sprint. Epic will be broken down into multiple stories
   - Story is a story that can be complete during a single sprint
 - WIP (work in progress) is the number of tasks that are in the IN PROGRESS column.
@@ -76,12 +79,12 @@ It has templates for Scrum, Kanban, etc.
 - Customers use it and benefit from it.
 - Scrum master / Agile coach is the person who helps the product owner and the dev team to adopt and maintain good habit.
 
--------
+---
 
 ## Project Types
 
 |            | Scrum                                       | Kanban                                  |
-|------------|---------------------------------------------|-----------------------------------------|
+| ---------- | ------------------------------------------- | --------------------------------------- |
 | Modulation | Regular fixed length sprints                | Continuous flow (adding tasks)          |
 | Release    | At the end of sprint                        | Continuous delivery                     |
 | Roles      | Mandatory roles (owner, scrum master, etc.) | An agile coach (but not necessary)      |
@@ -93,7 +96,7 @@ It has templates for Scrum, Kanban, etc.
 |            | Goal-driven projects                        | Tasks with changing priorities          |
 | For whom   | Non-mature teams                            | Mature teams                            |
 
--------
+---
 
 ## Jira Software Management
 
@@ -114,13 +117,13 @@ The amount of story points depends on:
 - Uncertainty: the given story from the customer is unclear
 - Risk: implementing new feature requires to change some old, not well documented or well tested code
 
--------
+---
 
 ## Confluence
 
 Confluence is the documentation tool for collaboration by Atlassian.
 
--------
+---
 
 ## Tips and Tricks
 
@@ -132,13 +135,13 @@ Tips from [Dan Chuparkoff](https://youtu.be/NrHpXvDXVrw):
   - Waiting during a task is a sign that the task is actually a collection of tasks
 - Estimating story points
 
-  |  30mins |  1 story point  |
-  |:-------:|:---------------:|
-  |  1 hour |  2 story points |
-  | 2 hours |  4 story points |
-  | 4 hours |  8 story points |
+  | 30mins  |  1 story point  |
+  | :-----: | :-------------: |
+  | 1 hour  | 2 story points  |
+  | 2 hours | 4 story points  |
+  | 4 hours | 8 story points  |
   |  1 day  | 16 story points |
-  |  2 days | 32 story points |
-  |  3 days | 48 story points |
+  | 2 days  | 32 story points |
+  | 3 days  | 48 story points |
 
 - TODO

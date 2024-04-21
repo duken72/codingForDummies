@@ -13,7 +13,7 @@
   - [Linting](#linting)
 - [Extra notes](#extra-notes)
 
---------
+---
 
 ## Basics
 
@@ -47,19 +47,20 @@ ament_target_dependencies(my_target Eigen3)
 target_link_libraries(my_target Eigen3::Eigen)
 ```
 
->It should never be necessary to find_package a library that is not explicitly needed, but is a dependency of another dependency that is explicitly needed. If that is the case, file a bug against the corresponding package.
+> It should never be necessary to find_package a library that is not explicitly needed, but is a dependency of another dependency that is explicitly needed. If that is the case, file a bug against the corresponding package.
 
 ### Build a Library
 
 Use `ament_export_targets` and `ament_export_dependencies` as mentioned [here](https://docs.ros.org/en/foxy/How-To-Guides/Ament-CMake-Documentation.html#building-a-library).
 
---------
+---
 
 ## Testing and Linting
 
 ### Testing
 
 <!-- TODO(Duc): Add example -->
+
 Sample part:
 
 Dir structure:
@@ -70,7 +71,7 @@ Dir structure:
 ament_lint_cmake
 ```
 
---------
+---
 
 ## Extra notes
 

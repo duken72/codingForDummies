@@ -51,14 +51,14 @@
 % \RequirePackage[automark, headsepline]{scrpage2}  % Header and footer
 % \pagestyle{scrheadings}
 \RequirePackage[
-  format          = hang,
-  textformat 		  = simple,         % no modifications, period = full stop at the end
-  justification   = justified,
-  font 			      = {normalsize},   % stretch =1.25},
-  labelfont 		  = {bf},
-  parskip			    = 24pt,
-  aboveskip 	    = 6pt
-  ]{caption}       	                % adjust multiline captions
+	format          = hang,
+	textformat 		  = simple,         % no modifications, period = full stop at the end
+	justification   = justified,
+	font 			      = {normalsize},   % stretch =1.25},
+	labelfont 		  = {bf},
+	parskip			    = 24pt,
+	aboveskip 	    = 6pt
+]{caption}       	                % adjust multiline captions
 
 % --------------------------------------------------------------------------
 %	Tables
@@ -87,17 +87,17 @@
 %	Bibliopraphy
 % --------------------------------------------------------------------------
 \RequirePackage[backend = biber,
-% citestyle 		= igm,
-% bibstyle 		  = igm,
-giveninits		= true,
-uniquename		= false,
-uniquelist		= false,
-isbn 			= true,
-maxnames 		= 99,
-minalphanames 	= 3,
-url				= true,
-doi				= true,
-block			= space
+	% citestyle 		= igm,
+	% bibstyle 		  = igm,
+	giveninits		= true,
+	uniquename		= false,
+	uniquelist		= false,
+	isbn 			= true,
+	maxnames 		= 99,
+	minalphanames 	= 3,
+	url				= true,
+	doi				= true,
+	block			= space
 ]{biblatex}
 
 \RequirePackage[printonlyused]{acronym}   % For the list of abbreviations
@@ -109,28 +109,28 @@ block			= space
 % --------------------------------------------------------------------------
 \pdfoutput=1
 \RequirePackage{pdflscape}       				% Seiten im Querformat im PDF richtig anzeigen / Display pages properly in landscape mode
-\RequirePackage[pdftex,	
-  pdfusetitle,		
-  pdfborder			={0 0 0},			% Avoid borders in PDF
-  linkcolor			= red, 				% simple internal links
-  colorlinks		= false,		  % Set text color
-  anchorcolor		= black,		  % Anchor text
-  filecolor			= magenta, 		% Links that open local files
-  citecolor			= blue, 			% Reference to entries in the bibliography used in the text
-  menucolor			= red, 				% Acrobat-menu
-  urlcolor			= cyan				% Reference to internet links 
-  ]{hyperref}
+\RequirePackage[pdftex,
+	pdfusetitle,
+	pdfborder			={0 0 0},			% Avoid borders in PDF
+	linkcolor			= red, 				% simple internal links
+	colorlinks		= false,		  % Set text color
+	anchorcolor		= black,		  % Anchor text
+	filecolor			= magenta, 		% Links that open local files
+	citecolor			= blue, 			% Reference to entries in the bibliography used in the text
+	menucolor			= red, 				% Acrobat-menu
+	urlcolor			= cyan				% Reference to internet links 
+]{hyperref}
 
 \RequirePackage[
-  left        = 3cm,
-  right       = 2cm,
-  top         = 1.15cm,
-  bottom      = 1.25cm,
-  headheight  = 8.5mm,
-  headsep     = 1.0cm,
-  footskip    = 1.25cm,
-  includeheadfoot
-  ]{geometry}	% margins
+	left        = 3cm,
+	right       = 2cm,
+	top         = 1.15cm,
+	bottom      = 1.25cm,
+	headheight  = 8.5mm,
+	headsep     = 1.0cm,
+	footskip    = 1.25cm,
+	includeheadfoot
+]{geometry}	% margins
 
 % Macros and Functions
 \def\authordegreeback#1{\gdef\@authordegreeback{#1}}

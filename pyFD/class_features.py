@@ -16,12 +16,16 @@ Class v/s Instance Variables
 Class variable with class namespace
 Instance variable with instance namespace
 """
+
+
 class Car:
     # Class variable
     wheels = 4
+
     def __init__(self) -> None:
         self.mil = 10
         self.brand = "BMW"
+
 
 Car.wheels = 5
 car_1 = Car()
@@ -45,13 +49,16 @@ Static methods
 - specify with @staticmethod
 - do not pass self, cls
 """
+
+
 # Methods
 class Student:
     school = "HUST"
+
     def __init__(self, m1, m2) -> None:
         self.m1 = m1
         self.m2 = m2
-    
+
     def avg(self):
         return (self.m1 + self.m2) / 2
 
@@ -78,6 +85,7 @@ class Student:
 
     @sum.setter
     """
+
 
 s1 = Student(1, 5)
 s1.avg()

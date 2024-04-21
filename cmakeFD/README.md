@@ -1,44 +1,45 @@
-<!-- omit in toc -->
 # CMAKE For Dummies
 
-CMake is a tool for build system. If you don't know or forget what it means to compile and build code, check this video: ["How do computers read code?"](https://youtu.be/QXjU9qTsYCc).
+`CMake` is a tool for build system. If you don't know or forget what it means to compile and build code, check this video: ["How do computers read code?"](https://youtu.be/QXjU9qTsYCc).
 
-The project needs to be compiled, built with makefiles. There is a need to maintain and update this files. It would be a tedious task as the project scale grows (.eg, using ROS), unless there is a tool to automate the process of generating these makefiles. This is where build systems come into play: GNU Make, Autotools, SCons, Premake, Ninja, Meson, FASTBuild, Sharpmake, Maven, Ant, Gradle. ([src](https://julienjorge.medium.com/an-overview-of-build-systems-mostly-for-c-projects-ac9931494444))
+The project needs to be compiled, built with `Makefile`s. There is a need to maintain and update this files. It would be a tedious task as the project scale grows (.eg, using ROS), unless there is a tool to automate the process of generating these `Makefile`s. This is where build systems come into play: `GNU Make`, `Autotools`, `SCons`, `Premake`, `Ninja`, `Meson`, `FASTBuild`, `Sharpmake`, `Maven`, `Ant`, `Gradle`. ([`source`](https://julienjorge.medium.com/an-overview-of-build-systems-mostly-for-c-projects-ac9931494444))
 
 Hopefully, these notes will give you a brief overview of what is needed.
 
--------
-<!-- omit in toc -->
+---
+
 ## Table of Contents
 
-- [Makefile](#makefile)
-- [CMake](#cmake)
-  - [CMake Overview](#cmake-overview)
-  - [Basic Definition](#basic-definition)
-  - [CMake Syntax Overview](#cmake-syntax-overview)
-- [Important commands](#important-commands)
-  - [Add target](#add-target)
-  - [Find / Include Package](#find--include-package)
-  - [Add Subdirectory](#add-subdirectory)
-  - [Include Directories](#include-directories)
-  - [Link Libraries](#link-libraries)
-  - [Including other scripts](#including-other-scripts)
-  - [Installing the Software](#installing-the-software)
-  - [Build Types](#build-types)
-- [Code Style](#code-style)
-- [ROS](#ros)
-- [Tips](#tips)
-  - [`FindPackage.cmake` NOT FOUND](#findpackagecmake-not-found)
+<!-- vim-markdown-toc GFM -->
 
--------
+* [`Makefile`](#makefile)
+* [`CMake`](#cmake)
+  * [`CMake` Overview](#cmake-overview)
+  * [Basic Definition](#basic-definition)
+  * [`CMake` Syntax Overview](#cmake-syntax-overview)
+* [Important commands](#important-commands)
+  * [Add target](#add-target)
+  * [Find / Include Package](#find--include-package)
+  * [Add Subdirectory](#add-subdirectory)
+  * [Include Directories](#include-directories)
+  * [Link Libraries](#link-libraries)
+  * [Including other scripts](#including-other-scripts)
+  * [Installing the Software](#installing-the-software)
+  * [Build Types](#build-types)
+* [Code Style](#code-style)
+* [ROS](#ros)
+* [Tips](#tips)
+  * [`FindPackage.cmake` NOT FOUND](#findpackagecmake-not-found)
 
-## Makefile
+<!-- vim-markdown-toc -->
+
+## `Makefile`
 
 > GNU Make is a tool which controls the generation of executables and other non-source files of a program from the program’s source files.
 
 In the terminal, at the directory level where there is a `Makefile`, running `make` will simply execute commands in the file.
 
-**Example 1**: In [MakefileTest](MakefileTest), the content of [Makefile](MakefileTest/Makefile):
+**Example 1**: In [MakefileTest](MakefileTest), the content of [`Makefile`](MakefileTest/Makefile):
 
 ```make
 default:
@@ -58,13 +59,13 @@ make # simply equivalent to: "g++ duck.cpp -o duck"
 - `Makefile` accepts `tab`, not `space`.
 - This is a Linux's thing, not a Windows thing.
 
-Writing Makefiles quickly gets painful when the project scale grows. There are problems with dependecies, linker arguments, etc.
+Writing `Makefile`s quickly gets painful when the project scale grows. There are problems with dependencies, linker arguments, etc.
 
--------
+---
 
-## CMake
+## `CMake`
 
-### CMake Overview
+### `CMake` Overview
 
 So `cmake` makes `Makefile`. Instead of manually write and manage `Makefile`(s), you write and manage `CMakeLists.txt`.
 
@@ -79,7 +80,7 @@ So `cmake` makes `Makefile`. Instead of manually write and manage `Makefile`(s),
 
 - Run `make` to generate executables (at dir level with `Makefile`).
 
-CMake has its own language. If you're going to work with ROS, working with CMake would be, like Thanos once said, "**I am inevitable**".
+`CMake` has its own language. If you're going to work with ROS, working with `CMake` would be, like Thanos once said, "**I am inevitable**".
 
 **Example 2**: Go to [CMakeEmptyTest](CMakeEmptyTest) and try `cmake` with an empty `CMakeLists.txt`.
 
@@ -102,11 +103,11 @@ build
 
 At the dir level with `Makefile`, running `make` will generates the executable file. In this example, however, without specifying executable in `CMakeLists.txt`, no executables will be generated.
 
--------
+---
 
 ### Basic Definition
 
-"**Target**" are executable files, binary files. As the name itself suggests, they are the ultimate targets, the goal of CMake, to compile and build source code (in C++) to these executables.
+"**Target**" are executable files, binary files. As the name itself suggests, they are the ultimate targets, the goal of `CMake`, to compile and build source code (in C++) to these executables.
 
 These targets have properties, which are to be managed in order for the source code to be compiled and built properly. Some common properties are: `LINK_LIBRARIES`, `INCLUDE_DIRECTORIES`, `COMPILE_DEFINITIONS`, `COMPILE_OPTIONS`.
 
@@ -128,13 +129,13 @@ get_property(MYAPP_SOURCES TARGET MyApp PROPERTY SOURCES)
 
 In other cases, instead of executable(s), the targets to build could be "**libraries**" - group of functionalities that could be used somewhere else.
 
--------
+---
 
-### CMake Syntax Overview
+### `CMake` Syntax Overview
 
-Again, **CMake has its own language.** It has variables, statements, flow control commands, etc. Check [CMakeLists.txt](CMakeLists.txt).
+Again, **`CMake` has its own language.** It has variables, statements, flow control commands, etc. Check [CMakeLists.txt](CMakeLists.txt).
 
-- In CMake, every variables is a string. When a variable is undefined, it defaults to an empty string. ([src](https://preshing.com/20170522/learn-cmakes-scripting-language-in-15-minutes/))
+- In `CMake`, every variables is a string. When a variable is undefined, it defaults to an empty string. ([source](https://preshing.com/20170522/learn-cmakes-scripting-language-in-15-minutes/))
 
 Some Statement Commands:
 
@@ -166,15 +167,15 @@ cmake -P test.txt #without specifing, NAME would be empty string
 cmake -DNAME=DUCK -P test.txt #Set variable NAME = DUCK
 ```
 
--------
+---
 
 ## Important commands
 
-CMake Tutorials: [Youtube](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&t=0s), [cmake.org](https://cmake.org/cmake/help/latest/guide/tutorial/index.html).
+`CMake` Tutorials: [YouTube](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&t=0s), [cmake.org](https://cmake.org/cmake/help/latest/guide/tutorial/index.html).
 
 ### Add target
 
-CMake command: `add_executable` [(CMake Doc)](https://cmake.org/cmake/help/latest/command/add_executable.html)
+`CMake` command: `add_executable` [(`CMake` Doc)](https://cmake.org/cmake/help/latest/command/add_executable.html)
 
 ```cmake
 add_executable(<name> [WIN32] [MACOSX_BUNDLE]
@@ -183,11 +184,11 @@ add_executable(<name> [WIN32] [MACOSX_BUNDLE]
 add_executable(duck duck.cpp)
 ```
 
--------
+---
 
 ### Find / Include Package
 
-- `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [CMake docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
+- `find_package` looks for scripts in one of these forms: `Find<PackageName>.cmake`, `<PackageName>Config.cmake`, etc (read [`CMake` docs](https://cmake.org/cmake/help/latest/index.html)). It also runs them in the same scope.
 
   ```cmake
   # Module mode finds Find<PackageName>.cmake
@@ -196,7 +197,7 @@ add_executable(duck duck.cpp)
   find_package(OpenCV MODULE REQUIRED) #find OpenCVConfig.cmake
   ```
 
-- `include` executes another CMake script in the same scope as the calling script. Eg., `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`. Let just stick with `find_package`.
+- `include` executes another `CMake` script in the same scope as the calling script. Eg., `find_package(SDL2)` is equivalent to `include(FindSDL2.cmake)`. Let just stick with `find_package`.
 - `find_package` = `find_library` + `find_path` ??
 
 ```cmake
@@ -221,7 +222,7 @@ TODO - WHAT ARE??
 - [SYSTEM_ENVIRONMENT_PATH]
 - [CMAKE_SYSTEM_PATH]
 
--------
+---
 
 ### Add Subdirectory
 
@@ -261,11 +262,11 @@ After add_subdirectory
 
 That's a worthless piece of code :)). But I hope you get the idea. Again, it simply runs the `CMakeLists.txt` script in the added subdirectory. Real usage would be define variables, library, include path, etc., such that the higher-level `CMakeLists.txt` can call.
 
--------
+---
 
 ### Include Directories
 
-The include paths are the lines in the begining of your CPP files `#include <z.hpp>`
+The include paths are the lines in the beginning of your CPP files `#include <z.hpp>`
 
 There are two `CMake` commands: `include_directories` and `target_include_directories`
 
@@ -299,9 +300,11 @@ include_directories(
 )
 ```
 
-After using `find_package` to find a package, it almost always sets the variables, which specify package include directory and link library. In above example, `EIGEN3_INCLUDE_DIR` is set in `FindEigen3.cmake`, which is called by `find_package(Eigen3 REQUIRED)`. Thus, the include directory of Eigen could be add with either `include_directories` or `target_include_directories`.
+After using `find_package` to find a package, it almost always sets the variables, which specify package include directory and link library.
+In above example, `EIGEN3_INCLUDE_DIR` is set in `FindEigen3.cmake`, which is called by `find_package(Eigen3 REQUIRED)`.
+Thus, the include directory of `Eigen` could be add with either `include_directories` or `target_include_directories`.
 
--------
+---
 
 ### Link Libraries
 
@@ -341,19 +344,19 @@ if (USE_LIBTEST)
 endif()
 ```
 
--------
+---
 
 ### Including other scripts
 
 - `add_library`
 - `add_custom_target`
 
--------
+---
 
 ### Installing the Software
 
 > If you are only ever using your software from a source build, you can probably ignore it. If you ever want to deploy your software, however, I would strongly encourage having an install process.  
-Installing makes a software package generally available to users of the system, by installing its components into a well-known prefix (e.g. /usr, /usr/local, /opt/MySoft). It is often much more convenient to use an installed software package rather than stuff in a build directory, as installed binaries tend to be in e.g. PATH, whereas build directories may not be readable by all users [[cmake.org](https://cmake.org/pipermail/cmake/2013-April/054247.html)].
+> Installing makes a software package generally available to users of the system, by installing its components into a well-known prefix (e.g. /usr, /usr/local, /opt/MySoft). It is often much more convenient to use an installed software package rather than stuff in a build directory, as installed binaries tend to be in e.g. PATH, whereas build directories may not be readable by all users [[cmake.org](https://cmake.org/pipermail/cmake/2013-April/054247.html)].
 
 Syntax:
 
@@ -370,16 +373,16 @@ cmake --install
 # make install
 ```
 
--------
+---
 
 ### Build Types
 
-Source: [stackoverflow](https://stackoverflow.com/questions/48754619/what-are-cmake-build-t.ype-debug-release-relwithdebinfo-and-minsizerel)
+Source: [StackOverflow](https://stackoverflow.com/questions/48754619/what-are-cmake-build-t.ype-debug-release-relwithdebinfo-and-minsizerel)
 
 - Only makes sense for single-target generators, like `Makefiles`.
 - `Release`: high optimization level, no debug info, code or asserts.
 - `Debug`: No optimization, asserts enabled, custom debug (output) code enabled, debug info included in executable (so you can step through the code with a debugger and have address to source-file:line-number translation).
-- `RelWithDebInfo`: optimized, *with* debug info, but no debug (output) code or asserts.
+- `RelWithDebInfo`: optimized, _with_ debug info, but no debug (output) code or asserts.
 - `MinSizeRel`: same as Release but optimizing for size rather than speed.
 
 Commands:
@@ -400,7 +403,7 @@ Ask Marco about:
 - find_package = find_library + find_path (auto the necessary)
 - link_directory -->
 
--------
+---
 
 ## Code Style
 
@@ -410,13 +413,13 @@ For ROS2 package, use:
 ament_lint_cmake
 ```
 
--------
+---
 
 ## ROS
 
-Check CMake for [ROS1]((ROS1CMAKE.md)), [ROS2](ROS2CMAKE.md).
+Check `CMake` for [ROS1](ROS1CMAKE.md), [ROS2](ROS2CMAKE.md).
 
--------
+---
 
 ## Tips
 
