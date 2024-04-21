@@ -1,4 +1,5 @@
 <!-- omit in toc -->
+
 # BASH
 
 Bash stands for Bourne Again SHell. It's the command language to interact with the OS.  
@@ -9,27 +10,28 @@ echo $PATH
 ```
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Commands](#commands)
 - [Style Guide for Shell scripting](#style-guide-for-shell-scripting)
 
------
+---
 
 ## Commands
 
 - Check [bashFD.bash](bashFD.bash) for commands.
 - Browse commands with
-  
-    ```bash
-    alias bashfd='cd $(fd -t d bashFD ~) && ls'
-    alias bashg='less $(fd bashFD.bash ~)'
-    alias bashgg='less $(fd bashFD.bash ~) | grep'
-    ```
+
+  ```bash
+  alias bashfd='cd $(fd -t d bashFD ~) && ls'
+  alias bashg='less $(fd bashFD.bash ~)'
+  alias bashgg='less $(fd bashFD.bash ~) | grep'
+  ```
 
 - Check [CLI_hotkeys.md](CLI_hotkeys.md) for hotkeys working in Linux terminal.
 
--------
+---
 
 ## Style Guide for Shell scripting
 

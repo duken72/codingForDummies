@@ -1,7 +1,8 @@
 <!-- omit in toc -->
+
 # Docker For Dummies
 
-Docker is a tool to package software in a *"containers"* that can run reliably in any environment / with any hardware.\
+Docker is a tool to package software in a _"containers"_ that can run reliably in any environment / with any hardware.\
 It's a better replacement for traditional Virtual Machines (VM).
 
 - An application should be compatible to many operating systems (OS) and types of machines (PC, laptop, smartphone, server)
@@ -14,6 +15,7 @@ It's a better replacement for traditional Virtual Machines (VM).
 - Docker communicates natively with the host system and uses less disk space.
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Resources](#resources)
@@ -28,7 +30,7 @@ It's a better replacement for traditional Virtual Machines (VM).
   - [Example](#example)
 - [Docker with Python](#docker-with-python)
 
--------
+---
 
 ## Resources
 
@@ -38,7 +40,7 @@ It's a better replacement for traditional Virtual Machines (VM).
 - Sharing: [TechLead](https://youtu.be/IbUXb4pQbPY), [Telusko](https://youtu.be/u-YWtdbpEhQ).
 - In-depth example: [Travis Media](https://youtu.be/i7ABlHngi1Q)
 
--------
+---
 
 ## Basics
 
@@ -49,7 +51,7 @@ It's a better replacement for traditional Virtual Machines (VM).
 - The container is where your actual software running.\
   The software, with everything (dependencies, memory, etc.) is separated with others and can be easily managed.
 
--------
+---
 
 ## CLI Commands
 
@@ -75,13 +77,13 @@ docker info #install check
 usermod -aG docker [user_name] #install non-root user
 ```
 
--------
+---
 
 ## Install and Configure
 
 Check [Arch Wiki](https://wiki.archlinux.org/title/docker) and `dockergg install` in CLI.
 
--------
+---
 
 ## Guide
 
@@ -122,7 +124,7 @@ For details, check [dockerFD.bash](dockerFD.bash), [Docker docs](https://docs.do
   docker container ...        # manage container(s)
   ```
 
--------
+---
 
 ## Using given Dockerfile
 
@@ -143,7 +145,7 @@ Given the Dockerfile:
   docker ps -a
   ```
 
--------
+---
 
 ## Anatomy of a Dockerfile
 
@@ -192,16 +194,17 @@ Given the Dockerfile:
   ```
 
 - `WORKDIR`: sets the working directory to run instructions: `CMD`, `RUN`, `ENTRYPOINT` and `COPY` after this step.
-  
+
   ```docker
   WORKDIR /project
   ```
 
 - `RUN` & `CMD` & `ENTRYPOINT`: Run commands
+
   - `RUN`: Runs a command on the image and commits the result
   - `CMD`:
   - `ENTRYPOINT`:
-  
+
   ```docker
   RUN apt-get install vim
   CMD ["node", "src/index.js"]
@@ -209,7 +212,7 @@ Given the Dockerfile:
   ```
 
 - `EXPOSE`: exposes port on the container to the outside world
-  
+
   ```docker
   EXPOSE 80 # <port> [<port>...]
   ```
@@ -245,7 +248,7 @@ You will see:
 - `test.tar.gz` extracted at `"/"` and `"/home"`
 - New volume `"/home/test_volume"`
 
--------
+---
 
 ## Docker with Python
 
@@ -261,12 +264,13 @@ Resources: Dockerize a Python application
 ### Errors
 
 - Can not connect to the internet: `;; connection timed out; no servers could be reached`
+
   - Get your DNS for the current network interface (wired or wireless): `networkctl status`, 'ifconfig', etc.
   - Create `/etc/docker/daemon.json` with the 1st DNS as the one you found in previous step
-    
+
     ```json
     {
-        "dns" : ["172.24.100.50", "8.8.8.8"]
+      "dns": ["172.24.100.50", "8.8.8.8"]
     }
     ```
 
@@ -275,6 +279,6 @@ Resources: Dockerize a Python application
   ```bash
   service docker restart
   systemctl restart docker.service
-  ``` 
+  ```
 
   - Check connection with `docker run -rm busybox nslookup google.com`

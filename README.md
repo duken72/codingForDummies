@@ -1,4 +1,5 @@
 <!-- omit in toc -->
+
 # Coding For Dummies
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies)](https://github.com/duken72/codingForDummies)
@@ -9,6 +10,7 @@ Important things about coding that I have learned by myself and from the profess
 - Other folders contain guides and samples for specific coding languages, tools and possible terminal commands.
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Resources](#resources)
@@ -24,7 +26,7 @@ Important things about coding that I have learned by myself and from the profess
 - [TODO](#todo)
 - [LICENSE](#license)
 
--------
+---
 
 ## Resources
 
@@ -35,17 +37,17 @@ Though normal googling might just always do the job, it's good to have some fixe
 - [Fireship](https://www.youtube.com/c/Fireship): overview on everything in 100 secs
 - [Telusko](https://www.youtube.com/c/Telusko): Python, Golang, NodeJS, Java, etc.
 
--------
+---
 
 ## Abbreviations & Definitions
 
 - CLI - Command-line Interface.
 - API - Application Programming Interface: [MuleSoft Videos](https://youtu.be/s7wmiS2mSXY), [Aaron Jack](https://youtu.be/ByGJQzlzxQg).
 - Compiling: translates source code (human-readeable, eg., in Python, C++) to low-level machine language (eg., Assembly). [How do computers read code?
-](https://youtu.be/QXjU9qTsYCc)
+  ](https://youtu.be/QXjU9qTsYCc)
 - Building: could include generating source code, documentation, compiling of source code, packaging complied code, installing, etc.
 
--------
+---
 
 ## Package and Package Management System
 
@@ -55,7 +57,7 @@ Though normal googling might just always do the job, it's good to have some fixe
 - `.deb` -
 - `dpkg` - Debian package management system
 
--------
+---
 
 ## Unit Testing
 
@@ -63,7 +65,7 @@ Though normal googling might just always do the job, it's good to have some fixe
 - `pytest`: [1](https://youtu.be/DhUpxWjOhME)
 - `unittest`: [1](https://youtu.be/6tNS--WetLI), [2](https://youtu.be/1Lfv5tUGsn8), [3](https://youtu.be/uCxL7NGEohI).
 
--------
+---
 
 ## DevOps
 
@@ -103,7 +105,7 @@ Automate test, build and deploy.
 - Run custom smoke test
 - Parse logs
 
--------
+---
 
 ## TODO
 
@@ -112,7 +114,7 @@ Automate test, build and deploy.
 - Jenkins
 - Gliffy diagram
 
--------
+---
 
 ## LICENSE
 

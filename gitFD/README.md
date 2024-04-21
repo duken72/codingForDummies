@@ -1,7 +1,9 @@
 <!-- omit in toc -->
+
 # GIT
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Guides](#guides)
@@ -12,7 +14,7 @@
 - [Pull Requests](#pull-requests)
 - [README Badges](#readme-badges)
 
--------
+---
 
 ## Guides
 
@@ -31,7 +33,7 @@ Basics:
 - [git - the simple guide](https://rogerdudler.github.io/git-guide/)
 - [Git Tutorial for Beginners](https://www.youtube.com/watch?v=HVsySz-h9r4)
 
--------
+---
 
 ## CLI commands
 
@@ -43,7 +45,7 @@ alias gitgg='less $(fd gitFD.bash ~) | grep'
 - Check [gitFD.bash](gitFD.bash) for commands.
 - Alternatively, just go with `git help <verb>`
 
--------
+---
 
 ## Tips and Tricks
 
@@ -52,13 +54,14 @@ git commit -am "Message"                    # combine add and commit
 git config --global alias.ac "commit -am"   # setting git alias
 ```
 
--------
+---
 
 ## Advanced Techniques
 
 Source: [13 Advanced (but useful) Git Techniques and Shortcuts](https://youtu.be/ecK3EnyGD8o)
 
 - `git commit --amend`
+
   - can be used to change previous commit message, if you haven't pushed it to the remote repo
 
   ```bash
@@ -87,7 +90,7 @@ Source: [13 Advanced (but useful) Git Techniques and Shortcuts](https://youtu.be
 - Squash multiple commits:
 - Git hook: TODO
 
--------
+---
 
 ## Syncing
 
@@ -104,7 +107,7 @@ git config --global credential.helper store
 
 Use `.gitignore` to intentionally specify untracked files.
 
--------
+---
 
 ## Pull Requests
 
@@ -119,13 +122,13 @@ Yes :)) I made a section just for Pull Requests.
 - Invite issue reporter and colleagues to review your code and contribute changes
 - Write decent PRs when you submit, and look out for these when you review one:
   - **What does the PR do?**: e.g. screenshots, videos  
-  Does the PR do what it's supposed to do? Does it do it correctly?
+    Does the PR do what it's supposed to do? Does it do it correctly?
   - **Is the code readable and clean?** Too long functions doing too many things, coding-style, indentation, etc.
   - **Can the code be shorter, smarter?** Duplicated of codes, suggest efficiency optimization
   - **Are changes covered by tests?** "Fairly complex" functions should have unit tests
   - **Is it documented?** README updated, functions commented in Doxygen style
 
--------
+---
 
 ## README Badges
 

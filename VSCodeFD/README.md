@@ -2,35 +2,35 @@
 
 ## Hotkeys
 
-|             Command              |                Action                 |
-|:-------------------------------: |:------------------------------------: |
-|              Ctrl+P              |              Find files               |
-|           Ctrl+Shift+E           |            File Explorers             |
-|           Ctrl+Shift+P           |           Show all commands           |
-|            Ctrl+Space            |    Invoke IntelliSense suggestion     |
-| Ctrl+C (without text selection)  |       Copy entire current line        |
-|           Ctrl+Shift+K           |        Delete the entire line         |
-|          Alt+MoveArrow           | Move entire selected line(s) up/down  |
-|              Ctrl+F              |          Find words in file           |
-|              Ctrl+H              |     Find & replace words in file      |
-|           Ctrl+Shift+F           |        Find words in workspace        |
-|           Ctrl+Shift+H           |   Find & replace words in workspace   |
-|                F2                |          Rename Refactoring           |
-|                F8                |          Errors and Warning           |
-|           Ctrl+Shift+I           |               Formatting              |
-|        Ctrl+Shift+[ or ]         |             Code folding              |
-|             Ctrl + `             |             Open Terminal             |
-|           Ctrl+Shift+M           |             Open Problems             |
-|           Ctrl+Shift+X           |              Extensions               |
-|           Ctrl+Shift+G           |                  Git                  |
-|              Ctrl+,              |               Settings                |
-|              Ctrl+.              |             Code actions              |
-|              Ctrl+B              |           Close side panels           |
-|              Ctrl+J              |          Code bottom panels           |
-|              Ctrl+\              |             Split editor              |
-|              Ctrl+2              |               Extra tab               |
+|             Command             |                Action                |
+| :-----------------------------: | :----------------------------------: |
+|             Ctrl+P              |              Find files              |
+|          Ctrl+Shift+E           |            File Explorers            |
+|          Ctrl+Shift+P           |          Show all commands           |
+|           Ctrl+Space            |    Invoke IntelliSense suggestion    |
+| Ctrl+C (without text selection) |       Copy entire current line       |
+|          Ctrl+Shift+K           |        Delete the entire line        |
+|          Alt+MoveArrow          | Move entire selected line(s) up/down |
+|             Ctrl+F              |          Find words in file          |
+|             Ctrl+H              |     Find & replace words in file     |
+|          Ctrl+Shift+F           |       Find words in workspace        |
+|          Ctrl+Shift+H           |  Find & replace words in workspace   |
+|               F2                |          Rename Refactoring          |
+|               F8                |          Errors and Warning          |
+|          Ctrl+Shift+I           |              Formatting              |
+|        Ctrl+Shift+[ or ]        |             Code folding             |
+|            Ctrl + `             |            Open Terminal             |
+|          Ctrl+Shift+M           |            Open Problems             |
+|          Ctrl+Shift+X           |              Extensions              |
+|          Ctrl+Shift+G           |                 Git                  |
+|             Ctrl+,              |               Settings               |
+|             Ctrl+.              |             Code actions             |
+|             Ctrl+B              |          Close side panels           |
+|             Ctrl+J              |          Code bottom panels          |
+|             Ctrl+\              |             Split editor             |
+|             Ctrl+2              |              Extra tab               |
 
--------
+---
 
 ## Code Style Support
 
@@ -60,7 +60,7 @@ Add to `settings.JSON` of VSCode (via `Ctrl+P`, `>Preferences: Open Settings (JS
 }
 ```
 
--------
+---
 
 ## Snippets
 

@@ -26,34 +26,34 @@ To create a new package:
 1. Start with create a workspace, a.k.a. a worksplace_folder
 2. Run this code to create a new package, define some dependencies
 
-    ```bash
-    cd ../src
-    catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
-    ```
+   ```bash
+   cd ../src
+   catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+   ```
 
 3. Build a catkin workspace and sourcing the setup file
 
-    ```bash
-    cd ~/catkin_ws
-    catkin_make
-    . ~/catkin_ws/devel/setup.bash # add workspace to ROS environment, by sourcing the setup file
-    ```
+   ```bash
+   cd ~/catkin_ws
+   catkin_make
+   . ~/catkin_ws/devel/setup.bash # add workspace to ROS environment, by sourcing the setup file
+   ```
 
 4. Customize: edit stuffs in package.xml and CMakeLists.txt, mostly related to dependencies
 5. Expected results
 
-    ```txt
-    workspace_folder/         -- WORKSPACE
-    ├── src/                  -- SOURCE SPACE
-    │  ├── CMakeLists.txt     -- 'Toplevel' CMake file, provided by catkin
-    │  ├── ..
-    │  ├── package_n/
-    │  │  ├── CMakeLists.txt  -- CMakeLists.txt file for package_n
-    │  │  ├── package.xml     -- Package manifest for package_n
-        ..
-    ```
+   ```txt
+   workspace_folder/         -- WORKSPACE
+   ├── src/                  -- SOURCE SPACE
+   │  ├── CMakeLists.txt     -- 'Toplevel' CMake file, provided by catkin
+   │  ├── ..
+   │  ├── package_n/
+   │  │  ├── CMakeLists.txt  -- CMakeLists.txt file for package_n
+   │  │  ├── package.xml     -- Package manifest for package_n
+       ..
+   ```
 
--------
+---
 
 ## Building ROS Package
 
@@ -72,7 +72,7 @@ catkin_ws       -- WORKSPACE
 └── src         -- SOURCE SPACE
 ```
 
--------
+---
 
 ## Overview of ROS Graph Concepts
 
@@ -83,11 +83,12 @@ catkin_ws       -- WORKSPACE
 - `rosout`: `ROS` equivalent of `stdout/stderr`
 - `roscore`: Master + `rosout` + parameter server (parameter server will be introduced later)
 
--------
+---
 
 ## Listening to ROS node in external Docker container
 
 References:
+
 - [finnrietz.dev](https://www.finnrietz.dev/linux/ros-docker/)
 - [roboticseabass.com](https://roboticseabass.com/2021/04/21/docker-and-ros/)
 - [tuw-cpsg.github](https://tuw-cpsg.github.io/tutorials/docker-ros/)
