@@ -1,20 +1,18 @@
-//standard lib folder, cout, cin, getline
-#include <iostream>
-#include <vector>
-#include <fstream>
-// formating output
-#include <iomanip>
-#include <time.h> 
-#include <stdio.h>
-#include <string>
-#include <sstream>
 #include <cmath>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <map>
 #include <memory>
 #include <set>
-#include <unordered_set>
-#include <map>
-#include <unordered_map>
+#include <sstream>
+#include <stdio.h>
+#include <string>
 #include <thread>
+#include <time.h>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 // Random definition to avoid errors
 // using namespace std;

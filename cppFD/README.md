@@ -1,9 +1,11 @@
 <!-- omit in toc -->
+
 # C++ for dummies
 
 [![tokei](https://tokei.rs/b1/github/duken72/codingForDummies/cppFD)](https://github.com/duken72/codingForDummies/cppFD)
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Courses](#courses)
@@ -36,7 +38,7 @@
 - [String](#string)
   - [String Literals in C++](#string-literals-in-c)
   - [Small String Optimization in C++](#small-string-optimization-in-c)
-  - [String\_view](#string_view)
+  - [String_view](#string_view)
 - [Useful STL containers](#useful-stl-containers)
   - [Union](#union)
   - [`emplace_back` vs `push_back`](#emplace_back-vs-push_back)
@@ -52,7 +54,7 @@
   - [Variadic Functions](#variadic-functions)
   - [TODO](#todo)
 
--------
+---
 
 ## Courses
 
@@ -62,7 +64,7 @@
 - [Modern C++ (Summer 2018, Uni Bonn)](https://youtube.com/playlist?list=PLgnQpQtFTOGR50iIOtO36nK6aNPtVq98C)
 - [C++ For Programmers, Udacity](https://classroom.udacity.com/courses/ud210)
 
--------
+---
 
 ## Building
 
@@ -136,7 +138,7 @@ g++ pch.hpp   # this produces file pch.hpp.gch
   }
   ```
 
--------
+---
 
 ## Style Guide
 
@@ -155,16 +157,16 @@ ament_cppcheck
 
 ### Naming Conventions
 
-| Code Element          | Style                            |
-|-----------------------|----------------------------------|
-| File names            | Match case of class name in file |
-| Parameters/Locals     | local_param_duck                 |
-| Constants             | CONSTANT_DUCK                    |
-| Namespace             | namespace_duck                   |
-| Function name         | funcNameDuck                     |
-| Class name            | ClassNameDuck                    |
-| mem variables         | mem_var_duck_                    |
-| Enums and its mems    | EnumsAndMem                      |
+| Code Element         | Style                            |
+| -------------------- | -------------------------------- |
+| File names           | Match case of class name in file |
+| Parameters/Locals    | `local_param_duck`               |
+| Constants            | `CONSTANT_DUCK`                  |
+| `namespace`          | `namespace_duck`                 |
+| Function name        | `funcNameDuck`                   |
+| Class name           | `ClassNameDuck`                  |
+| mem variables        | `mem_var_duck_`                  |
+| `enums` and its mems | `EnumsAndMem`                    |
 
 ### Header Files
 
@@ -177,7 +179,7 @@ code...
 #endif // FOO_BAR_BAZ_H_
 ```
 
-```#pragma once``` is not supported if same header files exist at multiple places (ROS build system).
+`#pragma once` is not supported if same header files exist at multiple places (ROS build system).
 
 ### Names and Order of Includes
 
@@ -222,11 +224,11 @@ namespace inner {
 
 ### Documentation
 
-Use Doxygen style comments, if the function is non-obvious
+Use `Doxygen` style comments, if the function is non-obvious
 
-- /// and /** */ comments for documentation purposes, @tags only support a single line!
-- // style comments for notes and general comments.
-- // Avoid trivial cluttering comments, prefer meaningful variable and function names.
+- `///` and `/** */` comments for documentation purposes, `@tags` only support a single line!
+- `//` style comments for notes and general comments.
+- `//` Avoid trivial cluttering comments, prefer meaningful variable and function names.
 
 ```cpp
 /**
@@ -249,7 +251,7 @@ double sumInt(std::vector<double> values);
 double sumInt(std::vector<double> values);
 ```
 
--------
+---
 
 ## Memory Management and Pointer
 
@@ -266,37 +268,37 @@ The primitive data types vary in the memory size that they occupy. 1 byte is equ
   - `short` - target type will be optimized for space and will have width of at least 16 bits.
   - `long` - target type will have width of at least 32 bits.
 
-|          Type          |        Size       |      Typical Range      |       Decimal Range      |
-|:----------------------:|:-----------------:|:-----------------------:|:------------------------:|
-|         boolean        |  8 bits = 1 byte  |          $0-1$          |                          |
-|      (signed) char     |  8 bits = 1 byte  |    $-2^7$ to $2^7-1$    |      $-128$ to $127$     |
-|      unsigned char     |  8 bits = 1 byte  |      $0$ to $2^8-1$     |       $0$ to $255$       |
-|      (signed) int      | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |       $\pm 2.1 E 9$      |
-|      unsigned int      | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
-|   (signed) short int   | 16 bits = 2 bytes | $-2^{15}$ to $2^{15}-1$ |       $\pm 3.2 E 4$      |
-|   unsigned short int   | 16 bits = 2 bytes |    $0$ to $2^{16}-1$    |     $0$ to $6.5 E 4$     |
-|    (signed) long int   | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |       $\pm 2.1 E 9$      |
-|    unsigned long int   | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
-| (signed) long long int | 64 bits = 8 bytes | $-2^{63}$ to $2^{63}-1$ |      $\pm 9.2 E 18$      |
-| unsigned long long int | 64 bits = 8 bytes |    $0$ to $2^{64}-1$    |     $0$ to $1.8 E 19$    |
-|          float         | 32 bits = 4 bytes |                         |  $3.4E\pm38$ (7 digits)  |
-|         double         | 64 bits = 8 bytes |                         | $1.7E\pm308$ (15 digits) |
-|       long double      | 96 bits = 12bytes |                         |                          |
+|           Type           |       Size        |      Typical Range      |      Decimal Range       |
+| :----------------------: | :---------------: | :---------------------: | :----------------------: |
+|        `boolean`         |  8 bits = 1 byte  |          $0-1$          |                          |
+|     (signed) `char`      |  8 bits = 1 byte  |    $-2^7$ to $2^7-1$    |     $-128$ to $127$      |
+|     unsigned `char`      |  8 bits = 1 byte  |     $0$ to $2^8-1$      |       $0$ to $255$       |
+|      (signed) `int`      | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |      $\pm 2.1 E 9$       |
+|      unsigned `int`      | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
+|   (signed) `short int`   | 16 bits = 2 bytes | $-2^{15}$ to $2^{15}-1$ |      $\pm 3.2 E 4$       |
+|   unsigned `short int`   | 16 bits = 2 bytes |    $0$ to $2^{16}-1$    |     $0$ to $6.5 E 4$     |
+|   (signed) `long int`    | 32 bits = 4 bytes | $-2^{31}$ to $2^{31}-1$ |      $\pm 2.1 E 9$       |
+|   unsigned `long int`    | 32 bits = 4 bytes |    $0$ to $2^{32}-1$    |     $0$ to $4.2 E 9$     |
+| (signed) `long long int` | 64 bits = 8 bytes | $-2^{63}$ to $2^{63}-1$ |      $\pm 9.2 E 18$      |
+| unsigned `long long int` | 64 bits = 8 bytes |    $0$ to $2^{64}-1$    |    $0$ to $1.8 E 19$     |
+|         `float`          | 32 bits = 4 bytes |                         |  $3.4E\pm38$ (7 digits)  |
+|         `double`         | 64 bits = 8 bytes |                         | $1.7E\pm308$ (15 digits) |
+|      `long double`       | 96 bits = 12bytes |                         |                          |
 
-**Notes**:****
+**Notes**:\*\*\*\*
 
 - One `boolean` actually just needs 1 bit, but you can only access byte, thus it still occupies 1 byte, which is 8 bits. We could however store 8 `bool`(s) in 1 byte.
 - To differentiate types when assigning variables, use suffixes. Aware that these suffixes are case-insensitive: ie., `u` is equivalent to `U`, `UL` is equivalent to `uL, Ul, ul`.
 
-| Data Type  |   Suffix   |       Meaning       |
-|:---------: |:---------: |:------------------: |
-|    int     |     U      |    unsigned int     |
-|    int     |     L      |        long         |
-|    int     |  UL / LU   |    unsigned long    |
-|    int     |     LL     |      long long      |
-|    int     | ULL / LLU  | unsigned long long  |
-|   double   |     F      |        float        |
-|   double   |     L      |     long double     |
+| Data Type |  Suffix   |       Meaning        |
+| :-------: | :-------: | :------------------: |
+|    int    |     U     |    `unsigned int`    |
+|    int    |     L     |        `long`        |
+|    int    |  UL / LU  |   `unsigned long`    |
+|    int    |    LL     |     `long long`      |
+|    int    | ULL / LLU | `unsigned long long` |
+|  double   |     F     |       `float`        |
+|  double   |     L     |    `long double`     |
 
 ### Stack and Heap Memory
 
@@ -352,10 +354,10 @@ void foo(int size)
 ### Pointer
 
 | Expression | What is evaluated                     | Equivalent |
-|:----------:|---------------------------------------|:----------:|
+| :--------: | ------------------------------------- | :--------: |
 |   `a.b`    | member b of object a                  |            |
-|  `a->b`    | member b of object pointed to by a    |  `(*a).b`  |
-|  `*a.b`    | Value pointed to by mem b of object a |  `*(a.b)`  |
+|   `a->b`   | member b of object pointed to by a    |  `(*a).b`  |
+|   `*a.b`   | Value pointed to by mem b of object a |  `*(a.b)`  |
 
 The points of pointer:
 
@@ -424,10 +426,10 @@ g++ smartPointer.cpp -o test && ./test && rm -f test
 ### `lvalues` and `rvalues` (C++11)
 
 - [The Cherno](https://youtu.be/fbYknr-HPYE)
-- `lvalue`: is a ***VARIABLE with a LOCATION IN MEMORY***
-- `rvalue`: is a ***TEMPORARY*** value
+- `lvalue`: is a **_VARIABLE with a LOCATION IN MEMORY_**
+- `rvalue`: is a **_TEMPORARY_** value
 - Many functions are written using `const` references as parameters\
-They are compatible with both `lvalue` and `rvalue`
+  They are compatible with both `lvalue` and `rvalue`
 - `rvalue` ref: e.g., `std::string&&`
 - These are useful when it comes to optimization, e.g., later in move semantics, when we know something is temporary as a `rvalue`
 
@@ -491,7 +493,8 @@ double s = static_cast<int>(a) + 5.25;
 - C++ style castings do not do anything that C style casting can not do. They might do additional things, but C style casting can achieve the same.
   - C++ style casting is easier to search
   - Reduce errors
-- Dynamic Casting is something unique to just C++, not C
+- Dynamic Casting is something unique to just C++, not C.
+
   - Use it for class inheritance structure: Base and Derived classes
   - It also does validation to check if the casting is valid
   - If the cast is valid, it returns the desired value, if not, it returns `nullptr`/`null`
@@ -512,7 +515,7 @@ double s = static_cast<int>(a) + 5.25;
   Player* p1 = dynamic_cast<Player*>(actuallyPlayer);
   ```
 
--------
+---
 
 ## Advanced Class Features
 
@@ -535,7 +538,7 @@ Initializing member values with initializer lists is better:
 
 ```cpp
 Something::Something(int memIn1, double memIn2)
-: mem1{memIn1}, mem2{memIn2}, mem3{'c'} 
+: mem1{memIn1}, mem2{memIn2}, mem3{'c'}
 {
 };
 ```
@@ -566,7 +569,7 @@ public:
 };
 ```
 
--------
+---
 
 ### Structure v/s Class
 
@@ -587,7 +590,7 @@ Class:
 - Declaration of a var of the new class type requires just the name of the class: `classA varA;`, not: `struct structA varA;`
 - If you use inheritance, don't use struct, use class.
 
--------
+---
 
 ### `virtual` & `override` identifiers
 
@@ -633,7 +636,7 @@ public:
 };
 ```
 
--------
+---
 
 ## String
 
@@ -658,7 +661,7 @@ awefaw)" << endl;
 
 - Well, and more ...
 
--------
+---
 
 ### Small String Optimization in C++
 
@@ -667,7 +670,7 @@ Source: [The Cherno](https://youtu.be/S7oVXMzTo4w)
 - Small string will be faster, as it is allocated to a stack-based buffer, instead of to heap memory.
 - How small/short is the string depends on the version, C++ standard, etc. (15 `char`s)
 
--------
+---
 
 ### String_view
 
@@ -693,7 +696,7 @@ std::string_view firstName(name, 3);
 std::string_view lastName(name + 4, 9);
 ```
 
--------
+---
 
 ## Useful STL containers
 
@@ -707,26 +710,26 @@ Check [CS/README.md](CS/README.md) for more on:
 
 - [The purpose of C++ Union](https://stackoverflow.com/questions/2310483/purpose-of-unions-in-c-and-c): is to save memory
 
-    ```cpp
-    union RecordType    // Declare a simple union type
-    {
-        char   ch;
-        int    i;
-        long   l;
-        float  f;
-        double d;
-        int *int_ptr;
-    };
+  ```cpp
+  union RecordType    // Declare a simple union type
+  {
+      char   ch;
+      int    i;
+      long   l;
+      float  f;
+      double d;
+      int *int_ptr;
+  };
 
-    int main()
-    {
-        RecordType t;
-        t.i = 5; // t holds an int
-        t.f = 7.25; // t now holds a float
-    }
-    ```
+  int main()
+  {
+      RecordType t;
+      t.i = 5; // t holds an int
+      t.f = 7.25; // t now holds a float
+  }
+  ```
 
-- [learn.microsoft](https://learn.microsoft.com/en-us/cpp/cpp/unions?view=msvc-170): The most common way to use union is called a *discriminated union*.\
+- [learn.microsoft](https://learn.microsoft.com/en-us/cpp/cpp/unions?view=msvc-170): The most common way to use union is called a _discriminated union_.\
   It encloses the union in a struct, and includes an enum member that indicates the member type currently stored in the union.
 
 ### `emplace_back` vs `push_back`
@@ -738,10 +741,12 @@ Check [CS/README.md](CS/README.md) for more on:
   - `push_back` is SLOWER because it calls a constructor for temporary object, a copy of the temporary object will be constructed in the memory for the container, then the destructor will be called
   - `emplace_back` directly takes constructor arguments for objects to be inserted, and avoids constructing and destructing temporary objects.
 - Safety:
+
   - `push_back` is CLEARER, the type of the inserted element is explicitly listed.
   - `emplace_back` might lead to unexpected leakage
 
   > As always, the rule of thumb is that you should avoid “optimizations” that make the code less safe or less clear, unless the performance benefit is big enough to show up in your application benchmarks. [Geoff Romer](https://abseil.io/tips/112)
+
 - A compromise would be to just consider using `vector.reserve(N)`
 
 ```cpp
@@ -769,18 +774,18 @@ std::array<int, 3> a = {{1, 2, 3}};
 - If you need random access, use `std::vector`, not `std::list`.
 - When bidirectional iteration is not needed, `std::forward_list` is more memory efficient than `std::list`
 
-|                              |       `std::vector`       |  `std::forward_list`  |     `std::list`     |
-|------------------------------|:-------------------------:|:---------------------:|:-------------------:|
-|                              |     dynamically array     |   singly linked list  |  doubly linked list |
-|                              |                           | no underlying array   | no underlying array |
-| Bidirectional iteration      |            YES            |           NO          |         YES         |
-|                              |                           | no rbegin, rend, etc. |                     |
-| Fast random access           |      v.at(id) / v[id]     |           NO          |          NO         |
-| Insertion/removal at the end |      $\mathcal{O}(1)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
-| Insertion/removal            |      $\mathcal{O}(N)$     |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
-| Insertion                    | Re-allocate entire memory |    $\mathcal{O}(1)$   |   $\mathcal{O}(1)$  |
+|                              |       `std::vector`       |    `std::forward_list`    |     `std::list`     |
+| ---------------------------- | :-----------------------: | :-----------------------: | :-----------------: |
+|                              |     dynamically array     |    singly linked list     | doubly linked list  |
+|                              |                           |    no underlying array    | no underlying array |
+| Bidirectional iteration      |            YES            |            NO             |         YES         |
+|                              |                           | no `rbegin`, `rend`, etc. |                     |
+| Fast random access           |     v.at(id) / v[id]      |            NO             |         NO          |
+| Insertion/removal at the end |     $\mathcal{O}(1)$      |     $\mathcal{O}(1)$      |  $\mathcal{O}(1)$   |
+| Insertion/removal            |     $\mathcal{O}(N)$      |     $\mathcal{O}(1)$      |  $\mathcal{O}(1)$   |
+| Insertion                    | Re-allocate entire memory |     $\mathcal{O}(1)$      |  $\mathcal{O}(1)$   |
 
--------
+---
 
 ## Best practices, tips and notes
 
@@ -801,7 +806,7 @@ int d { 7 };
 
 - Copy initialization: was inherited from the C language.
 - Direct initialization:
-  - For simple data types (like `int`), copy and direct initialization are essentially the same. 
+  - For simple data types (like `int`), copy and direct initialization are essentially the same.
   - For more complicated types, direct initialization tends to be more efficient than copy initialization.
 - Uniform initialization / list initialization: To provide a more consistent initialization mechanism. Because, direct initialization can’t be used for all types of initialization (such as initializing an object with a list of data).
 
@@ -840,11 +845,11 @@ public:
   // redundant to add inline here
   int square(int s); // declare the function
 };
-  
+
 inline int S::square(int s) {} // use inline prefix
 ```
 
--------
+---
 
 ### `explicit` specifier
 
@@ -856,7 +861,7 @@ Src: [cppreference](https://en.cppreference.com/w/cpp/language/explicit), [stack
 
 TODO - Should we almost always add `explicit` specifier.
 
--------
+---
 
 ### `auto` keyword
 
@@ -872,13 +877,13 @@ auto obj1 = new SomeType<OtherType>::SomeOtherType();
 auto obj2 = std::make_shared<XyzType>(args...);
 ```
 
--------
+---
 
 ### `using` & `typedef` keywords
 
 - Purposes of `using` keyword in C++: [educative](https://www.educative.io/edpresso/what-is-the-using-keyword-in-cpp), [ibm](https://www.ibm.com/docs/en/zos/2.3.0?topic=only-using-declaration-class-members-c), [learncpp](https://www.learncpp.com/cpp-tutorial/using-declarations-and-using-directives/), [stackoverflow](https://stackoverflow.com/questions/20790932/what-is-the-logic-behind-the-using-keyword-in-c)
 - `using declarations`: Bring a specific member from the namespace into the current scope.
-  
+
   ```cpp
   int main()
   {
@@ -900,7 +905,7 @@ auto obj2 = std::make_shared<XyzType>(args...);
 
 - In C++11, the `using` keyword is used for `type alias`, which is identical to `typedef`. In many cases, `using` has improving readability, compared to the equivalent `typedef`, especially with pointer and template ([TypeDefs.hpp](TypeDefs.hpp)).
 
--------
+---
 
 ### Lambda Expressions
 
@@ -914,7 +919,7 @@ auto rev = [=](int id) -> int
     { return N - id + 1; }; // Reverse lambda function
 ```
 
--------
+---
 
 ### Variadic Functions
 
@@ -933,7 +938,7 @@ void func(T t, Args... args) // recursive variadic function
 }
 ```
 
--------
+---
 
 ### TODO
 
