@@ -76,10 +76,10 @@ if [ -r file ]; then echo "file is a file readable by you" fi
 if [ -w file ]; then echo "file is a file writable by you" fi
 if [ -x file ]; then echo "file is a file executable by you" fi
 if type cmd; then echo "cmd exists" fi
-#according to modification time
+# according to modification time
 if [ file1 -nt file2 ]; then echo "file1 is newer than file2" fi
 if [ file1 -ot file2 ]; then echo "file1 is older than file2" fi
-#string
+# string
 if [ -z string ]; then echo "string is empty" fi
 if [ -n string ]; then echo "string is not empty" fi
 if [ string1 = string2 ]; then echo "string1 equals string2" fi
