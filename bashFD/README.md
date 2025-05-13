@@ -35,15 +35,12 @@ echo $PATH
 
 ## Style Guide for Shell scripting
 
-```bash
-# Style guide to keep this neat:
-# - leave two blank lines before a new 'function'
-# - leave one blank line before completion function, e.g '_function-complete'
-#   which is associated to a 'function'
-# - leave no blank line before complete function, e.g. 'complete -F function'
-#   which is associated to a '_function-complete'
-# - all prints, echos, logs etc. should start lower-case
-```
+Style guide to keep this neat:
+
+- leave two blank lines before a new function
+- leave one blank line before completion function, e.g `\_function-complete`, which associates to a `function`
+- leave no blank line before complete function, e.g. `complete -F function`, which associates to a `\_function-complete`
+- all `print`s, `echo`s, `log`s etc. should start with lower-case
 
 Coloring scripts:
 
@@ -63,7 +60,12 @@ Check source [stackoverflow](https://stackoverflow.com/questions/5947742/how-to-
 - Text mode:
   - `3;` italic
   - `4;` underline
-  - `5;`/`6;` blinking (slow/fast)
+  - `5;`/`6;` blinking slow or fast
   - `7;` reverse
   - `8;` hide
   - `9;` cross-out
+
+```bash
+echo -e "\033[4mtext here\033[m"
+echo -e "\033[4m \033[9m text here \033[m"
+```
