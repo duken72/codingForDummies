@@ -88,6 +88,6 @@ class Student:
 
 
 s1 = Student(1, 5)
-s1.avg()
-Student.getSchool()
-Student.info()
+print(s1.avg())
+print(Student.getSchool())
+print(Student.info())

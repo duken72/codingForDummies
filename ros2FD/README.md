@@ -11,6 +11,7 @@
 * [Launch file](#launch-file)
 * [ROS2 Package](#ros2-package)
 * [Running from Docker](#running-from-docker)
+* [ROS1 vs ROS2](#ros1-vs-ros2)
 
 <!-- vim-markdown-toc -->
 
@@ -143,3 +144,23 @@ docker run -it --rm --env="DISPLAY" \
   osrf/ros:humble-desktop
 ros2 run turtlesim turtlesim_node
 ```
+
+## ROS1 vs ROS2
+
+Source: [Robotics Back-End | YouTube](https://youtu.be/yn638LmVwlw?si=bCrm4KOoeyAXNcnY)
+
+- Main reasons were that ROS1 misses many important features and not suitable for industrial applications (real time, safety, certification, security)
+- API:
+  - ROS1 has fewer layers: coding libraries `rospy` and `roscpp`, communication layers - TCPROS/UDPROS, Linux system
+  - ROS2 has more layers: `rclcpp` and `rclpy` on top of shared `rcl` lib, DDS, Linux/Windows/MacOS
+- Compatible with newer versions of Python and C++
+- ROS2 has components as core functionality, instead of ROS1 Nodelets. We can have many nodes/components in an executable
+- ROS2 has lifecycled nodes
+- ROS2 has launch files in Python, which is more modular
+- No more ROS master in ROS2, instead, we have decentralized communication
+- ROS1 has centralized parameter server. In ROS2, each node has its own parameter server
+- Services in ROS1 are synchronous, but can be asynchronous in ROS2
+- ROS action is a core functionality in ROS2 now
+- ROS2 has more customizable QoS - Quality of Service
+- ROS2 introduces workspace overlays
+- ROS2 supports more OSs: Linux, Windows, MacOS

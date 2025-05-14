@@ -23,7 +23,7 @@ alias rosgg='less $(fd rosFD.bash ~) | grep'
 
 To create a new package:
 
-1. Start with create a workspace, a.k.a. a worksplace_folder
+1. Start with create a workspace, a.k.a. a `worksplace_folder`
 2. Run this code to create a new package, define some dependencies
 
    ```bash
@@ -39,7 +39,7 @@ To create a new package:
    . ~/catkin_ws/devel/setup.bash # add workspace to ROS environment, by sourcing the setup file
    ```
 
-4. Customize: edit stuffs in package.xml and CMakeLists.txt, mostly related to dependencies
+4. Customize: edit stuffs in `package.xml` and `CMakeLists.txt`, mostly related to dependencies
 5. Expected results
 
    ```txt
