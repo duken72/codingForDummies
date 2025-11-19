@@ -52,7 +52,7 @@ if conditions; then
   commands
 [elif conditions; then
   commands]
-[else conditions; then
+[else; then
   commands]
 fi
 if ([condition1] || [condition2]) && [condition3]; then
